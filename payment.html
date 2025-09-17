@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NullTracker Premium - Secure Your Discord Server</title>
+    <link rel="stylesheet" href="payment-styles.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=AXMl-E6qmVqcXqer2VVK0cJPDXBWZVtjdzL4sxzGNGQNt0VrB-MfnxRiZrjitv-5Q_vXDxRgbYseMFqi&currency=USD"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="commands.html" class="nav-link">Commands</a></li>
+                <li><a href="premium-commands.html" class="nav-link">Premium</a></li>
+                <li><a href="payment.html" class="nav-link active">Payment</a></li>
+                <li><a href="donate.html" class="nav-link">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="payment-main">
+        <!-- Hero Section -->
+        <section class="payment-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Upgrade to <span class="gradient-text">Premium</span></h1>
+                    <p>Unlock advanced security features and protect your Discord server with enterprise-grade protection</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">99.9%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50K+</span>
+                            <span class="stat-label">Protected Servers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Selection & Payment -->
+        <section class="service-payment-section">
+            <div class="container">
+                <h2>Choose Your Premium Services</h2>
+                <p class="section-subtitle">Mix and match services based on your server's needs</p>
+                
+                <div class="service-payment-grid">
+                    <!-- Service Menu -->
+                    <div class="services-menu">
+                        <!-- Anti-Nuke Premium -->
+                        <div class="service-row">
+                            <div class="service-info">
+                                <div class="service-icon">
+                                    <i class="fas fa-shield-virus"></i>
+                                </div>
+                                <div class="service-details">
+                                    <h3>Anti-Nuke Premium</h3>
+                                    <p>Advanced server protection and recovery</p>
+                                    <div class="service-features-compact">
+                                        <span>Real-time detection</span> • 
+                                        <span>Auto recovery</span> • 
+                                        <span>Complete backups</span> • 
+                                        <span>Threat response</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-selector">
+                                <select class="tier-select" data-service="anti-nuke">
+                                    <option value="" data-price="0">Select Plan</option>
+                                    <option value="basic" data-price="4.99">Basic - $4.99/mo</option>
+                                    <option value="pro" data-price="8.99">Pro - $8.99/mo</option>
+                                    <option value="enterprise" data-price="15.99">Enterprise - $15.99/mo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- URL Scanner Premium -->
+                        <div class="service-row">
+                            <div class="service-info">
+                                <div class="service-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="service-details">
+                                    <h3>URL Scanner Premium</h3>
+                                    <p>Advanced phishing detection and URL analysis</p>
+                                    <div class="service-features-compact">
+                                        <span>Phishing detection</span> • 
+                                        <span>IDN protection</span> • 
+                                        <span>VirusTotal scanning</span> • 
+                                        <span>Detailed reports</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-selector">
+                                <select class="tier-select" data-service="url-scanner">
+                                    <option value="" data-price="0">Select Plan</option>
+                                    <option value="basic" data-price="2.99">Basic - $2.99/mo</option>
+                                    <option value="pro" data-price="4.99">Pro - $4.99/mo</option>
+                                    <option value="enterprise" data-price="9.99">Enterprise - $9.99/mo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- API Limits Premium -->
+                        <div class="service-row">
+                            <div class="service-info">
+                                <div class="service-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="service-details">
+                                    <h3>API Limits Premium</h3>
+                                    <p>Enhanced API call limits and billing management</p>
+                                    <div class="service-features-compact">
+                                        <span>Increased limits</span> • 
+                                        <span>Billing management</span> • 
+                                        <span>Personal API keys</span> • 
+                                        <span>Usage analytics</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-selector">
+                                <select class="tier-select" data-service="api-limits">
+                                    <option value="" data-price="0">Select Plan</option>
+                                    <option value="basic" data-price="3.99">Basic - $3.99/mo</option>
+                                    <option value="pro" data-price="7.99">Pro - $7.99/mo</option>
+                                    <option value="enterprise" data-price="14.99">Enterprise - $14.99/mo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Logging -->
+                        <div class="service-row">
+                            <div class="service-info">
+                                <div class="service-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="service-details">
+                                    <h3>Advanced Logging</h3>
+                                    <p>Enhanced logging and audit capabilities</p>
+                                    <div class="service-features-compact">
+                                        <span>Extended retention</span> • 
+                                        <span>Advanced search</span> • 
+                                        <span>Custom analytics</span> • 
+                                        <span>Log export</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-selector">
+                                <select class="tier-select" data-service="advanced-logging">
+                                    <option value="" data-price="0">Select Plan</option>
+                                    <option value="basic" data-price="1.99">Basic - $1.99/mo</option>
+                                    <option value="pro" data-price="3.99">Pro - $3.99/mo</option>
+                                    <option value="enterprise" data-price="6.99">Enterprise - $6.99/mo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Spam Protection Premium -->
+                        <div class="service-row">
+                            <div class="service-info">
+                                <div class="service-icon">
+                                    <i class="fas fa-ban"></i>
+                                </div>
+                                <div class="service-details">
+                                    <h3>Spam Protection Premium</h3>
+                                    <p>Advanced anti-spam and content filtering</p>
+                                    <div class="service-features-compact">
+                                        <span>Spam detection</span> • 
+                                        <span>AI filtering</span> • 
+                                        <span>Real-time protection</span> • 
+                                        <span>Analytics dashboard</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-selector">
+                                <select class="tier-select" data-service="spam-protection">
+                                    <option value="" data-price="0">Select Plan</option>
+                                    <option value="basic" data-price="2.49">Basic - $2.49/mo</option>
+                                    <option value="pro" data-price="4.49">Pro - $4.49/mo</option>
+                                    <option value="enterprise" data-price="7.99">Enterprise - $7.99/mo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Summary -->
+                    <div class="payment-summary-sticky">
+                        <div class="summary-card">
+                            <h3>Payment Summary</h3>
+                            <div id="selected-services">
+                                <p class="no-selection">Select services to see your total</p>
+                            </div>
+                            <div class="total-section">
+                                <div class="total-row">
+                                    <span>Monthly Total:</span>
+                                    <span id="monthly-total">$0.00</span>
+                                </div>
+                                <div class="total-row yearly-discount" style="display: none;">
+                                    <span>Yearly Total (20% off):</span>
+                                    <span id="yearly-total">$0.00</span>
+                                </div>
+                            </div>
+                            <div class="billing-toggle">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="yearly-billing">
+                                    <span class="slider"></span>
+                                </label>
+                                <span>Pay yearly and save 20%</span>
+                            </div>
+                            <div id="paypal-button-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Section -->
+        <section class="donation-section">
+            <div class="container">
+                <div class="donation-content">
+                    <div class="donation-text">
+                        <h2>💝 Support Our Mission</h2>
+                        <p class="emotional-text">
+                            Every donation helps us keep NullTracker running 24/7, protecting Discord communities worldwide. 
+                            Your support means we can continue developing new features, maintaining our servers, and providing 
+                            free protection to thousands of servers that can't afford premium plans.
+                        </p>
+                        <p class="impact-text">
+                            <strong>Your contribution makes a real difference:</strong><br>
+                            • Keeps our free tier available for small communities<br>
+                            • Funds new security research and threat detection<br>
+                            • Supports our dedicated development team<br>
+                            • Helps us respond faster to emerging threats
+                        </p>
+                    </div>
+                    <div class="donation-methods">
+                        <h3>Choose Your Way to Help</h3>
+                        <div class="donation-buttons">
+                            <a href="https://paypal.me/ayoubzel" class="donation-btn paypal" target="_blank">
+                                <i class="fab fa-paypal"></i>
+                                <span>PayPal</span>
+                            </a>
+                            <a href="https://github.com/sponsors/RDXFGXY1" class="donation-btn github" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub Sponsors</span>
+                            </a>
+                            <a href="https://patreon.com/NullStudio001" class="donation-btn patreon" target="_blank">
+                                <i class="fab fa-patreon"></i>
+                                <span>Patreon</span>
+                            </a>
+                            <a href="https://opencollective.com/rdxfgxy1" class="donation-btn opencollective" target="_blank">
+                                <i class="fas fa-heart"></i>
+                                <span>Open Collective</span>
+                            </a>
+                            <a href="https://ko-fi.com/kyrosdev" class="donation-btn kofi" target="_blank">
+                                <i class="fas fa-coffee"></i>
+                                <span>Ko-fi</span>
+                            </a>
+                            <a href="https://liberapay.com/kyros" class="donation-btn liberapay" target="_blank">
+                                <i class="fas fa-donate"></i>
+                                <span>Liberapay</span>
+                            </a>
+                        </div>
+                        <p class="donation-footer">
+                            <i class="fas fa-shield-heart"></i>
+                            Thank you for helping us protect the Discord community!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NullTracker</h4>
+                    <p>Advanced Discord security and protection</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="premium-commands.html">Premium</a></li>
+                        <li><a href="payment.html">Payment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="payment.js"></script>
+</body>
+</html>

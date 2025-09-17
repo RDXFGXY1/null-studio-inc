@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support NullTracker - Make a Donation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="donate-styles.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=AXMl-E6qmVqcXqer2VVK0cJPDXBWZVtjdzL4sxzGNGQNt0VrB-MfnxRiZrjitv-5Q_vXDxRgbYseMFqi&currency=USD"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="commands.html" class="nav-link">Commands</a></li>
+                <li><a href="premium-commands.html" class="nav-link">Premium</a></li>
+                <li><a href="payment.html" class="nav-link">Payment</a></li>
+                <li><a href="donate.html" class="nav-link active">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="donate-main">
+        <!-- Hero Section -->
+        <section class="donate-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>💝 Support <span class="gradient-text">NullTracker</span></h1>
+                    <p>Help us keep Discord communities safe and secure worldwide</p>
+                    <div class="impact-stats">
+                        <div class="stat">
+                            <span class="stat-number">50K+</span>
+                            <span class="stat-label">Servers Protected</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Protection Active</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">Free</span>
+                            <span class="stat-label">For Everyone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Section -->
+        <section class="donation-section">
+            <div class="container">
+                <div class="donation-grid">
+                    <!-- Donation Form -->
+                    <div class="donation-form-container">
+                        <div class="donation-card">
+                            <h2>🎯 Make a Donation</h2>
+                            <p>Every contribution helps us maintain and improve NullTracker</p>
+                            
+                            <div class="amount-selection">
+                                <h3>Choose Amount</h3>
+                                <div class="amount-buttons">
+                                    <button class="amount-btn" data-amount="5">$5</button>
+                                    <button class="amount-btn" data-amount="10">$10</button>
+                                    <button class="amount-btn" data-amount="25">$25</button>
+                                    <button class="amount-btn" data-amount="50">$50</button>
+                                    <button class="amount-btn" data-amount="100">$100</button>
+                                </div>
+                                <div class="custom-amount">
+                                    <input type="number" id="custom-amount" placeholder="Custom amount" min="1" max="10000" step="0.01">
+                                    <span class="currency">USD</span>
+                                </div>
+                            </div>
+
+                            <div class="donor-info">
+                                <h3>Donor Information (Optional)</h3>
+                                <div class="info-grid">
+                                    <input type="text" id="donor-name" placeholder="Your Name" maxlength="50">
+                                    <input type="email" id="donor-email" placeholder="Your Email" maxlength="100">
+                                    <textarea id="donor-message" placeholder="Message (optional)" maxlength="200" rows="3"></textarea>
+                                </div>
+                                <label class="privacy-checkbox">
+                                    <input type="checkbox" id="show-publicly" checked>
+                                    <span>Show my name publicly on the donors list</span>
+                                </label>
+                            </div>
+
+                            <div id="paypal-button-container"></div>
+                            
+                            <div class="donation-note">
+                                <i class="fas fa-info-circle"></i>
+                                <p>Your donation helps fund server costs, development, and keeping NullTracker free for everyone.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Impact Information -->
+                    <div class="impact-info">
+                        <div class="impact-card">
+                            <h3>🚀 Your Impact</h3>
+                            <div class="impact-items">
+                                <div class="impact-item">
+                                    <div class="impact-icon">💻</div>
+                                    <div class="impact-text">
+                                        <h4>Server Costs</h4>
+                                        <p>Keep our protection services running 24/7</p>
+                                    </div>
+                                </div>
+                                <div class="impact-item">
+                                    <div class="impact-icon">🔧</div>
+                                    <div class="impact-text">
+                                        <h4>Development</h4>
+                                        <p>Fund new features and improvements</p>
+                                    </div>
+                                </div>
+                                <div class="impact-item">
+                                    <div class="impact-icon">🛡️</div>
+                                    <div class="impact-text">
+                                        <h4>Security Research</h4>
+                                        <p>Stay ahead of new threats and vulnerabilities</p>
+                                    </div>
+                                </div>
+                                <div class="impact-item">
+                                    <div class="impact-icon">🆓</div>
+                                    <div class="impact-text">
+                                        <h4>Free Access</h4>
+                                        <p>Keep basic protection free for small communities</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Donors List -->
+                        <div class="donors-list-container">
+                            <h3>🌟 Our Amazing Donors</h3>
+                            <div id="donors-list" class="donors-list">
+                                <div class="loading-donors">
+                                    <i class="fas fa-heart"></i>
+                                    <p>Loading our wonderful supporters...</p>
+                                </div>
+                            </div>
+                            <div class="donors-actions">
+                                <button id="export-donors-btn" class="export-btn">
+                                    <i class="fas fa-download"></i> Export Donors List
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NullTracker</h4>
+                    <p>Advanced Discord security and protection</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="premium-commands.html">Premium</a></li>
+                        <li><a href="payment.html">Payment</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="donate.js"></script>
+</body>
+</html>

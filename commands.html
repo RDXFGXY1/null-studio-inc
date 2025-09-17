@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commands - NullTracker Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#features" class="nav-link">Features</a></li>
+                <li><a href="index.html#premium" class="nav-link">Premium</a></li>
+                <li><a href="commands.html" class="nav-link active">Commands</a></li>
+                <li><a href="index.html#support" class="nav-link">Support</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Commands Header -->
+    <section class="commands-header">
+        <div class="container">
+            <h1>Command Reference</h1>
+            <p>Complete guide to all NullTracker commands and features</p>
+            
+            <!-- Search Bar -->
+            <div class="command-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="commandSearch" placeholder="Search commands...">
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="command-filters">
+                <button class="filter-btn active" data-filter="all">All Commands</button>
+                <button class="filter-btn" data-filter="setup">Setup</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+                <button class="filter-btn" data-filter="logging">Logging</button>
+                <button class="filter-btn" data-filter="premium">Premium</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands Content -->
+    <section class="commands-content">
+        <div class="container">
+            <div class="commands-grid">
+                
+                <!-- Core Commands -->
+                <div class="command-category" data-category="setup">
+                    <h2><i class="fas fa-cog"></i> Core Commands</h2>
+                    
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/help</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Get help information for commands</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/help [command]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/help setlogchannel</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/info</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">View current server logging configuration</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/info</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/ping</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Check bot latency and response time</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/ping</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logging Setup -->
+                <div class="command-category" data-category="logging">
+                    <h2><i class="fas fa-clipboard-list"></i> Logging Setup</h2>
+                    
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/setlogchannel</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Configure logging channels for different event types</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/setlogchannel [category] [type]</code>
+                        </div>
+                        <div class="command-options">
+                            <strong>Categories:</strong>
+                            <ul>
+                                <li><code>messages</code> - Message edits, deletions, reactions</li>
+                                <li><code>voice</code> - Voice channel activities</li>
+                                <li><code>members</code> - Member joins, leaves, role changes</li>
+                                <li><code>roles</code> - Role creation, deletion, updates</li>
+                                <li><code>server</code> - Server settings changes</li>
+                                <li><code>moderators</code> - Moderation actions</li>
+                                <li><code>channels</code> - Channel management</li>
+                                <li><code>integration</code> - Webhook and bot activities</li>
+                            </ul>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/setlogchannel messages content_modifications</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/reset_setup</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Reset all logging configurations</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/reset_setup</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/reset_channel</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Reset specific log type configuration</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/reset_channel [type]</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Commands -->
+                <div class="command-category" data-category="security">
+                    <h2><i class="fas fa-shield-alt"></i> Security Commands</h2>
+                    
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/antinuke_setup</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Configure anti-nuke protection system</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/antinuke_setup [alert_channel] [log_channel]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/antinuke_setup #security-alerts #security-logs</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/antinuke_whitelist</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Manage anti-nuke whitelist for trusted users/roles</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/antinuke_whitelist [add/remove] [user/role]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/antinuke_whitelist add @TrustedAdmin</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/url_scanner_setup</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Configure URL scanner for malicious link detection</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/url_scanner_setup [alert_channel]</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/url_whitelist</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Manage trusted domains whitelist</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/url_whitelist [add/remove] [domain]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/url_whitelist add discord.com</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/spam_setup</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Configure spam filter protection</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/spam_setup</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Server Restoration -->
+                <div class="command-category" data-category="premium">
+                    <h2><i class="fas fa-history"></i> Server Restoration (Premium)</h2>
+                    
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/restore_server</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Comprehensive server restoration after nuke attacks</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/restore_server [type] [hours_back] [confirm]</code>
+                        </div>
+                        <div class="command-options">
+                            <strong>Restoration Types:</strong>
+                            <ul>
+                                <li><code>full</code> - Complete server restoration (requires CONFIRM)</li>
+                                <li><code>channels</code> - Text & voice channels only</li>
+                                <li><code>recent</code> - Last 10 deleted channels</li>
+                                <li><code>emergency</code> - Fast 6-hour recovery</li>
+                            </ul>
+                        </div>
+                        <div class="command-example">
+                            <strong>Examples:</strong><br>
+                            <code>/restore_server full 24 CONFIRM</code><br>
+                            <code>/restore_server emergency</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/restore_status</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Check server restoration status and available backups</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/restore_status</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/recover_channels</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Browse list of deleted channels that can be recovered</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/recover_channels</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/recover_channel</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Recover a specific deleted channel by backup ID</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/recover_channel [backup_id]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/recover_channel 1234</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Management -->
+                <div class="command-category" data-category="premium">
+                    <h2><i class="fas fa-crown"></i> Premium Management</h2>
+                    
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/premium_plans</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">View available premium plans and pricing</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/premium_plans</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/premium_subscribe</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Subscribe to a premium plan</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/premium_subscribe [plan]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/premium_subscribe professional</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/premium_status</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Check your current premium subscription status</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/premium_status</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/premium_cancel</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Cancel your premium subscription</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/premium_cancel</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="command-category" data-category="setup">
+                    <h2><i class="fas fa-database"></i> Data Management</h2>
+                    
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/export_logs</h3>
+                            <span class="command-badge premium">Premium</span>
+                        </div>
+                        <p class="command-description">Export log data for backup or analysis</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/export_logs [type] [days]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/export_logs messages 30</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/spam_backup</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Create backup of spam filter configuration</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/spam_backup</code>
+                        </div>
+                    </div>
+
+                    <div class="command-card">
+                        <div class="command-header">
+                            <h3>/spam_cleanup</h3>
+                            <span class="command-badge free">Free</span>
+                        </div>
+                        <p class="command-description">Clean up old spam filter logs</p>
+                        <div class="command-usage">
+                            <strong>Usage:</strong> <code>/spam_cleanup [days]</code>
+                        </div>
+                        <div class="command-example">
+                            <strong>Example:</strong> <code>/spam_cleanup 30</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Setup Guide -->
+            <div class="setup-guide">
+                <h2><i class="fas fa-rocket"></i> Quick Setup Guide</h2>
+                <div class="setup-steps">
+                    <div class="setup-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Basic Logging Setup</h3>
+                            <p>Start with essential logging:</p>
+                            <code>/setlogchannel messages content_modifications</code><br>
+                            <code>/setlogchannel members join_leave</code>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Security Configuration</h3>
+                            <p>Enable basic security features:</p>
+                            <code>/spam_setup</code><br>
+                            <code>/url_scanner_setup #alerts</code>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Premium Features (Optional)</h3>
+                            <p>Upgrade for advanced protection:</p>
+                            <code>/premium_subscribe professional</code><br>
+                            <code>/antinuke_setup #alerts #logs</code>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Verify Setup</h3>
+                            <p>Check your configuration:</p>
+                            <code>/info</code><br>
+                            <code>/premium_status</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>NullTracker</span>
+                    </div>
+                    <p>Advanced Discord security and logging bot protecting communities worldwide.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="index.html#premium">Premium</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="index.html#support">Donate</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved. Made with ❤️ for Discord communities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
