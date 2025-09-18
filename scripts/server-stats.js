@@ -362,7 +362,7 @@ if (typeof window !== 'undefined') {
         if (statsElements.length > 0) {
             // Initialize with default config - you'll need to update this
             const serverStats = new ServerStats({
-                githubRepo: 'yourusername/yourrepo', // UPDATE THIS
+                githubRepo: 'RDXFGXY1/null-tracker', // UPDATE THIS
                 debug: window.location.hostname === 'localhost'
             });
             
