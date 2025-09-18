@@ -48,3 +48,16 @@ connector: <aiohttp.connector.TCPConnector object at 0x0000017FB215B620>
 2025-09-18 15:52:43,154 - ERROR - Unclosed connector
 connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x0000024EE5ADE870>, 11524.9717905)])']
 connector: <aiohttp.connector.TCPConnector object at 0x0000024EE5A5B620>
+2025-09-18 16:43:13,615 - INFO - Starting update process...
+2025-09-18 16:43:13,617 - INFO - logging in using static token
+2025-09-18 16:43:34,180 - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001D94165BB60>
+2025-09-18 16:43:38,450 - INFO - Starting update process...
+2025-09-18 16:43:38,451 - INFO - logging in using static token
+2025-09-18 16:43:39,559 - INFO - Shard ID None has connected to Gateway (Session ID: 10951d2a9a2438a94e33622955d4eebe).
+2025-09-18 16:43:41,635 - INFO - Logged in as Redline S#9818
+2025-09-18 16:43:41,636 - INFO - Stats: 1 servers, 1643 members
+2025-09-18 16:43:42,871 - INFO - GitHub file updated with 1 servers.
+2025-09-18 16:43:42,903 - ERROR - Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000002624F4DE870>, 14584.5917466)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000002624F45B620>
