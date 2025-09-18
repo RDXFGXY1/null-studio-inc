@@ -646,4 +646,166 @@ document.head.appendChild(style);
 // Initialize donation manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new DonationManager();
+    initializeModernFeatures();
+});
+
+// Modern Dark Theme Features
+function initializeModernFeatures() {
+    // Animate counter numbers on scroll
+    const counterElements = document.querySelectorAll('.stat-number[data-count]');
+    const progressBar = document.querySelector('.progress-fill[data-progress]');
+    const navbarScrollEffect = document.querySelector('.navbar');
+    
+    // Initialize Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate counters
+                if (entry.target.hasAttribute('data-count')) {
+                    animateCounter(entry.target);
+                }
+                
+                // Animate progress bar
+                if (entry.target.classList.contains('progress-fill')) {
+                    animateProgressBar(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
+    
+    // Observe counter elements
+    counterElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Observe progress bar
+    if (progressBar) {
+        observer.observe(progressBar);
+    }
+    
+    // Enhanced navbar scroll effect
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 100) {
+            navbarScrollEffect.style.background = 'rgba(10, 10, 10, 0.98)';
+            navbarScrollEffect.style.backdropFilter = 'blur(20px)';
+        } else {
+            navbarScrollEffect.style.background = 'rgba(10, 10, 10, 0.95)';
+            navbarScrollEffect.style.backdropFilter = 'blur(12px)';
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+    
+    // Add Discord integration
+    const addToDiscordBtn = document.getElementById('addToDiscord');
+    if (addToDiscordBtn) {
+        addToDiscordBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening Discord...';
+            this.disabled = true;
+            
+            // Replace with your actual Discord bot invite URL
+            const inviteURL = 'https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&permissions=8&scope=bot%20applications.commands';
+            
+            setTimeout(() => {
+                window.open(inviteURL, '_blank');
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 2000);
+            }, 500);
+        });
+    }
+    
+    // Update supporters count in footer
+    updateSupportersCount();
+    
+    console.log('🎨 Modern dark theme features initialized!');
+}
+
+// Animate counter numbers
+function animateCounter(element) {
+    if (element.classList.contains('animated')) return;
+    element.classList.add('animated');
+    
+    const target = parseInt(element.getAttribute('data-count'));
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    
+    const counter = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            element.textContent = target.toLocaleString();
+            clearInterval(counter);
+        } else {
+            element.textContent = Math.floor(current).toLocaleString();
+        }
+    }, 16);
+}
+
+// Animate progress bar
+function animateProgressBar(element) {
+    if (element.classList.contains('animated')) return;
+    element.classList.add('animated');
+    
+    const progress = parseInt(element.getAttribute('data-progress'));
+    element.style.width = '0%';
+    
+    setTimeout(() => {
+        element.style.width = progress + '%';
+    }, 500);
+}
+
+// Update supporters count
+function updateSupportersCount() {
+    const supportersElement = document.getElementById('total-supporters');
+    if (supportersElement) {
+        try {
+            const storedDonors = localStorage.getItem('nulltracker_donors');
+            const donors = storedDonors ? JSON.parse(storedDonors) : [];
+            const count = donors.length;
+            
+            // Animate the count
+            let current = 0;
+            const increment = count / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= count) {
+                    supportersElement.textContent = count;
+                    clearInterval(timer);
+                } else {
+                    supportersElement.textContent = Math.floor(current);
+                }
+            }, 20);
+        } catch (error) {
+            supportersElement.textContent = '0';
+        }
+    }
+}
+
+// Enhanced hover effects for cards
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.donation-form-card, .impact-info-card, .community-card, .stat-item');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-4px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
 });

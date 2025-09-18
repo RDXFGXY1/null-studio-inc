@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support NullTracker - Help Us Keep Discord Communities Safe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/donate_dark.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAmk-HLqjJMs4pYZSXh9OrXGjj5PTvm4DpNNXwU1nHiFhXBtJpL4XvVYUigdWMUKx5zVjys8qPPQkRVpY&currency=USD"></script>
+    <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Support NullTracker's mission to keep Discord communities safe. Help us maintain free security tools for everyone through your generous donation.">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="commands.html" class="nav-link">Commands</a></li>
+                <li><a href="versions.html" class="nav-link">Versions</a></li>
+                <li><a href="donate.html" class="nav-link active">Donate</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="addToDiscord">
+                    <i class="fab fa-discord"></i>
+                    Add to Discord
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-heart"></i>
+                    Support Our Mission
+                </div>
+                <h1 class="hero-title">
+                    Help Keep Discord <span class="gradient-text">Secure</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Your support enables us to maintain free security tools and protect thousands of Discord communities worldwide
+                </p>
+                
+                <!-- Impact Stats -->
+                <div class="impact-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="50000">0</div>
+                            <div class="stat-label">Servers Protected</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Always Active</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Free to Use</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="1000000">0</div>
+                            <div class="stat-label">Users Helped</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section class="donation-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Make a <span class="gradient-text">Difference</span></h2>
+                <p class="section-subtitle">Choose how you'd like to support our mission to keep Discord communities safe</p>
+            </div>
+            
+            <div class="donation-grid">
+                <!-- Donation Form -->
+                <div class="donation-form-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3>Support NullTracker</h3>
+                        <p>Every contribution helps us maintain free security tools for everyone</p>
+                    </div>
+                    
+                    <!-- Amount Selection -->
+                    <div class="amount-selection">
+                        <h4><i class="fas fa-dollar-sign"></i> Choose Amount</h4>
+                        <div class="amount-grid">
+                            <button class="amount-btn" data-amount="5">
+                                <i class="fas fa-coffee"></i>
+                                <span class="amount">$5</span>
+                                <span class="description">Buy us a coffee</span>
+                            </button>
+                            <button class="amount-btn" data-amount="15">
+                                <i class="fas fa-pizza-slice"></i>
+                                <span class="amount">$15</span>
+                                <span class="description">Lunch for the team</span>
+                            </button>
+                            <button class="amount-btn" data-amount="50">
+                                <i class="fas fa-server"></i>
+                                <span class="amount">$50</span>
+                                <span class="description">Server hosting</span>
+                            </button>
+                            <button class="amount-btn" data-amount="100">
+                                <i class="fas fa-rocket"></i>
+                                <span class="amount">$100</span>
+                                <span class="description">Feature development</span>
+                            </button>
+                        </div>
+                        
+                        <div class="custom-amount">
+                            <div class="input-group">
+                                <span class="input-icon"><i class="fas fa-dollar-sign"></i></span>
+                                <input type="number" id="custom-amount" placeholder="Enter custom amount" min="1" max="10000" step="0.01">
+                                <span class="currency-label">USD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Donor Information -->
+                    <div class="donor-info">
+                        <h4><i class="fas fa-user-heart"></i> Donor Information <span class="optional">(Optional)</span></h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="donor-name">Name</label>
+                                <div class="input-group">
+                                    <span class="input-icon"><i class="fas fa-user"></i></span>
+                                    <input type="text" id="donor-name" placeholder="Your name" maxlength="50">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="donor-email">Email</label>
+                                <div class="input-group">
+                                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" id="donor-email" placeholder="your@email.com" maxlength="100">
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="donor-message">Message</label>
+                                <textarea id="donor-message" placeholder="Leave a message for the community (optional)" maxlength="200" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-options">
+                            <label class="checkbox-group">
+                                <input type="checkbox" id="show-publicly" checked>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">
+                                    <i class="fas fa-eye"></i>
+                                    Show my name on the public donors list
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="payment-section">
+                        <div id="paypal-button-container"></div>
+                        
+                        <div class="payment-info">
+                            <div class="info-item">
+                                <i class="fas fa-shield-check"></i>
+                                <span>Secure payments powered by PayPal</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>100% of donations go to NullTracker development</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-receipt"></i>
+                                <span>Email receipt provided for all donations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact Information -->
+                <div class="impact-info-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Your Impact</h3>
+                        <p>See how your support directly helps the Discord community</p>
+                    </div>
+                    
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="impact-content">
+                                <h4>Server Infrastructure</h4>
+                                <p>Maintain high-performance servers that protect communities 24/7</p>
+                                <div class="impact-cost">$30/month</div>
+                            </div>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="impact-content">
+                                <h4>Development & Updates</h4>
+                                <p>Fund new features, bug fixes, and security improvements</p>
+                                <div class="impact-cost">$50/month</div>
+                            </div>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+                            <div class="impact-content">
+                                <h4>Security Research</h4>
+                                <p>Stay ahead of threats with cutting-edge security research</p>
+                                <div class="impact-cost">$40/month</div>
+                            </div>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="impact-content">
+                                <h4>Community Support</h4>
+                                <p>Provide free access to essential security tools for everyone</p>
+                                <div class="impact-cost">$25/month</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-section">
+                        <h4><i class="fas fa-target"></i> Monthly Goal Progress</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-progress="68"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span class="progress-current">$98</span>
+                            <span class="progress-target">/ $145 per month</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Community & Recognition -->
+                <div class="community-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Join Our Community</h3>
+                        <p>Connect with other supporters and stay updated on our progress</p>
+                    </div>
+                    
+                    <!-- Recent Donors -->
+                    <div class="recent-donors">
+                        <h4><i class="fas fa-star"></i> Recent Supporters</h4>
+                        <div id="donors-list" class="donors-grid">
+                            <div class="loading-donors">
+                                <i class="fas fa-heart pulse"></i>
+                                <p>Loading our amazing supporters...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recognition Tiers -->
+                    <div class="recognition-tiers">
+                        <h4><i class="fas fa-medal"></i> Recognition Tiers</h4>
+                        <div class="tiers-grid">
+                            <div class="tier-item">
+                                <div class="tier-icon bronze"><i class="fas fa-coffee"></i></div>
+                                <div class="tier-info">
+                                    <h5>Coffee Supporter</h5>
+                                    <p>$5 - $14</p>
+                                </div>
+                            </div>
+                            <div class="tier-item">
+                                <div class="tier-icon silver"><i class="fas fa-heart"></i></div>
+                                <div class="tier-info">
+                                    <h5>Community Hero</h5>
+                                    <p>$15 - $49</p>
+                                </div>
+                            </div>
+                            <div class="tier-item">
+                                <div class="tier-icon gold"><i class="fas fa-crown"></i></div>
+                                <div class="tier-info">
+                                    <h5>Champion</h5>
+                                    <p>$50+</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Export Donors -->
+                    <div class="community-actions">
+                        <button id="export-donors-btn" class="btn btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Export Donors List
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NullTracker</h3>
+                    <p>Advanced Discord server protection with comprehensive backup and restoration capabilities.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="versions.html">Versions</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Bug Reports</a></li>
+                        <li><a href="#">Feature Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Donation Info</h3>
+                    <div class="donation-info-footer">
+                        <div class="monthly-goal">
+                            <i class="fas fa-target"></i>
+                            Monthly Goal: $145
+                        </div>
+                        <div class="supporters-count">
+                            <i class="fas fa-heart"></i>
+                            <span id="total-supporters">Loading...</span> Supporters
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved. Made with <i class="fas fa-heart" style="color: #ef4444;"></i> by passionate developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/donate.js"></script>
+</body>
+</html>

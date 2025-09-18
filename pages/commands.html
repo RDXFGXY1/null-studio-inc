@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commands - Secure Sentry | Complete Command Reference</title>
+    <meta name="description" content="Complete command reference for Secure Sentry Discord bot with detailed usage examples, security features, and premium commands.">
+    <meta name="keywords" content="discord bot, commands, security, moderation, anti-raid, slash commands">
+    <meta name="author" content="Secure Sentry">
+    
+    <!-- Preconnect for better loading performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/commands_dark.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure Sentry</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="commands.html" class="nav-link active">Commands</a></li>
+                <li><a href="setup.html" class="nav-link">Setup</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="donate.html" class="nav-link">Donate</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="https://discord.com/api/oauth2/authorize?client_id=1089267827976634418&permissions=8&scope=bot" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-discord"></i>
+                    Add to Discord
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-terminal"></i>
+                    Command Reference
+                </div>
+                
+                <h1 class="hero-title">
+                    Complete <span class="gradient-text">Command Guide</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Comprehensive guide to all NullTracker commands and features. From basic logging setup to advanced anti-nuke protection and server restoration.
+                </p>
+                
+                <!-- Command Stats -->
+                <div class="command-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Total Commands</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Security Features</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">12+</div>
+                            <div class="stat-label">Premium Commands</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">13+</div>
+                            <div class="stat-label">Free Commands</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Command Controls -->
+                <div class="command-controls">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="commandSearch" placeholder="Search commands...">
+                            <span class="search-shortcut">Ctrl+K</span>
+                        </div>
+                        <div class="search-results-count" id="searchResults"></div>
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">
+                            <i class="fas fa-list"></i>
+                            All Commands
+                        </button>
+                        <button class="filter-btn" data-filter="free">
+                            <i class="fas fa-gift"></i>
+                            Free
+                        </button>
+                        <button class="filter-btn" data-filter="premium">
+                            <i class="fas fa-crown"></i>
+                            Premium
+                        </button>
+                        <button class="filter-btn" data-filter="setup">
+                            <i class="fas fa-cog"></i>
+                            Setup
+                        </button>
+                        <button class="filter-btn" data-filter="security">
+                            <i class="fas fa-shield-alt"></i>
+                            Security
+                        </button>
+                        <button class="filter-btn" data-filter="logging">
+                            <i class="fas fa-clipboard-list"></i>
+                            Logging
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Commands Content -->
+    <section class="commands-content">
+        <div class="container">
+            <div class="commands-grid">
+                <!-- Core Commands -->
+                <div class="command-category" data-category="setup">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="category-info">
+                            <h2>Core Commands</h2>
+                            <p>Essential commands to get started with NullTracker</p>
+                        </div>
+                        <div class="category-badge">3 Commands</div>
+                    </div>
+                    
+                    <div class="commands-list">
+                        <div class="command-card" data-type="free" data-category="setup">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-question-circle"></i>
+                                        /help
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Get comprehensive help information for any command or view the full command list.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/help [command]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/help setlogchannel</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="setup">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-info-circle"></i>
+                                        /info
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                View your current server logging configuration and security settings overview.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/info</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="setup">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-wifi"></i>
+                                        /ping
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Check bot latency, response time, and connection status to Discord servers.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/ping</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Logging Setup -->
+                <div class="command-category" data-category="logging">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="category-info">
+                            <h2>Logging Setup</h2>
+                            <p>Configure comprehensive server logging for all events</p>
+                        </div>
+                        <div class="category-badge">10+ Commands</div>
+                    </div>
+                    
+                    <div class="commands-list">
+                        <div class="command-card" data-type="free" data-category="logging">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-comment-dots"></i>
+                                        /setlogchannel messages
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Configure logging channels for message-related events like edits, deletions, and reactions.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/setlogchannel messages [type]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/setlogchannel messages content_modifications</code>
+                                </div>
+                                
+                                <div class="command-options">
+                                    <h4><i class="fas fa-cogs"></i> Types Available</h4>
+                                    <ul>
+                                        <li><code>content_modifications</code> - Message edits and deletions</li>
+                                        <li><code>pinned_messages</code> - Pin and unpin activities</li>
+                                        <li><code>bulk_deletions</code> - Mass message deletions</li>
+                                        <li><code>reaction_changes</code> - Reaction additions/removals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="logging">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-users"></i>
+                                        /setlogchannel members
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Configure logging for member activities including joins, leaves, bans, and role changes.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/setlogchannel members [type]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/setlogchannel members join_leave</code>
+                                </div>
+                                
+                                <div class="command-options">
+                                    <h4><i class="fas fa-cogs"></i> Types Available</h4>
+                                    <ul>
+                                        <li><code>join_leave</code> - Member joins and leaves</li>
+                                        <li><code>bans_kicks</code> - Ban and kick actions</li>
+                                        <li><code>timeouts</code> - Timeout applications</li>
+                                        <li><code>profile_changes</code> - Nickname, avatar changes</li>
+                                        <li><code>role_updates</code> - Role additions/removals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="logging">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-microphone"></i>
+                                        /setlogchannel voice
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Configure logging for voice channel activities and member voice state changes.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/setlogchannel voice [type]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/setlogchannel voice connections</code>
+                                </div>
+                                
+                                <div class="command-options">
+                                    <h4><i class="fas fa-cogs"></i> Types Available</h4>
+                                    <ul>
+                                        <li><code>connections</code> - Join/leave voice channels</li>
+                                        <li><code>state_changes</code> - Mute, deafen, stream status</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="logging">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-undo"></i>
+                                        /reset_setup
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Reset all logging configurations and start fresh with setup.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/reset_setup</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Commands -->
+                <div class="command-category" data-category="security">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="category-info">
+                            <h2>Security Commands</h2>
+                            <p>Advanced protection systems including anti-nuke, spam filtering, and URL scanning</p>
+                        </div>
+                        <div class="category-badge">12+ Commands</div>
+                    </div>
+                    
+                    <div class="commands-list">
+                        <div class="command-card" data-type="premium" data-category="security">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-shield-virus"></i>
+                                        /antinuke_setup
+                                    </div>
+                                    <div class="command-badge premium">
+                                        <i class="fas fa-crown"></i>
+                                        Premium
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Configure anti-nuke protection system to prevent server destruction attacks. Premium feature with advanced restoration capabilities.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/antinuke_setup [alert_channel] [log_channel]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/antinuke_setup #security-alerts #security-logs</code>
+                                </div>
+                                
+                                <div class="command-options">
+                                    <h4><i class="fas fa-cogs"></i> Protection Against</h4>
+                                    <ul>
+                                        <li>Mass channel deletions</li>
+                                        <li>Mass role deletions</li>
+                                        <li>Mass member kicks/bans</li>
+                                        <li>Permission escalations</li>
+                                        <li>Malicious bot invasions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="premium" data-category="security">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-user-shield"></i>
+                                        /antinuke_whitelist
+                                    </div>
+                                    <div class="command-badge premium">
+                                        <i class="fas fa-crown"></i>
+                                        Premium
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Manage anti-nuke whitelist for trusted users and roles who can bypass protection systems.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/antinuke_whitelist [add/remove] [user/role]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/antinuke_whitelist add @TrustedAdmin</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="premium" data-category="security">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-history"></i>
+                                        /restore_server
+                                    </div>
+                                    <div class="command-badge premium">
+                                        <i class="fas fa-crown"></i>
+                                        Premium
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Comprehensive server restoration after nuke attacks. Multiple restoration types available with hierarchical recovery.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/restore_server [type] [hours_back] [confirm]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/restore_server full 24 CONFIRM</code>
+                                </div>
+                                
+                                <div class="command-options">
+                                    <h4><i class="fas fa-cogs"></i> Restoration Types</h4>
+                                    <ul>
+                                        <li><code>full</code> - Complete server restoration (requires CONFIRM)</li>
+                                        <li><code>channels</code> - Text & voice channels only</li>
+                                        <li><code>recent</code> - Last 10 deleted channels</li>
+                                        <li><code>emergency</code> - Fast 6-hour recovery</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="security">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-link"></i>
+                                        /url_scanner_setup
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Configure URL scanner for malicious link detection and phishing protection.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/url_scanner_setup [alert_channel]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/url_scanner_setup #url-alerts</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="security">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-spam"></i>
+                                        /spam_setup
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Configure spam filter protection with advanced detection patterns and automatic responses.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/spam_setup</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Premium Management -->
+                <div class="command-category" data-category="premium">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="category-info">
+                            <h2>Premium Management</h2>
+                            <p>Manage your premium subscription and access advanced features</p>
+                        </div>
+                        <div class="category-badge">4 Commands</div>
+                    </div>
+                    
+                    <div class="commands-list">
+                        <div class="command-card" data-type="free" data-category="premium">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-list-alt"></i>
+                                        /premium_plans
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                View available premium plans and pricing options for advanced features.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/premium_plans</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="premium">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-credit-card"></i>
+                                        /premium_subscribe
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Subscribe to a premium plan to unlock advanced anti-nuke, restoration, and security features.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/premium_subscribe [plan]</code>
+                                </div>
+                                
+                                <div class="command-example">
+                                    <h4><i class="fas fa-play-circle"></i> Example</h4>
+                                    <code>/premium_subscribe professional</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="free" data-category="premium">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-info"></i>
+                                        /premium_status
+                                    </div>
+                                    <div class="command-badge free">
+                                        <i class="fas fa-gift"></i>
+                                        Free
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Check your current premium subscription status and expiration details.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/premium_status</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="command-card" data-type="premium" data-category="premium">
+                            <div class="command-header">
+                                <div class="command-info">
+                                    <div class="command-name">
+                                        <i class="fas fa-times-circle"></i>
+                                        /premium_cancel
+                                    </div>
+                                    <div class="command-badge premium">
+                                        <i class="fas fa-crown"></i>
+                                        Premium
+                                    </div>
+                                </div>
+                                <button class="copy-btn" title="Copy command">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <p class="command-description">
+                                Cancel your premium subscription. Your features will remain active until the end of the billing period.
+                            </p>
+                            
+                            <div class="command-details">
+                                <div class="command-usage">
+                                    <h4><i class="fas fa-info-circle"></i> Usage</h4>
+                                    <code>/premium_cancel</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Setup Guide -->
+            <div class="setup-guide">
+                <h2>
+                    <i class="fas fa-rocket"></i>
+                    Quick Setup Guide
+                </h2>
+                
+                <div class="setup-steps">
+                    <div class="setup-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Invite the Bot</h3>
+                            <p>Add Secure Sentry to your server with all necessary permissions.</p>
+                            <code>/invite</code> <code>Manage Server</code> <code>Administrator</code>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Basic Configuration</h3>
+                            <p>Set up essential settings like moderation logs and auto-roles.</p>
+                            <code>/settings</code> <code>/setup</code> <code>/logs</code>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Enable Security</h3>
+                            <p>Activate anti-spam, anti-raid, and other protection features.</p>
+                            <code>/antispam enable</code> <code>/antiraid enable</code>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Test Commands</h3>
+                            <p>Verify everything works by testing basic commands.</p>
+                            <code>/help</code> <code>/serverinfo</code> <code>/userinfo</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Sentry</span>
+                    </div>
+                    <p>
+                        Advanced Discord security bot with intelligent protection systems. 
+                        Protecting Discord servers worldwide with cutting-edge moderation tools.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" title="Discord Server" aria-label="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" title="GitHub Repository" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" title="Twitter Updates" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="setup.html">Setup Guide</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="donate.html">Support Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Report Issues</a></li>
+                        <li><a href="#">Feature Requests</a></li>
+                        <li><a href="#">Premium Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Command Stats</h4>
+                    <ul>
+                        <li>50+ Total Commands</li>
+                        <li>15+ Security Features</li>
+                        <li>20+ Premium Commands</li>
+                        <li>30+ Free Commands</li>
+                        <li>24/7 Bot Uptime</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    &copy; 2024 Secure Sentry. Made with <i class="fas fa-heart"></i> for Discord communities worldwide.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="../scripts/commands.js"></script>
+</body>
+</html>

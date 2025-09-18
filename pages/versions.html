@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NullTracker - Version History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/versions_dark.css">
+    <meta name="description" content="Complete version history and changelog for NullTracker Discord bot. Track all updates, features, and improvements from v1.0 to current.">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="commands.html" class="nav-link">Commands</a></li>
+                <li><a href="versions.html" class="nav-link active">Versions</a></li>
+                <li><a href="donate.html" class="nav-link">Donate</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="addToDiscord">
+                    <i class="fab fa-discord"></i>
+                    Add to Discord
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-history"></i>
+                    Version History
+                </div>
+                <h1 class="hero-title">NullTracker <span class="gradient-text">Evolution</span></h1>
+                <p class="hero-subtitle">Track every milestone in our journey to create the ultimate Discord server protection</p>
+                
+                <!-- Version Stats -->
+                <div class="version-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalVersions">7</div>
+                        <div class="stat-label">Total Versions</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalFeatures">42</div>
+                        <div class="stat-label">Features Added</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalBugfixes">89</div>
+                        <div class="stat-label">Bugs Fixed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="developmentTime">18</div>
+                        <div class="stat-label">Months Development</div>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="search-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search versions, features, or changes...">
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-type="all">All</button>
+                        <button class="filter-btn" data-type="major">Major</button>
+                        <button class="filter-btn" data-type="minor">Minor</button>
+                        <button class="filter-btn" data-type="patch">Patch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Versions Grid -->
+    <section class="versions-grid">
+        <div class="container">
+            <div class="versions-container">
+                
+                <!-- Version 2.7 - Current -->
+                <div class="version-card featured current" data-version="2.7" data-type="major">
+                    <div class="version-header">
+                        <div class="version-number">v2.7.0</div>
+                        <div class="version-badges">
+                            <span class="version-badge current">Current</span>
+                            <span class="version-type major">Major</span>
+                        </div>
+                    </div>
+                    <div class="version-meta">
+                        <div class="version-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            December 2024
+                        </div>
+                        <div class="version-status">
+                            <i class="fas fa-check-circle"></i>
+                            Latest Version
+                        </div>
+                    </div>
+                    <div class="version-title">
+                        <h3>Revolutionary Hierarchical Restoration</h3>
+                        <p>Complete system rewrite with 500% performance improvement and perfect structure preservation.</p>
+                    </div>
+                    <div class="version-features">
+                        <div class="feature-section">
+                            <h5><i class="fas fa-star"></i> Key Features</h5>
+                            <ul>
+                                <li>0.2-second restoration time</li>
+                                <li>100% structure preservation</li>
+                                <li>Advanced progress tracking</li>
+                                <li>Enhanced database intelligence</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="version-actions">
+                        <a href="../update/update-2.7-NullTracker.html" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i>
+                            View Details
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Version 2.6 -->
+                <div class="version-card" data-version="2.6" data-type="minor">
+                    <div class="version-header">
+                        <div class="version-number">v2.6.2</div>
+                        <div class="version-badges">
+                            <span class="version-type minor">Minor</span>
+                        </div>
+                    </div>
+                    <div class="version-meta">
+                        <div class="version-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            October 2024
+                        </div>
+                    </div>
+                    <div class="version-title">
+                        <h3>Enhanced Security & Performance</h3>
+                        <p>Major security improvements and performance optimizations for better server protection.</p>
+                    </div>
+                    <div class="version-features">
+                        <div class="feature-section">
+                            <h5><i class="fas fa-shield-alt"></i> Security Updates</h5>
+                            <ul>
+                                <li>Advanced encryption protocols</li>
+                                <li>Multi-layer security verification</li>
+                                <li>Enhanced backup compression</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 2.5 -->
+                <div class="version-card" data-version="2.5" data-type="major">
+                    <div class="version-header">
+                        <div class="version-number">v2.5.0</div>
+                        <div class="version-badges">
+                            <span class="version-type major">Major</span>
+                        </div>
+                    </div>
+                    <div class="version-meta">
+                        <div class="version-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            August 2024
+                        </div>
+                    </div>
+                    <div class="version-title">
+                        <h3>Smart Backup Intelligence</h3>
+                        <p>Introduction of AI-powered backup optimization and intelligent restoration algorithms.</p>
+                    </div>
+                    <div class="version-features">
+                        <div class="feature-section">
+                            <h5><i class="fas fa-brain"></i> AI Features</h5>
+                            <ul>
+                                <li>AI-powered backup optimization</li>
+                                <li>Intelligent restoration algorithms</li>
+                                <li>Predictive failure detection</li>
+                                <li>Advanced analytics dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 2.0 -->
+                <div class="version-card milestone" data-version="2.0" data-type="major">
+                    <div class="version-header">
+                        <div class="version-number">v2.0.0</div>
+                        <div class="version-badges">
+                            <span class="version-badge milestone">Milestone</span>
+                            <span class="version-type major">Major</span>
+                        </div>
+                    </div>
+                    <div class="version-meta">
+                        <div class="version-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            May 2024
+                        </div>
+                        <div class="version-status">
+                            <i class="fas fa-trophy"></i>
+                            Major Milestone
+                        </div>
+                    </div>
+                    <div class="version-title">
+                        <h3>Complete Architecture Rewrite</h3>
+                        <p>Ground-up rebuild with modern technologies and enterprise-grade security.</p>
+                    </div>
+                    <div class="version-features">
+                        <div class="feature-section">
+                            <h5><i class="fas fa-cogs"></i> Core Rewrite</h5>
+                            <ul>
+                                <li>Complete architecture rewrite</li>
+                                <li>Enterprise-grade security</li>
+                                <li>Multi-server management</li>
+                                <li>Real-time monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 1.5 -->
+                <div class="version-card" data-version="1.5" data-type="minor">
+                    <div class="version-header">
+                        <div class="version-number">v1.5.3</div>
+                        <div class="version-badges">
+                            <span class="version-type minor">Minor</span>
+                        </div>
+                    </div>
+                    <div class="version-meta">
+                        <div class="version-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            February 2024
+                        </div>
+                    </div>
+                    <div class="version-title">
+                        <h3>Enhanced User Experience</h3>
+                        <p>Major improvements to user interface and command system with better feedback.</p>
+                    </div>
+                    <div class="version-features">
+                        <div class="feature-section">
+                            <h5><i class="fas fa-user-friends"></i> UX Improvements</h5>
+                            <ul>
+                                <li>Interactive command system</li>
+                                <li>Progress indicators</li>
+                                <li>Detailed error messages</li>
+                                <li>Backup verification system</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 1.2 -->
+                <div class="version-card" data-version="1.2" data-type="minor">
+                    <div class="version-header">
+                        <div class="version-number">v1.2.1</div>
+                        <div class="version-badges">
+                            <span class="version-type minor">Minor</span>
+                        </div>
+                    </div>
+                    <div class="version-meta">
+                        <div class="version-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            November 2023
+                        </div>
+                    </div>
+                    <div class="version-title">
+                        <h3>Stability & Reliability</h3>
+                        <p>Focus on stability improvements and bug fixes based on community feedback.</p>
+                    </div>
+                    <div class="version-features">
+                        <div class="feature-section">
+                            <h5><i class="fas fa-tools"></i> Stability Updates</h5>
+                            <ul>
+                                <li>Enhanced error handling</li>
+                                <li>Better memory management</li>
+                                <li>Improved backup reliability</li>
+                                <li>Faster restoration process</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version 1.0 - Initial Release -->
+                <div class="version-card milestone" data-version="1.0" data-type="major">
+                    <div class="version-header">
+                        <div class="version-number">v1.0.0</div>
+                        <div class="version-badges">
+                            <span class="version-badge milestone">Initial Release</span>
+                            <span class="version-type major">Major</span>
+                        </div>
+                    </div>
+                    <div class="version-meta">
+                        <div class="version-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            August 2023
+                        </div>
+                        <div class="version-status">
+                            <i class="fas fa-rocket"></i>
+                            The Beginning
+                        </div>
+                    </div>
+                    <div class="version-title">
+                        <h3>The Beginning</h3>
+                        <p>Initial release of NullTracker with core backup and restoration functionality.</p>
+                    </div>
+                    <div class="version-features">
+                        <div class="feature-section">
+                            <h5><i class="fas fa-star"></i> Core Features</h5>
+                            <ul>
+                                <li>Basic server backup functionality</li>
+                                <li>Channel and role restoration</li>
+                                <li>Simple command system</li>
+                                <li>Permission preservation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Version Statistics -->
+    <section class="version-statistics">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Development Statistics</h2>
+                <p class="section-subtitle">A detailed look at our development journey and achievements</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Major Versions</div>
+                        <div class="stat-description">Complete feature releases</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">New Features</div>
+                        <div class="stat-description">Innovative capabilities added</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">89</div>
+                        <div class="stat-label">Bugs Fixed</div>
+                        <div class="stat-description">Issues resolved</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">500%</div>
+                        <div class="stat-label">Performance Gain</div>
+                        <div class="stat-description">Speed improvement since v1.0</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Months</div>
+                        <div class="stat-description">Active development time</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Users Served</div>
+                        <div class="stat-description">Discord servers protected</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Protect Your Server?</h2>
+                <p class="cta-subtitle">Join thousands of Discord communities trusting NullTracker with their server protection</p>
+                <div class="cta-actions">
+                    <button class="btn btn-primary cta-btn" id="ctaAddToDiscord">
+                        <i class="fab fa-discord"></i>
+                        Add to Discord
+                    </button>
+                    <a href="commands.html" class="btn btn-secondary">
+                        <i class="fas fa-book"></i>
+                        View Commands
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NullTracker</h3>
+                    <p>Advanced Discord server protection with comprehensive backup and restoration capabilities.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="versions.html">Versions</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Bug Reports</a></li>
+                        <li><a href="#">Feature Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Latest Version</h3>
+                    <div class="version-info-footer">
+                        <div class="current-version">v2.7.0</div>
+                        <div class="version-date">December 2024</div>
+                        <a href="../update/update-2.7-NullTracker.html" class="version-link">
+                            <i class="fas fa-arrow-right"></i>
+                            View Release Notes
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved. Made with <i class="fas fa-heart" style="color: #ef4444;"></i> by passionate developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/versions.js"></script>
+</body>
+</html>
