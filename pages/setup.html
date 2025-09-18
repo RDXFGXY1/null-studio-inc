@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NullTracker Setup Guide - Easy Discord Bot Installation | Step-by-Step Configuration</title>
+    <meta name="description" content="Complete setup guide for NullTracker Discord security bot. Learn how to invite, configure, and optimize NullTracker for maximum server protection in just minutes.">
+    <meta name="keywords" content="nulltracker setup, discord bot installation, server security setup, bot configuration, discord protection">
+    <meta name="author" content="NullTracker">
+    
+    <!-- Preconnect for better loading performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/setup_dark.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="commands.html" class="nav-link">Commands</a></li>
+                <li><a href="setup.html" class="nav-link active">Setup</a></li>
+                <li><a href="payment.html" class="nav-link">Premium</a></li>
+                <li><a href="donate.html" class="nav-link">Donate</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="setup-main">
+        <!-- Hero Section -->
+        <section class="setup-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Get Started with <span class="gradient-text">NullTracker</span></h1>
+                    <p>Follow our simple setup guide to secure your Discord server in just a few minutes. No technical expertise required!</p>
+                    <div class="setup-stats">
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Minutes Setup</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Simple Steps</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Protection</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#quick-start" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Quick Start Guide
+                        </a>
+                        <a href="#detailed-setup" class="btn btn-secondary">
+                            <i class="fas fa-cogs"></i>
+                            Detailed Setup
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="setup-animation">
+                        <div class="step-indicator active" data-step="1">1</div>
+                        <div class="step-indicator" data-step="2">2</div>
+                        <div class="step-indicator" data-step="3">3</div>
+                        <div class="progress-line"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start Section -->
+        <section id="quick-start" class="quick-start-section">
+            <div class="container">
+                <h2>Quick Start Guide</h2>
+                <p class="section-subtitle">Get NullTracker running in 3 simple steps</p>
+                
+                <div class="quick-steps">
+                    <div class="quick-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Invite NullTracker</h3>
+                            <p>Click the invite button below to add NullTracker to your Discord server</p>
+                            <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&permissions=8&scope=bot%20applications.commands" class="btn btn-primary invite-btn" target="_blank">
+                                <i class="fab fa-discord"></i>
+                                Invite to Server
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="quick-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Run Setup Command</h3>
+                            <p>Type this command in any channel to start the automated setup</p>
+                            <div class="command-box">
+                                <code>/setup</code>
+                                <button class="copy-btn" data-copy="/setup">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>You're Protected!</h3>
+                            <p>NullTracker is now actively protecting your server with default settings</p>
+                            <div class="protection-status">
+                                <div class="status-item">
+                                    <i class="fas fa-shield-check"></i>
+                                    <span>Anti-Nuke Active</span>
+                                </div>
+                                <div class="status-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Logging Enabled</span>
+                                </div>
+                                <div class="status-item">
+                                    <i class="fas fa-ban"></i>
+                                    <span>Spam Filter On</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Setup Section -->
+        <section id="detailed-setup" class="detailed-setup-section">
+            <div class="container">
+                <h2>Detailed Configuration</h2>
+                <p class="section-subtitle">Customize NullTracker for your specific needs</p>
+                
+                <div class="setup-tabs">
+                    <div class="tab-nav">
+                        <button class="tab-btn active" data-tab="permissions">Permissions</button>
+                        <button class="tab-btn" data-tab="anti-nuke">Anti-Nuke</button>
+                        <button class="tab-btn" data-tab="logging">Logging</button>
+                        <button class="tab-btn" data-tab="moderation">Moderation</button>
+                        <button class="tab-btn" data-tab="advanced">Advanced</button>
+                    </div>
+
+                    <!-- Permissions Tab -->
+                    <div class="tab-content active" data-tab-content="permissions">
+                        <div class="config-section">
+                            <h3>Required Permissions</h3>
+                            <div class="permission-grid">
+                                <div class="permission-card essential">
+                                    <div class="permission-header">
+                                        <i class="fas fa-crown"></i>
+                                        <h4>Essential Permissions</h4>
+                                        <span class="badge required">Required</span>
+                                    </div>
+                                    <ul class="permission-list">
+                                        <li><i class="fas fa-check"></i>Administrator</li>
+                                        <li><i class="fas fa-check"></i>Manage Server</li>
+                                        <li><i class="fas fa-check"></i>Manage Roles</li>
+                                        <li><i class="fas fa-check"></i>Manage Channels</li>
+                                        <li><i class="fas fa-check"></i>View Audit Log</li>
+                                    </ul>
+                                </div>
+
+                                <div class="permission-card recommended">
+                                    <div class="permission-header">
+                                        <i class="fas fa-star"></i>
+                                        <h4>Recommended Permissions</h4>
+                                        <span class="badge recommended">Recommended</span>
+                                    </div>
+                                    <ul class="permission-list">
+                                        <li><i class="fas fa-check"></i>Ban Members</li>
+                                        <li><i class="fas fa-check"></i>Kick Members</li>
+                                        <li><i class="fas fa-check"></i>Manage Messages</li>
+                                        <li><i class="fas fa-check"></i>Read Message History</li>
+                                        <li><i class="fas fa-check"></i>Send Messages</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="setup-tip">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>Pro Tip:</strong> For maximum protection, we recommend giving NullTracker Administrator permissions. This ensures all security features work properly.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anti-Nuke Tab -->
+                    <div class="tab-content" data-tab-content="anti-nuke">
+                        <div class="config-section">
+                            <h3>Anti-Nuke Configuration</h3>
+                            <div class="config-cards">
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-shield-virus"></i>
+                                        <h4>Protection Settings</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Enable Anti-Nuke</h5>
+                                            <div class="command-box">
+                                                <code>/antinuke enable</code>
+                                                <button class="copy-btn" data-copy="/antinuke enable"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Set Protection Level</h5>
+                                            <div class="command-box">
+                                                <code>/antinuke level high</code>
+                                                <button class="copy-btn" data-copy="/antinuke level high"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Configure Thresholds</h5>
+                                            <div class="command-box">
+                                                <code>/antinuke threshold channels:5 roles:3</code>
+                                                <button class="copy-btn" data-copy="/antinuke threshold channels:5 roles:3"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-users-cog"></i>
+                                        <h4>Whitelist Management</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Add Trusted User</h5>
+                                            <div class="command-box">
+                                                <code>/whitelist add @user</code>
+                                                <button class="copy-btn" data-copy="/whitelist add @user"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Add Trusted Role</h5>
+                                            <div class="command-box">
+                                                <code>/whitelist role @Admin</code>
+                                                <button class="copy-btn" data-copy="/whitelist role @Admin"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logging Tab -->
+                    <div class="tab-content" data-tab-content="logging">
+                        <div class="config-section">
+                            <h3>Logging Configuration</h3>
+                            <div class="config-cards">
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <h4>Log Channels Setup</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Set Main Log Channel</h5>
+                                            <div class="command-box">
+                                                <code>/logging channel #audit-logs</code>
+                                                <button class="copy-btn" data-copy="/logging channel #audit-logs"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Set Message Log Channel</h5>
+                                            <div class="command-box">
+                                                <code>/logging messages #message-logs</code>
+                                                <button class="copy-btn" data-copy="/logging messages #message-logs"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Set Voice Log Channel</h5>
+                                            <div class="command-box">
+                                                <code>/logging voice #voice-logs</code>
+                                                <button class="copy-btn" data-copy="/logging voice #voice-logs"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-filter"></i>
+                                        <h4>Log Filters</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Enable All Logs</h5>
+                                            <div class="command-box">
+                                                <code>/logging enable all</code>
+                                                <button class="copy-btn" data-copy="/logging enable all"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Ignore Bot Messages</h5>
+                                            <div class="command-box">
+                                                <code>/logging ignore bots</code>
+                                                <button class="copy-btn" data-copy="/logging ignore bots"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moderation Tab -->
+                    <div class="tab-content" data-tab-content="moderation">
+                        <div class="config-section">
+                            <h3>Moderation Settings</h3>
+                            <div class="config-cards">
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-ban"></i>
+                                        <h4>Spam Protection</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Enable Spam Filter</h5>
+                                            <div class="command-box">
+                                                <code>/spam enable</code>
+                                                <button class="copy-btn" data-copy="/spam enable"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Set Spam Limits</h5>
+                                            <div class="command-box">
+                                                <code>/spam limits messages:5 time:10s</code>
+                                                <button class="copy-btn" data-copy="/spam limits messages:5 time:10s"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-link"></i>
+                                        <h4>URL Scanner</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Enable URL Scanning</h5>
+                                            <div class="command-box">
+                                                <code>/urlscan enable</code>
+                                                <button class="copy-btn" data-copy="/urlscan enable"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Set Action for Malicious URLs</h5>
+                                            <div class="command-box">
+                                                <code>/urlscan action delete</code>
+                                                <button class="copy-btn" data-copy="/urlscan action delete"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Tab -->
+                    <div class="tab-content" data-tab-content="advanced">
+                        <div class="config-section">
+                            <h3>Advanced Configuration</h3>
+                            <div class="config-cards">
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-database"></i>
+                                        <h4>Data Management</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Export Server Data</h5>
+                                            <div class="command-box">
+                                                <code>/export data type:all</code>
+                                                <button class="copy-btn" data-copy="/export data type:all"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Backup Server Settings</h5>
+                                            <div class="command-box">
+                                                <code>/backup create</code>
+                                                <button class="copy-btn" data-copy="/backup create"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="config-card">
+                                    <div class="config-header">
+                                        <i class="fas fa-bell"></i>
+                                        <h4>Notifications</h4>
+                                    </div>
+                                    <div class="config-options">
+                                        <div class="command-example">
+                                            <h5>Set Alert Channel</h5>
+                                            <div class="command-box">
+                                                <code>/alerts channel #security-alerts</code>
+                                                <button class="copy-btn" data-copy="/alerts channel #security-alerts"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="command-example">
+                                            <h5>Configure Alert Types</h5>
+                                            <div class="command-box">
+                                                <code>/alerts types raids spam malware</code>
+                                                <button class="copy-btn" data-copy="/alerts types raids spam malware"><i class="fas fa-copy"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Troubleshooting Section -->
+        <section class="troubleshooting-section">
+            <div class="container">
+                <h2>Troubleshooting</h2>
+                <p class="section-subtitle">Common issues and solutions</p>
+                
+                <div class="troubleshooting-grid">
+                    <div class="trouble-card">
+                        <div class="trouble-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h4>Bot Not Responding</h4>
+                        <p>If NullTracker isn't responding to commands:</p>
+                        <ul>
+                            <li>Check bot permissions</li>
+                            <li>Ensure bot is online</li>
+                            <li>Verify command syntax</li>
+                            <li>Try in different channel</li>
+                        </ul>
+                        <div class="trouble-solution">
+                            <strong>Solution:</strong> <code>/ping</code> to test connectivity
+                        </div>
+                    </div>
+
+                    <div class="trouble-card">
+                        <div class="trouble-icon">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <h4>Commands Not Working</h4>
+                        <p>If slash commands aren't appearing:</p>
+                        <ul>
+                            <li>Re-invite bot with updated permissions</li>
+                            <li>Wait for Discord sync (up to 1 hour)</li>
+                            <li>Check application.commands scope</li>
+                            <li>Refresh Discord client</li>
+                        </ul>
+                        <div class="trouble-solution">
+                            <strong>Solution:</strong> Use <code>/help</code> to see available commands
+                        </div>
+                    </div>
+
+                    <div class="trouble-card">
+                        <div class="trouble-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Anti-Nuke False Positives</h4>
+                        <p>If legitimate actions are being blocked:</p>
+                        <ul>
+                            <li>Add trusted users to whitelist</li>
+                            <li>Adjust protection thresholds</li>
+                            <li>Review security logs</li>
+                            <li>Configure role permissions</li>
+                        </ul>
+                        <div class="trouble-solution">
+                            <strong>Solution:</strong> <code>/whitelist add @user</code>
+                        </div>
+                    </div>
+
+                    <div class="trouble-card">
+                        <div class="trouble-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h4>Need More Help?</h4>
+                        <p>If you're still experiencing issues:</p>
+                        <ul>
+                            <li>Join our support server</li>
+                            <li>Check documentation</li>
+                            <li>Contact support team</li>
+                            <li>Browse FAQ section</li>
+                        </ul>
+                        <div class="trouble-solution">
+                            <a href="#" class="btn btn-primary btn-small">
+                                <i class="fab fa-discord"></i>
+                                Get Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Tips Section -->
+        <section class="success-tips-section">
+            <div class="container">
+                <h2>Pro Tips for Success</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Regular Backups</h4>
+                        <p>Create server backups weekly using <code>/backup create</code> to ensure you can recover from any issues.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Whitelist Management</h4>
+                        <p>Keep your whitelist updated with trusted staff members to prevent false positives from security features.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Monitor Logs</h4>
+                        <p>Regularly review security logs to identify patterns and potential threats to your server.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h4>Customize Settings</h4>
+                        <p>Adjust protection levels and thresholds based on your server's size and activity patterns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>NullTracker</span>
+                    </div>
+                    <p>Advanced Discord security and logging bot protecting communities worldwide.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Setup Guides</h4>
+                    <ul>
+                        <li><a href="#quick-start">Quick Start</a></li>
+                        <li><a href="#detailed-setup">Detailed Setup</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                        <li><a href="features.html">Features</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved. Made with ❤️ for Discord communities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../scripts/setup.js"></script>
+</body>
+</html>

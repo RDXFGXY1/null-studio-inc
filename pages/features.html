@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NullTracker Features - Complete Discord Security Suite | Advanced Protection & Logging</title>
+    <meta name="description" content="Discover NullTracker's comprehensive Discord security features: anti-nuke protection, advanced logging, URL scanning, spam filtering, server restoration, and premium management tools.">
+    <meta name="keywords" content="discord security features, anti-nuke, logging, url scanner, spam filter, server protection, discord bot features">
+    <meta name="author" content="NullTracker">
+    
+    <!-- Preconnect for better loading performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/features_dark.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link active">Features</a></li>
+                <li><a href="commands.html" class="nav-link">Commands</a></li>
+                <li><a href="setup.html" class="nav-link">Setup</a></li>
+                <li><a href="payment.html" class="nav-link">Premium</a></li>
+                <li><a href="donate.html" class="nav-link">Donate</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="features-main">
+        <!-- Hero Section -->
+        <section class="features-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1><span class="gradient-text">Complete Security</span> for Discord</h1>
+                    <p>Discover the comprehensive suite of security features that make NullTracker the ultimate protection for your Discord server. From advanced threat detection to intelligent automation.</p>
+                    <div class="feature-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-shield-check"></i>
+                            <span>Real-time Protection</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-brain"></i>
+                            <span>AI-Powered Detection</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Instant Response</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-history"></i>
+                            <span>Complete Restoration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="security-dashboard">
+                        <div class="dashboard-header">
+                            <div class="dashboard-status active">
+                                <div class="status-dot"></div>
+                                <span>All Systems Operational</span>
+                            </div>
+                            <div class="dashboard-time" id="dashboard-time"></div>
+                        </div>
+                        <div class="dashboard-metrics">
+                            <div class="metric">
+                                <div class="metric-value">2,847</div>
+                                <div class="metric-label">Threats Blocked</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">99.9%</div>
+                                <div class="metric-label">Uptime</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">0.3s</div>
+                                <div class="metric-label">Response Time</div>
+                            </div>
+                        </div>
+                        <div class="dashboard-activity">
+                            <div class="activity-item">
+                                <i class="fas fa-shield-check"></i>
+                                <span>Blocked malicious URL</span>
+                                <time>2s ago</time>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-ban"></i>
+                                <span>Spam message filtered</span>
+                                <time>15s ago</time>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-eye"></i>
+                                <span>Activity logged</span>
+                                <time>23s ago</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Features Section -->
+        <section class="core-features-section">
+            <div class="container">
+                <h2>Core Security Features</h2>
+                <p class="section-subtitle">Advanced protection mechanisms designed to safeguard your Discord community</p>
+                
+                <div class="features-grid">
+                    <!-- Anti-Nuke Protection -->
+                    <div class="feature-showcase">
+                        <div class="feature-header">
+                            <div class="feature-icon anti-nuke">
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+                            <div class="feature-meta">
+                                <h3>Anti-Nuke Protection</h3>
+                                <span class="feature-badge essential">Essential</span>
+                            </div>
+                        </div>
+                        <p>Advanced protection against server destruction attacks with intelligent threat detection and automatic restoration capabilities.</p>
+                        
+                        <div class="feature-details">
+                            <div class="detail-tabs">
+                                <button class="detail-tab active" data-tab="detection">Detection</button>
+                                <button class="detail-tab" data-tab="prevention">Prevention</button>
+                                <button class="detail-tab" data-tab="recovery">Recovery</button>
+                            </div>
+                            
+                            <div class="detail-content">
+                                <div class="detail-panel active" data-panel="detection">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Real-time activity monitoring</li>
+                                        <li><i class="fas fa-check"></i>Behavioral pattern analysis</li>
+                                        <li><i class="fas fa-check"></i>Mass action detection</li>
+                                        <li><i class="fas fa-check"></i>Permission escalation alerts</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="prevention">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Automatic permission revocation</li>
+                                        <li><i class="fas fa-check"></i>Action rate limiting</li>
+                                        <li><i class="fas fa-check"></i>Trusted user whitelist</li>
+                                        <li><i class="fas fa-check"></i>Emergency lockdown mode</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="recovery">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Channel restoration</li>
+                                        <li><i class="fas fa-check"></i>Role recovery</li>
+                                        <li><i class="fas fa-check"></i>Permission reset</li>
+                                        <li><i class="fas fa-check"></i>Member re-invitation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- URL Scanner -->
+                    <div class="feature-showcase">
+                        <div class="feature-header">
+                            <div class="feature-icon url-scanner">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="feature-meta">
+                                <h3>Advanced URL Scanner</h3>
+                                <span class="feature-badge premium">Premium</span>
+                            </div>
+                        </div>
+                        <p>Comprehensive malicious link detection with VirusTotal integration, phishing protection, and real-time threat intelligence.</p>
+                        
+                        <div class="feature-details">
+                            <div class="detail-tabs">
+                                <button class="detail-tab active" data-tab="scanning">Scanning</button>
+                                <button class="detail-tab" data-tab="intelligence">Intelligence</button>
+                                <button class="detail-tab" data-tab="response">Response</button>
+                            </div>
+                            
+                            <div class="detail-content">
+                                <div class="detail-panel active" data-panel="scanning">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>VirusTotal API integration</li>
+                                        <li><i class="fas fa-check"></i>Phishing detection</li>
+                                        <li><i class="fas fa-check"></i>IDN homograph protection</li>
+                                        <li><i class="fas fa-check"></i>Suspicious TLD analysis</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="intelligence">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Threat database updates</li>
+                                        <li><i class="fas fa-check"></i>Machine learning classification</li>
+                                        <li><i class="fas fa-check"></i>Community threat sharing</li>
+                                        <li><i class="fas fa-check"></i>Historical analysis</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="response">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Automatic message deletion</li>
+                                        <li><i class="fas fa-check"></i>User warnings & timeouts</li>
+                                        <li><i class="fas fa-check"></i>Detailed threat reports</li>
+                                        <li><i class="fas fa-check"></i>Admin notifications</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comprehensive Logging -->
+                    <div class="feature-showcase">
+                        <div class="feature-header">
+                            <div class="feature-icon logging">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="feature-meta">
+                                <h3>Comprehensive Logging</h3>
+                                <span class="feature-badge core">Core</span>
+                            </div>
+                        </div>
+                        <p>Complete activity tracking and audit trails with advanced filtering, search capabilities, and detailed analytics.</p>
+                        
+                        <div class="feature-details">
+                            <div class="detail-tabs">
+                                <button class="detail-tab active" data-tab="tracking">Tracking</button>
+                                <button class="detail-tab" data-tab="analysis">Analysis</button>
+                                <button class="detail-tab" data-tab="export">Export</button>
+                            </div>
+                            
+                            <div class="detail-content">
+                                <div class="detail-panel active" data-panel="tracking">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Message logs with context</li>
+                                        <li><i class="fas fa-check"></i>Voice activity tracking</li>
+                                        <li><i class="fas fa-check"></i>Member join/leave events</li>
+                                        <li><i class="fas fa-check"></i>Moderation action logs</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="analysis">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Activity pattern recognition</li>
+                                        <li><i class="fas fa-check"></i>User behavior analytics</li>
+                                        <li><i class="fas fa-check"></i>Trend analysis & reports</li>
+                                        <li><i class="fas fa-check"></i>Custom dashboard views</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="export">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Multiple export formats</li>
+                                        <li><i class="fas fa-check"></i>Scheduled reports</li>
+                                        <li><i class="fas fa-check"></i>Advanced filtering</li>
+                                        <li><i class="fas fa-check"></i>Data retention control</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Smart Spam Filter -->
+                    <div class="feature-showcase">
+                        <div class="feature-header">
+                            <div class="feature-icon spam-filter">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div class="feature-meta">
+                                <h3>Smart Spam Filter</h3>
+                                <span class="feature-badge intelligent">AI-Powered</span>
+                            </div>
+                        </div>
+                        <p>Intelligent spam detection that learns and adapts to protect your community from unwanted content and behavior.</p>
+                        
+                        <div class="feature-details">
+                            <div class="detail-tabs">
+                                <button class="detail-tab active" data-tab="detection-spam">Detection</button>
+                                <button class="detail-tab" data-tab="learning">Learning</button>
+                                <button class="detail-tab" data-tab="action">Action</button>
+                            </div>
+                            
+                            <div class="detail-content">
+                                <div class="detail-panel active" data-panel="detection-spam">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Pattern recognition AI</li>
+                                        <li><i class="fas fa-check"></i>Message similarity detection</li>
+                                        <li><i class="fas fa-check"></i>Rate limit monitoring</li>
+                                        <li><i class="fas fa-check"></i>Content quality analysis</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="learning">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Adaptive algorithms</li>
+                                        <li><i class="fas fa-check"></i>Community feedback integration</li>
+                                        <li><i class="fas fa-check"></i>Cross-server coordination</li>
+                                        <li><i class="fas fa-check"></i>False positive reduction</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="action">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Graduated response system</li>
+                                        <li><i class="fas fa-check"></i>Automatic moderation</li>
+                                        <li><i class="fas fa-check"></i>User education alerts</li>
+                                        <li><i class="fas fa-check"></i>Appeal process integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Server Restoration -->
+                    <div class="feature-showcase">
+                        <div class="feature-header">
+                            <div class="feature-icon restoration">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div class="feature-meta">
+                                <h3>Server Restoration</h3>
+                                <span class="feature-badge recovery">Recovery</span>
+                            </div>
+                        </div>
+                        <p>Advanced backup and restoration system with hierarchical recovery, automated scheduling, and emergency protocols.</p>
+                        
+                        <div class="feature-details">
+                            <div class="detail-tabs">
+                                <button class="detail-tab active" data-tab="backup">Backup</button>
+                                <button class="detail-tab" data-tab="restore">Restore</button>
+                                <button class="detail-tab" data-tab="emergency">Emergency</button>
+                            </div>
+                            
+                            <div class="detail-content">
+                                <div class="detail-panel active" data-panel="backup">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Automated daily backups</li>
+                                        <li><i class="fas fa-check"></i>Incremental change tracking</li>
+                                        <li><i class="fas fa-check"></i>Multi-layer redundancy</li>
+                                        <li><i class="fas fa-check"></i>Encrypted storage</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="restore">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Selective restoration</li>
+                                        <li><i class="fas fa-check"></i>Hierarchical channel recovery</li>
+                                        <li><i class="fas fa-check"></i>Permission reconstruction</li>
+                                        <li><i class="fas fa-check"></i>Member role restoration</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="emergency">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Instant recovery mode</li>
+                                        <li><i class="fas fa-check"></i>Priority restoration queue</li>
+                                        <li><i class="fas fa-check"></i>Emergency contact system</li>
+                                        <li><i class="fas fa-check"></i>Disaster recovery plan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Easy Management -->
+                    <div class="feature-showcase">
+                        <div class="feature-header">
+                            <div class="feature-icon management">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="feature-meta">
+                                <h3>Easy Management</h3>
+                                <span class="feature-badge user-friendly">User-Friendly</span>
+                            </div>
+                        </div>
+                        <p>Intuitive setup and configuration with powerful management tools, multi-server support, and streamlined administration.</p>
+                        
+                        <div class="feature-details">
+                            <div class="detail-tabs">
+                                <button class="detail-tab active" data-tab="setup">Setup</button>
+                                <button class="detail-tab" data-tab="config">Config</button>
+                                <button class="detail-tab" data-tab="multi">Multi-Server</button>
+                            </div>
+                            
+                            <div class="detail-content">
+                                <div class="detail-panel active" data-panel="setup">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>One-command installation</li>
+                                        <li><i class="fas fa-check"></i>Guided setup wizard</li>
+                                        <li><i class="fas fa-check"></i>Automatic configuration</li>
+                                        <li><i class="fas fa-check"></i>Quick start templates</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="config">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Web dashboard interface</li>
+                                        <li><i class="fas fa-check"></i>Real-time configuration</li>
+                                        <li><i class="fas fa-check"></i>Advanced customization</li>
+                                        <li><i class="fas fa-check"></i>Import/export settings</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-panel" data-panel="multi">
+                                    <ul class="capability-list">
+                                        <li><i class="fas fa-check"></i>Centralized management</li>
+                                        <li><i class="fas fa-check"></i>Cross-server policies</li>
+                                        <li><i class="fas fa-check"></i>Unified monitoring</li>
+                                        <li><i class="fas fa-check"></i>Bulk operations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Features Section -->
+        <section class="advanced-features-section">
+            <div class="container">
+                <h2>Advanced Capabilities</h2>
+                <p class="section-subtitle">Professional-grade features for enhanced security and management</p>
+                
+                <div class="advanced-grid">
+                    <div class="advanced-feature">
+                        <div class="advanced-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Machine Learning</h4>
+                        <p>AI-powered threat detection that continuously learns from patterns and improves accuracy over time.</p>
+                        <div class="advanced-metrics">
+                            <div class="metric-item">
+                                <span class="metric-number">99.7%</span>
+                                <span class="metric-label">Accuracy</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-number">&lt;0.1%</span>
+                                <span class="metric-label">False Positive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-feature">
+                        <div class="advanced-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4>Cross-Server Intelligence</h4>
+                        <p>Shared threat intelligence across the NullTracker network for enhanced protection against known bad actors.</p>
+                        <div class="advanced-metrics">
+                            <div class="metric-item">
+                                <span class="metric-number">50K+</span>
+                                <span class="metric-label">Servers</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-number">Real-time</span>
+                                <span class="metric-label">Updates</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-feature">
+                        <div class="advanced-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Advanced Analytics</h4>
+                        <p>Comprehensive insights and reporting with customizable dashboards and detailed security metrics.</p>
+                        <div class="advanced-metrics">
+                            <div class="metric-item">
+                                <span class="metric-number">50+</span>
+                                <span class="metric-label">Metrics</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-number">Custom</span>
+                                <span class="metric-label">Reports</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-feature">
+                        <div class="advanced-icon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <h4>Compliance Ready</h4>
+                        <p>Built-in compliance features for GDPR, COPPA, and other regulations with audit trail maintenance.</p>
+                        <div class="advanced-metrics">
+                            <div class="metric-item">
+                                <span class="metric-number">GDPR</span>
+                                <span class="metric-label">Compliant</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-number">Audit</span>
+                                <span class="metric-label">Ready</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-feature">
+                        <div class="advanced-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Lightning Fast</h4>
+                        <p>Optimized performance with sub-second response times and minimal resource usage for seamless operation.</p>
+                        <div class="advanced-metrics">
+                            <div class="metric-item">
+                                <span class="metric-number">&lt;300ms</span>
+                                <span class="metric-label">Response</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-number">99.9%</span>
+                                <span class="metric-label">Uptime</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-feature">
+                        <div class="advanced-icon">
+                            <i class="fas fa-api"></i>
+                        </div>
+                        <h4>API Integration</h4>
+                        <p>Comprehensive API access for custom integrations, third-party tools, and advanced automation workflows.</p>
+                        <div class="advanced-metrics">
+                            <div class="metric-item">
+                                <span class="metric-number">REST</span>
+                                <span class="metric-label">API</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-number">Webhook</span>
+                                <span class="metric-label">Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Comparison Section -->
+        <section class="comparison-section">
+            <div class="container">
+                <h2>Feature Comparison</h2>
+                <p class="section-subtitle">Choose the plan that best fits your server's needs</p>
+                
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th class="feature-column">Feature</th>
+                                <th class="plan-column free">Free</th>
+                                <th class="plan-column basic">Basic Premium</th>
+                                <th class="plan-column pro">Professional</th>
+                                <th class="plan-column enterprise">Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Basic Anti-Nuke Protection
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    Comprehensive Logging
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-ban"></i>
+                                    Smart Spam Filter
+                                </td>
+                                <td class="plan-feature limited">Limited</td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-search"></i>
+                                    Advanced URL Scanner
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-brain"></i>
+                                    AI-Powered Detection
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature limited">Basic</td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-history"></i>
+                                    Server Restoration
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature limited">Manual</td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-chart-line"></i>
+                                    Advanced Analytics
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-api"></i>
+                                    API Access
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature limited">Limited</td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-headset"></i>
+                                    Priority Support
+                                </td>
+                                <td class="plan-feature"><i class="fas fa-times"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                                <td class="plan-feature"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="feature-name">
+                                    <i class="fas fa-server"></i>
+                                    Multi-Server Management
+                                </td>
+                                <td class="plan-feature">1 Server</td>
+                                <td class="plan-feature">5 Servers</td>
+                                <td class="plan-feature">25 Servers</td>
+                                <td class="plan-feature">Unlimited</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="comparison-actions">
+                    <a href="../index.html#" class="btn btn-outline">Start Free</a>
+                    <a href="payment.html" class="btn btn-primary">Upgrade Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Section -->
+        <section class="integration-section">
+            <div class="container">
+                <h2>Seamless Integrations</h2>
+                <p class="section-subtitle">Connect with your favorite tools and services</p>
+                
+                <div class="integration-grid">
+                    <div class="integration-card">
+                        <div class="integration-logo">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <h4>Discord</h4>
+                        <p>Native Discord integration with full API access and slash commands</p>
+                    </div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-logo virustotal">
+                            <i class="fas fa-virus"></i>
+                        </div>
+                        <h4>VirusTotal</h4>
+                        <p>Real-time malware and threat detection through VirusTotal API</p>
+                    </div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-logo">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h4>GitHub</h4>
+                        <p>Webhook integration for development updates and issue tracking</p>
+                    </div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-logo">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4>MongoDB</h4>
+                        <p>Scalable database storage for logs and configuration data</p>
+                    </div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-logo">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Analytics</h4>
+                        <p>Custom analytics dashboards and reporting tools</p>
+                    </div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-logo">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h4>Notifications</h4>
+                        <p>Multi-channel alert system with email and SMS support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Secure Your Server?</h2>
+                    <p>Join thousands of Discord communities protected by NullTracker's advanced security features.</p>
+                    <div class="cta-buttons">
+                        <a href="setup.html" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Start Setup Guide
+                        </a>
+                        <a href="payment.html" class="btn btn-secondary">
+                            <i class="fas fa-crown"></i>
+                            Upgrade to Premium
+                        </a>
+                    </div>
+                    <div class="cta-stats">
+                        <div class="cta-stat">
+                            <span class="stat-number">50,000+</span>
+                            <span class="stat-label">Protected Servers</span>
+                        </div>
+                        <div class="cta-stat">
+                            <span class="stat-number">2M+</span>
+                            <span class="stat-label">Threats Blocked</span>
+                        </div>
+                        <div class="cta-stat">
+                            <span class="stat-number">99.9%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>NullTracker</span>
+                    </div>
+                    <p>Advanced Discord security and logging bot protecting communities worldwide.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#core-features">Core Features</a></li>
+                        <li><a href="#advanced-features">Advanced Features</a></li>
+                        <li><a href="#integrations">Integrations</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="setup.html">Setup Guide</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved. Made with ❤️ for Discord communities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../scripts/features.js"></script>
+</body>
+</html>
