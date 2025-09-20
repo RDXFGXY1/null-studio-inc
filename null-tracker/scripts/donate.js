@@ -715,7 +715,7 @@ function initializeModernFeatures() {
             this.disabled = true;
             
             // Replace with your actual Discord bot invite URL
-            const inviteURL = 'https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&permissions=8&scope=bot%20applications.commands';
+            const inviteURL = 'https://discord.com/oauth2/authorize?client_id=1361385084233580698&permissions=8&scope=bot%20applications.commands';
             
             setTimeout(() => {
                 window.open(inviteURL, '_blank');

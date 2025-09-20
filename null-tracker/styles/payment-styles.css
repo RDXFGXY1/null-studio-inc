@@ -1,0 +1,655 @@
+/* Payment Page Specific Styles */
+.payment-main {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+.payment-hero {
+    padding: 140px 0 100px;
+    text-align: center;
+}
+
+.payment-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.payment-hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #cbd5e1;
+    margin-bottom: 3rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #7c3aed;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(124, 58, 237, 0.3);
+}
+
+.stat-label {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Service Selection & Payment */
+.service-payment-section {
+    padding: 100px 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.service-payment-section h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 3rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.service-payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: start;
+}
+
+.services-menu {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(124, 58, 237, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.payment-summary-sticky {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.service-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.service-row:last-child {
+    border-bottom: none;
+}
+
+.service-row:hover {
+    background: rgba(124, 58, 237, 0.05);
+    border-radius: 12px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.service-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #7c3aed, #3b82f6);
+    border-radius: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.3);
+}
+
+.service-icon i {
+    font-size: 1.75rem;
+    color: white;
+}
+
+.service-details h3 {
+    font-size: 1.25rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.service-details p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.service-features-compact {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
+
+.service-features-compact span {
+    color: #e2e8f0;
+}
+
+.service-selector {
+    flex-shrink: 0;
+}
+
+.tier-select {
+    appearance: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(124, 58, 237, 0.3);
+    border-radius: 12px;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.875rem 2.5rem 0.875rem 1rem;
+    min-width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px;
+}
+
+.tier-select:hover {
+    border-color: #7c3aed;
+    background-color: rgba(124, 58, 237, 0.1);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+}
+
+.tier-select:focus {
+    outline: none;
+    border-color: #7c3aed;
+    background-color: rgba(124, 58, 237, 0.1);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.tier-select option {
+    background: #1a1a2e;
+    color: white;
+    padding: 0.5rem;
+}
+
+.tier-select option:hover {
+    background: rgba(124, 58, 237, 0.2);
+}
+
+/* Payment Summary */
+.summary-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(124, 58, 237, 0.2);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(124, 58, 237, 0.1);
+    backdrop-filter: blur(20px);
+    position: relative;
+}
+
+.summary-card h3 {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.summary-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #7c3aed, #3b82f6);
+    border-radius: 2px;
+}
+
+.no-selection {
+    color: #a0a0a0;
+    text-align: center;
+    font-style: italic;
+    margin: 2rem 0;
+}
+
+.selected-service {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    background: rgba(124, 58, 237, 0.08);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.selected-service:hover {
+    background: rgba(124, 58, 237, 0.12);
+    border-color: rgba(124, 58, 237, 0.3);
+    transform: translateX(4px);
+}
+
+.service-info h4 {
+    color: white;
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+
+.service-info p {
+    color: #cbd5e1;
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.service-price {
+    color: #7c3aed;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 2px rgba(124, 58, 237, 0.3);
+}
+
+.total-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    margin-top: 2rem;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.total-row:last-child {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #7c3aed;
+    border-top: 2px solid rgba(124, 58, 237, 0.3);
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+    text-shadow: 0 2px 4px rgba(124, 58, 237, 0.2);
+}
+
+.billing-toggle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    color: white;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #333;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #7c3aed;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+#paypal-button-container {
+    margin-top: 2rem;
+}
+
+/* Donation Section */
+.donation-section {
+    padding: 80px 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.donation-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.donation-text h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.emotional-text {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.impact-text {
+    color: #a0a0a0;
+    line-height: 1.6;
+}
+
+.impact-text strong {
+    color: #667eea;
+}
+
+.donation-methods h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.donation-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.donation-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.donation-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.donation-btn.paypal {
+    background: #0070ba;
+    color: white;
+}
+
+.donation-btn.paypal:hover {
+    background: #005ea6;
+}
+
+.donation-btn.github {
+    background: #333;
+    color: white;
+}
+
+.donation-btn.github:hover {
+    background: #24292e;
+}
+
+.donation-btn.patreon {
+    background: #ff424d;
+    color: white;
+}
+
+.donation-btn.patreon:hover {
+    background: #e73c47;
+}
+
+.donation-btn.opencollective {
+    background: #7fadf2;
+    color: white;
+}
+
+.donation-btn.opencollective:hover {
+    background: #6a9ae8;
+}
+
+.donation-btn.kofi {
+    background: #ff5f5f;
+    color: white;
+}
+
+.donation-btn.kofi:hover {
+    background: #ff4545;
+}
+
+.donation-btn.liberapay {
+    background: #f6c915;
+    color: #333;
+}
+
+.donation-btn.liberapay:hover {
+    background: #e6b800;
+}
+
+.donation-footer {
+    text-align: center;
+    color: #a0a0a0;
+    font-style: italic;
+}
+
+.donation-footer i {
+    color: #ff6b6b;
+    margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .service-payment-grid {
+        grid-template-columns: 1fr 350px;
+        gap: 2rem;
+    }
+    
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .summary-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .service-payment-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .payment-summary-sticky {
+        position: static;
+        order: 2;
+    }
+    
+    .services-menu {
+        order: 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .donation-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .service-payment-section {
+        padding: 60px 0;
+    }
+    
+    .payment-hero {
+        padding: 120px 0 60px;
+    }
+    
+    .service-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .service-info {
+        width: 100%;
+    }
+    
+    .service-selector {
+        align-self: stretch;
+    }
+    
+    .tier-select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .donation-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-stats {
+        gap: 1.5rem;
+    }
+    
+    .stat {
+        margin: 0 auto;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .services-menu {
+        padding: 1.5rem;
+    }
+    
+    .service-info {
+        gap: 1rem;
+    }
+    
+    .service-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .service-icon i {
+        font-size: 1.5rem;
+    }
+    
+    .service-details h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-hero {
+        padding: 100px 0 40px;
+    }
+    
+    .service-payment-section {
+        padding: 40px 0;
+    }
+    
+    .donation-section {
+        padding: 40px 0;
+    }
+    
+    .services-menu {
+        padding: 1rem;
+    }
+    
+    .service-row {
+        padding: 1rem 0;
+    }
+    
+    .tier-select {
+        min-width: unset;
+        padding: 0.75rem 2rem 0.75rem 0.875rem;
+    }
+    
+    .summary-card {
+        padding: 1.25rem;
+    }
+}

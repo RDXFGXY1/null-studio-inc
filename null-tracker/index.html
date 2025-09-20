@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NullTracker - Advanced Discord Security Bot | Protect Your Server</title>
+    <meta name="description" content="Advanced Discord security bot with anti-nuke protection, comprehensive logging, spam filtering, and server restoration. Protect your Discord community 24/7.">
+    <meta name="keywords" content="discord bot, security, anti-nuke, logging, spam filter, server protection">
+    <meta name="author" content="NullTracker">
+    
+    <!-- Preconnect for better loading performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/index_dark.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#premium" class="nav-link">Premium</a></li>
+                <li><a href="pages/commands.html" class="nav-link">Commands</a></li>
+                <li><a href="pages/payment.html" class="nav-link">Pricing</a></li>
+                <li><a href="pages/donate.html" class="nav-link">Donate</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Protect Your Discord Server with <span class="gradient-text">NullTracker</span></h1>
+                <p class="hero-description">Advanced security, comprehensive logging, and intelligent protection for your Discord community. Stop attacks before they happen.</p>
+                <div class="hero-buttons">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1361385084233580698&permissions=8&scope=bot%20applications.commands" class="btn btn-primary">
+                        <i class="fab fa-discord"></i>
+                        Add to Discord
+                    </a>
+                    <a href="pages/commands.html" class="btn btn-secondary">
+                        <i class="fas fa-book"></i>
+                        View Commands
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="server-count">20</span>
+                        <span class="stat-label">Servers Protected</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Protection</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="security-shield">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="shield-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Security Suite</h2>
+            <p class="section-subtitle">Everything you need to keep your Discord server safe and organized</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>Anti-Nuke Protection</h3>
+                    <p>Prevent server destruction attacks with real-time monitoring and automatic restoration capabilities.</p>
+                    <ul class="feature-list">
+                        <li>Mass deletion prevention</li>
+                        <li>Permission escalation blocking</li>
+                        <li>Emergency server restoration</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>URL Scanner</h3>
+                    <p>Advanced malicious link detection with VirusTotal integration and phishing protection.</p>
+                    <ul class="feature-list">
+                        <li>Real-time link scanning</li>
+                        <li>Phishing detection</li>
+                        <li>Malicious domain blocking</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Smart Spam Filter</h3>
+                    <p>Intelligent spam detection that learns and adapts to protect your community.</p>
+                    <ul class="feature-list">
+                        <li>Pattern recognition</li>
+                        <li>Cross-server coordination</li>
+                        <li>Automated responses</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Comprehensive Logging</h3>
+                    <p>Track everything that happens in your server with detailed, organized logs.</p>
+                    <ul class="feature-list">
+                        <li>Message & voice logs</li>
+                        <li>Member activity tracking</li>
+                        <li>Moderation history</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Server Restoration</h3>
+                    <p>Recover from attacks with hierarchical channel restoration and backup systems.</p>
+                    <ul class="feature-list">
+                        <li>Channel backup system</li>
+                        <li>Hierarchical restoration</li>
+                        <li>Emergency recovery tools</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Easy Management</h3>
+                    <p>Simple setup and configuration with powerful management tools.</p>
+                    <ul class="feature-list">
+                        <li>One-command setup</li>
+                        <li>Intuitive configuration</li>
+                        <li>Multi-server support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Section -->
+    <section id="premium" class="premium">
+        <div class="container">
+            <h2 class="section-title">Premium Plans</h2>
+            <p class="section-subtitle">Unlock advanced features and priority support</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic Premium</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">4.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Enhanced AI scam detection</li>
+                        <li><i class="fas fa-check"></i> VirusTotal integration</li>
+                        <li><i class="fas fa-check"></i> Advanced logging</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Up to 5 servers</li>
+                    </ul>
+                    <button class="btn btn-outline">Get Started</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">9.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> All Basic features</li>
+                        <li><i class="fas fa-check"></i> Advanced threat intelligence</li>
+                        <li><i class="fas fa-check"></i> Custom API integrations</li>
+                        <li><i class="fas fa-check"></i> Detailed analytics</li>
+                        <li><i class="fas fa-check"></i> Up to 25 servers</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> All Professional features</li>
+                        <li><i class="fas fa-check"></i> Multi-server management</li>
+                        <li><i class="fas fa-check"></i> Advanced machine learning</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                        <li><i class="fas fa-check"></i> Up to 100 servers</li>
+                    </ul>
+                    <button class="btn btn-outline">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support">
+        <div class="container">
+            <div class="support-content">
+                <div class="support-text">
+                    <h2>💝 Support Our Mission</h2>
+                    <p class="support-description">
+                        NullTracker is built with passion by developers who believe in keeping Discord communities safe. 
+                        Your support helps us continue developing new features, maintaining 24/7 uptime, and providing 
+                        the best security experience for Discord servers worldwide.
+                    </p>
+                    <p class="support-impact">
+                        Every donation, no matter how small, makes a real difference. It helps us:
+                    </p>
+                    <ul class="support-benefits">
+                        <li><i class="fas fa-heart"></i> Keep the bot running 24/7 with premium infrastructure</li>
+                        <li><i class="fas fa-heart"></i> Develop new security features to stay ahead of threats</li>
+                        <li><i class="fas fa-heart"></i> Provide free protection to thousands of communities</li>
+                        <li><i class="fas fa-heart"></i> Support our small but dedicated development team</li>
+                    </ul>
+                </div>
+                
+                <div class="donation-methods">
+                    <h3>Choose Your Way to Help</h3>
+                    <div class="donation-grid">
+                        <a href="https://paypal.me/ayoubzel" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fab fa-paypal"></i>
+                            </div>
+                            <h4>PayPal</h4>
+                            <p>One-time or recurring donations</p>
+                            <span class="donation-link">paypal.me/ayoubzelgithub</span>
+                        </a>
+
+                        <a href="https://patreon.com/NullStudio001" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fab fa-patreon"></i>
+                            </div>
+                            <h4>Patreon</h4>
+                            <p>Monthly support with perks</p>
+                            <span class="donation-link">patreon.com/NullStudio001</span>
+                        </a>
+
+                        <a href="https://opencollective.com/rdxfgxy1" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Open Collective</h4>
+                            <p>Transparent community funding</p>
+                            <span class="donation-link">opencollective.com/rdxfgxy1</span>
+                        </a>
+
+                        <a href="https://ko-fi.com/kyrosdev" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            <h4>Ko-fi</h4>
+                            <p>Buy us a coffee</p>
+                            <span class="donation-link">ko-fi.com/kyrosdev</span>
+                        </a>
+
+                        <a href="https://liberapay.com/kyros" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h4>Liberapay</h4>
+                            <p>Recurrent donations</p>
+                            <span class="donation-link">liberapay.com/kyros</span>
+                        </a>
+                    </div>
+                    
+                    <div class="gratitude-message">
+                        <p>
+                            <i class="fas fa-heart text-red-500"></i>
+                            <strong>Thank you for believing in our mission!</strong> 
+                            Together, we're making Discord a safer place for everyone.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>NullTracker</span>
+                    </div>
+                    <p>Advanced Discord security and logging bot protecting communities worldwide.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="pages/commands.html">Commands</a></li>
+                        <li><a href="#premium">Premium</a></li>
+                        <li><a href="pages/payment.html">Payment</a></li>
+                        <li><a href="pages/donate.html">Donate</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#support">Donate</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullTracker. All rights reserved. Made with ❤️ for Discord communities.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="scripts/server-stats.js"></script>
+    <script src="scripts/index.js"></script>
+</body>
+</html>
