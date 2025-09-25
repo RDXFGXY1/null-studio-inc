@@ -3,1285 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NullStudio Inc. - Advanced Discord Development Solutions</title>
-    <meta name="description" content="NullStudio Inc. is a leading software development company specializing in Discord bot development, security solutions, and community management tools.">
-    <meta name="keywords" content="Discord bot development, Discord security, Discord community management, software development, malicious URL scanning, anti-nuke protection, logging, analytics, custom integrations, NullStudio Inc., Security Bot, Discord solutions">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NullTracker - Advanced Discord Security Bot | Protect Your Server</title>
+    <meta name="description" content="Advanced Discord security bot with anti-nuke protection, comprehensive logging, spam filtering, and server restoration. Protect your Discord community 24/7.">
+    <meta name="keywords" content="discord bot, security, anti-nuke, logging, spam filter, server protection">
+    <meta name="author" content="NullTracker">
+    <meta name="google-adsense-account" content="ca-pub-1164071407475022">
+    
+    <!-- Preconnect for better loading performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* ===== BASE STYLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            /* Dark Theme Colors */
-            --bg-primary: #0f0f23;
-            --bg-secondary: #1a1a2e;
-            --bg-tertiary: #16213e;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --bg-card-hover: rgba(255, 255, 255, 0.08);
-            
-            /* Purple Accent Colors */
-            --purple-primary: #7c3aed;
-            --purple-secondary: #3b82f6;
-            --purple-light: #a78bfa;
-            --purple-glow: rgba(124, 58, 237, 0.3);
-            
-            /* Text Colors */
-            --text-primary: #ffffff;
-            --text-secondary: #e2e8f0;
-            --text-tertiary: #cbd5e1;
-            --text-muted: #94a3b8;
-            
-            /* Gradients */
-            --gradient-hero: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            --gradient-purple: linear-gradient(135deg, #7c3aed, #3b82f6);
-            --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-            
-            /* Shadows */
-            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
-            --shadow-purple: 0 10px 30px rgba(124, 58, 237, 0.3);
-            --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.2);
-            
-            /* Typography */
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-            
-            /* Transitions */
-            --transition: 0.3s ease;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-primary);
-            background: var(--gradient-hero);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(15, 15, 35, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
-            transition: all var(--transition);
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all var(--transition);
-        }
-
-        .nav-logo i {
-            color: var(--purple-primary);
-            font-size: 2rem;
-            filter: drop-shadow(0 0 10px var(--purple-glow));
-        }
-
-        .nav-logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: all var(--transition);
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--purple-light);
-            background: rgba(124, 58, 237, 0.1);
-        }
-
-        .nav-cta {
-            background: var(--gradient-purple);
-            color: var(--text-primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all var(--transition);
-            box-shadow: var(--shadow-purple);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.4);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 140px 0 100px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 40%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(124, 58, 237, 0.2);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero-badge i {
-            color: var(--purple-primary);
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.025em;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #7c3aed, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            line-height: 1.7;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: 0.75rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--gradient-purple);
-            color: var(--text-primary);
-            box-shadow: var(--shadow-purple);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(124, 58, 237, 0.1);
-            border-color: var(--purple-primary);
-            color: var(--purple-light);
-            transform: translateY(-2px);
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            animation: fadeInUp 0.8s ease 0.8s both;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            backdrop-filter: blur(20px);
-            transition: all var(--transition);
-        }
-
-        .stat:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--purple-primary);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--purple-primary);
-            margin-bottom: 0.5rem;
-            font-family: var(--font-mono);
-            text-shadow: 0 2px 4px rgba(124, 58, 237, 0.3);
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* ===== HERO VISUAL ===== */
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .company-logo {
-            width: 300px;
-            height: 300px;
-            background: var(--gradient-card);
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-glow);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .company-logo::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: conic-gradient(from 0deg, var(--purple-primary), var(--purple-secondary), var(--purple-primary));
-            border-radius: 50%;
-            z-index: -1;
-            animation: rotate 10s linear infinite;
-        }
-
-        .company-logo i {
-            font-size: 8rem;
-            color: var(--purple-primary);
-            filter: drop-shadow(0 0 20px var(--purple-glow));
-        }
-
-        /* ===== ABOUT SECTION ===== */
-        .about {
-            padding: 100px 0;
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            font-size: 1.25rem;
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .about-card {
-            background: var(--bg-card);
-            border: 2px solid rgba(124, 58, 237, 0.2);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-lg);
-            transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-purple);
-            transform: scaleX(0);
-            transition: transform var(--transition);
-        }
-
-        .about-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--purple-primary);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .about-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .about-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-purple);
-            border-radius: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-purple);
-        }
-
-        .about-icon i {
-            font-size: 2.5rem;
-            color: var(--text-primary);
-        }
-
-        .about-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-
-        .about-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* ===== SERVICES SECTION ===== */
-        .services {
-            padding: 100px 0;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 2px solid rgba(124, 58, 237, 0.2);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-lg);
-            transition: all var(--transition);
-            position: relative;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--purple-primary);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .service-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-purple);
-            border-radius: 1rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-purple);
-        }
-
-        .service-icon i {
-            font-size: 2rem;
-            color: var(--text-primary);
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-        }
-
-        .service-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-tertiary);
-            margin-bottom: 0.5rem;
-        }
-
-        .service-features li i {
-            color: var(--purple-primary);
-            font-size: 0.875rem;
-        }
-
-        /* ===== TEAM SECTION ===== */
-        .team {
-            padding: 100px 0;
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .team-card {
-            background: var(--bg-card);
-            border: 2px solid rgba(124, 58, 237, 0.2);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-lg);
-            transition: all var(--transition);
-            text-align: center;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--purple-primary);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .team-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--gradient-purple);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            box-shadow: var(--shadow-purple);
-        }
-
-        .team-avatar i {
-            font-size: 3rem;
-            color: var(--text-primary);
-        }
-
-        .team-card h4 {
-            color: var(--text-primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem;
-        }
-
-        .team-card .role {
-            color: var(--purple-primary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .team-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* ===== CTA SECTION ===== */
-        .cta {
-            padding: 100px 0;
-            background: var(--gradient-purple);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.1"><circle cx="30" cy="30" r="2"/></g></svg>') repeat;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .cta-description {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--text-primary);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(20px);
-        }
-
-        .cta-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-3px);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 60px 0 30px;
-            border-top: 1px solid rgba(124, 58, 237, 0.2);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .footer-section p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: var(--text-tertiary);
-            text-decoration: none;
-            transition: color var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--purple-primary);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            color: var(--text-tertiary);
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--purple-primary);
-            color: var(--text-primary);
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-        }
-
-        .footer-bottom p {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            margin: 0;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
-            
-            .company-logo {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .company-logo i {
-                font-size: 6rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-stats {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .about-grid,
-            .services-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .hero {
-                padding: 120px 0 80px;
-            }
-            
-            .company-logo {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .company-logo i {
-                font-size: 4rem;
-            }
-            
-            .about-card,
-            .service-card,
-            .team-card {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/index_dark.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <i class="fas fa-code"></i>
-                <span>NullStudio</span>
-            </a>
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>NullTracker</span>
+            </div>
             <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#team" class="nav-link">Team</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#premium" class="nav-link">Premium</a></li>
+                <li><a href="pages/commands.html" class="nav-link">Commands</a></li>
+                <li><a href="pages/payment.html" class="nav-link">Pricing</a></li>
+                <li><a href="pages/donate.html" class="nav-link">Donate</a></li>
             </ul>
-            <a href="/null-tracker/pages/donate.html" class="nav-cta">
-                <i class="fas fa-gift"></i>
-                Get $50 🙂
-            </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="hero-badge">
-                        <i class="fas fa-award"></i>
-                        <span>Leading Discord Development Company</span>
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Protect Your Discord Server with <span class="gradient-text">NullTracker</span></h1>
+                <p class="hero-description">Advanced security, comprehensive logging, and intelligent protection for your Discord community. Stop attacks before they happen.</p>
+                <div class="hero-buttons">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1361385084233580698&permissions=8&scope=bot%20applications.commands" class="btn btn-primary">
+                        <i class="fab fa-discord"></i>
+                        Add to Discord
+                    </a>
+                    <a href="pages/commands.html" class="btn btn-secondary">
+                        <i class="fas fa-book"></i>
+                        View Commands
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="server-count">20</span>
+                        <span class="stat-label">Servers Protected</span>
                     </div>
-                    <h1 class="hero-title">
-                        Innovative <span class="gradient-text">Software Solutions</span> for Discord
-                    </h1>
-                    <p class="hero-description">
-                        NullStudio Inc. is a cutting-edge software development company specializing in Discord bot development, security solutions, and community management tools that empower thousands of servers worldwide.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#services" class="btn btn-primary">
-                            <i class="fas fa-eye"></i>
-                            Explore Services
-                        </a>
-                        <a href="#about" class="btn btn-secondary">
-                            <i class="fas fa-info-circle"></i>
-                            Learn More
-                        </a>
+                    <div class="stat">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime</span>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">50K+</span>
-                            <span class="stat-label">Servers Served</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">99.9%</span>
-                            <span class="stat-label">Uptime</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Support</span>
-                        </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Protection</span>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="company-logo">
-                        <i class="fas fa-code"></i>
-                    </div>
+            </div>
+            <div class="hero-visual">
+                <div class="security-shield">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="shield-pulse"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Features Section -->
+    <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">What is NullStudio Inc.?</h2>
-            <p class="section-subtitle">
-                We are a forward-thinking software development company dedicated to creating innovative Discord solutions that enhance community experiences and provide robust security.
-            </p>
-            <div class="about-grid">
-                <div class="about-card">
-                    <div class="about-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Innovation First</h3>
-                    <p>We leverage cutting-edge technologies and innovative approaches to develop solutions that stay ahead of the curve. Our team constantly explores new possibilities to enhance Discord communities with advanced features and seamless integrations.</p>
-                </div>
-                <div class="about-card">
-                    <div class="about-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Security Focused</h3>
-                    <p>Security is at the core of everything we build. From malicious URL scanning to anti-nuke protection, we implement enterprise-grade security measures to protect Discord communities from threats and ensure safe environments for all users.</p>
-                </div>
-                <div class="about-card">
-                    <div class="about-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community Driven</h3>
-                    <p>We understand the importance of community. Our solutions are designed with real user needs in mind, backed by comprehensive support and continuous improvement based on community feedback and evolving requirements.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">
-                Comprehensive Discord development solutions tailored to meet the unique needs of modern communities
-            </p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Discord Bot Development</h3>
-                    <p>Custom Discord bots built from the ground up with advanced features, scalable architecture, and seamless integration capabilities.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Custom bot development</li>
-                        <li><i class="fas fa-check"></i> Advanced command systems</li>
-                        <li><i class="fas fa-check"></i> Database integration</li>
-                        <li><i class="fas fa-check"></i> API integrations</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
+            <h2 class="section-title">Comprehensive Security Suite</h2>
+            <p class="section-subtitle">Everything you need to keep your Discord server safe and organized</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-shield-virus"></i>
                     </div>
-                    <h3>Security Solutions</h3>
-                    <p>Comprehensive security systems including malicious URL scanning, anti-nuke protection, and advanced threat detection mechanisms.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Real-time threat scanning</li>
-                        <li><i class="fas fa-check"></i> Anti-nuke protection</li>
-                        <li><i class="fas fa-check"></i> Automated moderation</li>
-                        <li><i class="fas fa-check"></i> Security analytics</li>
+                    <h3>Anti-Nuke Protection</h3>
+                    <p>Prevent server destruction attacks with real-time monitoring and automatic restoration capabilities.</p>
+                    <ul class="feature-list">
+                        <li>Mass deletion prevention</li>
+                        <li>Permission escalation blocking</li>
+                        <li>Emergency server restoration</li>
                     </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>URL Scanner</h3>
+                    <p>Advanced malicious link detection with VirusTotal integration and phishing protection.</p>
+                    <ul class="feature-list">
+                        <li>Real-time link scanning</li>
+                        <li>Phishing detection</li>
+                        <li>Malicious domain blocking</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Smart Spam Filter</h3>
+                    <p>Intelligent spam detection that learns and adapts to protect your community.</p>
+                    <ul class="feature-list">
+                        <li>Pattern recognition</li>
+                        <li>Cross-server coordination</li>
+                        <li>Automated responses</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
-                    <h3>Logging & Analytics</h3>
-                    <p>Comprehensive logging systems with detailed analytics, audit trails, and customizable reporting for complete server oversight.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Complete activity logging</li>
-                        <li><i class="fas fa-check"></i> Advanced analytics</li>
-                        <li><i class="fas fa-check"></i> Custom reports</li>
-                        <li><i class="fas fa-check"></i> Data export capabilities</li>
+                    <h3>Comprehensive Logging</h3>
+                    <p>Track everything that happens in your server with detailed, organized logs.</p>
+                    <ul class="feature-list">
+                        <li>Message & voice logs</li>
+                        <li>Member activity tracking</li>
+                        <li>Moderation history</li>
                     </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Server Restoration</h3>
+                    <p>Recover from attacks with hierarchical channel restoration and backup systems.</p>
+                    <ul class="feature-list">
+                        <li>Channel backup system</li>
+                        <li>Hierarchical restoration</li>
+                        <li>Emergency recovery tools</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <h3>Custom Integrations</h3>
-                    <p>Tailored integrations with third-party services, APIs, and platforms to extend functionality and streamline workflows.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> API integrations</li>
-                        <li><i class="fas fa-check"></i> Webhook systems</li>
-                        <li><i class="fas fa-check"></i> Database connections</li>
-                        <li><i class="fas fa-check"></i> Custom workflows</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Support & Maintenance</h3>
-                    <p>24/7 technical support, regular updates, performance monitoring, and ongoing maintenance to ensure optimal performance.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> 24/7 support</li>
-                        <li><i class="fas fa-check"></i> Regular updates</li>
-                        <li><i class="fas fa-check"></i> Performance monitoring</li>
-                        <li><i class="fas fa-check"></i> Bug fixes & patches</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Consulting & Training</h3>
-                    <p>Expert consulting services and comprehensive training programs to help teams maximize their Discord community potential.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Technical consulting</li>
-                        <li><i class="fas fa-check"></i> Best practices training</li>
-                        <li><i class="fas fa-check"></i> Architecture planning</li>
-                        <li><i class="fas fa-check"></i> Performance optimization</li>
+                    <h3>Easy Management</h3>
+                    <p>Simple setup and configuration with powerful management tools.</p>
+                    <ul class="feature-list">
+                        <li>One-command setup</li>
+                        <li>Intuitive configuration</li>
+                        <li>Multi-server support</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="team">
+    <!-- Premium Section -->
+    <section id="premium" class="premium">
         <div class="container">
-            <h2 class="section-title">Team</h2>
-            <p class="section-subtitle">
-                Meet the talented professionals behind NullStudio's innovative Discord solutions Power of one
-            </p>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar">
-                        <i class="fas fa-user-tie"></i>
+            <h2 class="section-title">Premium Plans</h2>
+            <p class="section-subtitle">Unlock advanced features and priority support</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic Premium</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">4.99</span>
+                            <span class="period">/month</span>
+                        </div>
                     </div>
-                    <h4>K Y R O S !</h4>
-                    <div class="role">CEO & Lead Developer</div>
-                    <p>The solo bot developer who made all those bots from scratch. and transformed the Discord bot landscape.</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Enhanced AI scam detection</li>
+                        <li><i class="fas fa-check"></i> VirusTotal integration</li>
+                        <li><i class="fas fa-check"></i> Advanced logging</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Up to 5 servers</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="window.location.href='pages/payment.html'">Get Started</button>
                 </div>
 
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">9.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> All Basic features</li>
+                        <li><i class="fas fa-check"></i> Advanced threat intelligence</li>
+                        <li><i class="fas fa-check"></i> Custom API integrations</li>
+                        <li><i class="fas fa-check"></i> Detailed analytics</li>
+                        <li><i class="fas fa-check"></i> Up to 25 servers</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="window.location.href='pages/payment.html'">Get Started</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> All Professional features</li>
+                        <li><i class="fas fa-check"></i> Multi-server management</li>
+                        <li><i class="fas fa-check"></i> Advanced machine learning</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                        <li><i class="fas fa-check"></i> Up to 100 servers</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="window.location.href='pages/payment.html'">Get Started</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
+    <!-- Support Section -->
+    <section id="support" class="support">
         <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to Transform Your Discord Community?</h2>
-                <p class="cta-description">
-                    Partner with NullStudio Inc. to build innovative Discord solutions that enhance security, improve engagement, and streamline community management.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn cta-btn">
-                        <i class="fas fa-envelope"></i>
-                        Contact Us
-                    </a>
-                    <a href="#services" class="btn cta-btn">
-                        <i class="fas fa-eye"></i>
-                        View Services
-                    </a>
+            <div class="support-content">
+                <div class="support-text">
+                    <h2>💝 Support Our Mission</h2>
+                    <p class="support-description">
+                        NullTracker is built with passion by developers who believe in keeping Discord communities safe. 
+                        Your support helps us continue developing new features, maintaining 24/7 uptime, and providing 
+                        the best security experience for Discord servers worldwide.
+                    </p>
+                    <p class="support-impact">
+                        Every donation, no matter how small, makes a real difference. It helps us:
+                    </p>
+                    <ul class="support-benefits">
+                        <li><i class="fas fa-heart"></i> Keep the bot running 24/7 with premium infrastructure</li>
+                        <li><i class="fas fa-heart"></i> Develop new security features to stay ahead of threats</li>
+                        <li><i class="fas fa-heart"></i> Provide free protection to thousands of communities</li>
+                        <li><i class="fas fa-heart"></i> Support our small but dedicated development team</li>
+                    </ul>
+                </div>
+                
+                <div class="donation-methods">
+                    <h3>Choose Your Way to Help</h3>
+                    <div class="donation-grid">
+                        <a href="https://paypal.me/ayoubzel" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fab fa-paypal"></i>
+                            </div>
+                            <h4>PayPal</h4>
+                            <p>One-time or recurring donations</p>
+                            <span class="donation-link">paypal.me/ayoubzelgithub</span>
+                        </a>
+
+                        <a href="https://patreon.com/NullStudio001" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fab fa-patreon"></i>
+                            </div>
+                            <h4>Patreon</h4>
+                            <p>Monthly support with perks</p>
+                            <span class="donation-link">patreon.com/NullStudio001</span>
+                        </a>
+
+                        <a href="https://opencollective.com/rdxfgxy1" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Open Collective</h4>
+                            <p>Transparent community funding</p>
+                            <span class="donation-link">opencollective.com/rdxfgxy1</span>
+                        </a>
+
+                        <a href="https://ko-fi.com/kyrosdev" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            <h4>Ko-fi</h4>
+                            <p>Buy us a coffee</p>
+                            <span class="donation-link">ko-fi.com/kyrosdev</span>
+                        </a>
+
+                        <a href="https://liberapay.com/kyros" class="donation-card" target="_blank">
+                            <div class="donation-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h4>Liberapay</h4>
+                            <p>Recurrent donations</p>
+                            <span class="donation-link">liberapay.com/kyros</span>
+                        </a>
+                    </div>
+                    
+                    <div class="gratitude-message">
+                        <p>
+                            <i class="fas fa-heart text-red-500"></i>
+                            <strong>Thank you for believing in our mission!</strong> 
+                            Together, we're making Discord a safer place for everyone.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>NullStudio Inc.</h3>
-                    <p>
-                        Leading software development company specializing in Discord bot development, security solutions, and community management tools.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>NullTracker</span>
                     </div>
+                    <p>Advanced Discord security and logging bot protecting communities worldwide.</p>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#services">Discord Bot Development</a></li>
-                        <li><a href="#services">Security Solutions</a></li>
-                        <li><a href="#services">Logging & Analytics</a></li>
-                        <li><a href="#services">Custom Integrations</a></li>
-                        <li><a href="#services">Support & Maintenance</a></li>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="pages/commands.html">Commands</a></li>
+                        <li><a href="#premium">Premium</a></li>
+                        <li><a href="pages/payment.html">Payment</a></li>
+                        <li><a href="pages/donate.html">Donate</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Products</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">NullTracker Bot</a></li>
-                        <li><a href="#">Security Suite</a></li>
-                        <li><a href="#">Analytics Dashboard</a></li>
-                        <li><a href="#">Custom Solutions</a></li>
-                        <li><a href="#">Enterprise Tools</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#support">Donate</a></li>
                         <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Help Center</a></li>
                         <li><a href="#">Discord Server</a></li>
-                        <li><a href="#">Contact Support</a></li>
-                        <li><a href="#">Status Page</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 NullStudio Inc. All rights reserved. | Innovating Discord communities worldwide.</p>
+                <p>&copy; 2024 NullTracker. All rights reserved. Made with ❤️ for Discord communities.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(15, 15, 35, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(15, 15, 35, 0.95)';
-            }
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards and sections
-        document.querySelectorAll('.about-card, .service-card, .team-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Add click handlers for CTA buttons
-        document.querySelectorAll('.btn, .nav-cta').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Add ripple effect
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.pointerEvents = 'none';
-                
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-
-        // Add ripple animation CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Update stats with animation
-        function animateStats() {
-            const stats = document.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
-                let current = 0;
-                const increment = target / 100;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    
-                    if (stat.textContent.includes('K')) {
-                        stat.textContent = Math.floor(current / 1000) + 'K+';
-                    } else if (stat.textContent.includes('%')) {
-                        stat.textContent = current.toFixed(1) + '%';
-                    } else {
-                        stat.textContent = Math.floor(current) + '/7';
-                    }
-                }, 20);
-            });
-        }
-
-        // Trigger stats animation when hero is visible
-        const heroObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(animateStats, 1000);
-                    heroObserver.unobserve(entry.target);
-                }
-            });
-        });
-
-        heroObserver.observe(document.querySelector('.hero-stats'));
-
-        // Add loading animation
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.opacity = '0';
-            setTimeout(() => {
-                document.body.style.transition = 'opacity 0.5s ease-in';
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Add keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                // Close any open modals or menus
-                console.log('[v0] Escape key pressed');
-            }
-        });
-
-        // Add smooth hover effects for cards
-        document.querySelectorAll('.about-card, .service-card, .team-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="scripts/server-stats.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>

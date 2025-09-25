@@ -167,7 +167,7 @@ function initializeAnimations() {
 // ===== STATISTICS COUNTER =====
 function initializeStatCounters() {
     const stats = [
-        { element: heroStats[0], target: 10000, suffix: '+' },
+        { element: heroStats[0], target: 33, suffix: '+' },
         { element: heroStats[1], target: 99.9, suffix: '%' },
         { element: heroStats[2], target: 24, suffix: '/7' }
     ];
