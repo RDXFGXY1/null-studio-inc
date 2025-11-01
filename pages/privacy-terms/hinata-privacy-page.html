@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Hinata Discord Bot</title>
+    <meta name="description" content="Privacy Policy for Hinata Discord security and logging bot. Learn how we collect, use, and protect your data.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #121212;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --purple-primary: #8b5cf6;
+            --purple-secondary: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-tertiary: #808080;
+            --border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-logo i {
+            color: var(--purple-primary);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-primary);
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--purple-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--purple-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc h2 i {
+            color: var(--purple-primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .toc a:hover {
+            color: var(--purple-primary);
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateX(4px);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            scroll-margin-top: 100px;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--purple-primary);
+            margin: 2rem 0 1rem;
+        }
+
+        .section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .section ul, .section ol {
+            margin: 1rem 0 1rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--purple-primary);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.warning {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: #ef4444;
+        }
+
+        .highlight-box.info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: #3b82f6;
+        }
+
+        .highlight-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+        }
+
+        .highlight-box strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .data-card {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+        }
+
+        .data-card h4 {
+            color: var(--purple-primary);
+            margin: 0 0 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .data-card p {
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--purple-primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Hinata</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="commands.html">Commands</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-user-shield"></i>
+                Privacy & Data Protection
+            </div>
+            <h1 class="hero-title">Privacy Policy</h1>
+            <p class="hero-subtitle">
+                Your privacy matters to us. Learn how we collect, use, and protect your data while providing our security services.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Effective: November 1, 2025
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-code-branch"></i>
+                    Version 1.0
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-check-circle"></i>
+                    GDPR Compliant
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-section">
+        <div class="toc">
+            <h2><i class="fas fa-list"></i> Table of Contents</h2>
+            <ul>
+                <li><a href="#introduction"><i class="fas fa-chevron-right"></i> 1. Introduction</a></li>
+                <li><a href="#information-collected"><i class="fas fa-chevron-right"></i> 2. Information We Collect</a></li>
+                <li><a href="#how-we-collect"><i class="fas fa-chevron-right"></i> 3. How We Collect Data</a></li>
+                <li><a href="#how-we-use"><i class="fas fa-chevron-right"></i> 4. How We Use Data</a></li>
+                <li><a href="#storage-security"><i class="fas fa-chevron-right"></i> 5. Data Storage & Security</a></li>
+                <li><a href="#data-retention"><i class="fas fa-chevron-right"></i> 6. Data Retention</a></li>
+                <li><a href="#third-party"><i class="fas fa-chevron-right"></i> 7. Third-Party Services</a></li>
+                <li><a href="#data-sharing"><i class="fas fa-chevron-right"></i> 8. Data Sharing</a></li>
+                <li><a href="#user-rights"><i class="fas fa-chevron-right"></i> 9. User Rights</a></li>
+                <li><a href="#children"><i class="fas fa-chevron-right"></i> 10. Children's Privacy</a></li>
+            </ul>
+        </div>
+
+        <div id="introduction" class="section">
+            <h2>1. Introduction</h2>
+            <p>Hinata ("NullTracker" or "the Service") is provided by NullStudio Security Team ("we", "us", or "our"). This Privacy Policy explains how we collect, use, store, and disclose information when you install or use Hinata on your Discord Server ("Server").</p>
+            <p>Our goal is to be transparent about data practices and to comply with applicable privacy laws, including the GDPR where it applies.</p>
+            <div class="highlight-box success">
+                <strong><i class="fas fa-shield-check"></i> Our Commitment:</strong>
+                <p>We are committed to protecting your privacy and handling your data with care and respect. We only collect data necessary to provide our security services.</p>
+            </div>
+        </div>
+
+        <div id="information-collected" class="section">
+            <h2>2. Information We Collect</h2>
+            <p>We collect and process the following categories of information to provide the Service:</p>
+
+            <div class="data-grid">
+                <div class="data-card">
+                    <h4><i class="fas fa-server"></i> Server Information</h4>
+                    <p>Guild ID, name, region, server settings, and configuration data</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-users"></i> User Information</h4>
+                    <p>User IDs, usernames, nicknames, roles, join dates, and activity metadata</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-comments"></i> Message Data</h4>
+                    <p>Message content, edits, deletions, reactions, and attachments (when configured)</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-microphone"></i> Voice Data</h4>
+                    <p>Voice state events, connection times, mute/deafen states (no audio recording)</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-gavel"></i> Moderation Data</h4>
+                    <p>Bans, kicks, timeouts, anti-nuke events, and audit log information</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-crown"></i> Premium Data</h4>
+                    <p>Subscription status, tier level, and minimal billing identifiers</p>
+                </div>
+            </div>
+
+            <div class="highlight-box info">
+                <strong><i class="fas fa-info-circle"></i> Important Note:</strong>
+                <p>Message content logging only occurs for channels explicitly configured to be logged by server administrators. We do not record voice audio.</p>
+            </div>
+        </div>
+
+        <div id="how-we-collect" class="section">
+            <h2>3. How We Collect Data</h2>
+            <ul>
+                <li><strong>Discord API:</strong> Data is collected via Discord event listeners, audit log queries, and API endpoints</li>
+                <li><strong>Configured Logging:</strong> Administrators configure which channels and events are logged</li>
+                <li><strong>User Interactions:</strong> Commands, settings changes, and bot interactions</li>
+                <li><strong>Third-Party Services:</strong> VirusTotal responses and PayPal transaction metadata when features are used</li>
+            </ul>
+            <p>The scope of data collection is limited by the bot permissions granted by server administrators.</p>
+        </div>
+
+        <div id="how-we-use" class="section">
+            <h2>4. How We Use Data</h2>
+            <p>We use collected data for the following purposes:</p>
+            <ul>
+                <li><strong>Provide core features:</strong> Moderation, security (anti-nuke), and logging services</li>
+                <li><strong>Threat detection and prevention:</strong> Analyze patterns and scan URLs to prevent scams and abuse</li>
+                <li><strong>Server restoration:</strong> Store snapshots and backups to restore server structure after malicious events</li>
+                <li><strong>Premium delivery:</strong> Verify subscription status and enable premium features</li>
+                <li><strong>Support and troubleshooting:</strong> Diagnose issues when administrators request help</li>
+                <li><strong>Service improvements:</strong> Aggregate and anonymize metrics to improve features</li>
+            </ul>
+        </div>
+
+        <div id="storage-security" class="section">
+            <h2>5. Data Storage and Security</h2>
+            
+            <h3>5.1 Storage</h3>
+            <ul>
+                <li><strong>Primary storage:</strong> Local SQLite databases and JSON files</li>
+                <li><strong>Guild-specific isolation:</strong> Data is logically partitioned per guild</li>
+                <li><strong>Backups:</strong> Stored in repository-managed directories with controlled access</li>
+            </ul>
+
+            <h3>5.2 Security Measures</h3>
+            <div class="data-grid">
+                <div class="data-card">
+                    <h4><i class="fas fa-lock"></i> Access Control</h4>
+                    <p>Bot actions governed by Discord permissions and role hierarchy</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-key"></i> Least Privilege</h4>
+                    <p>Only necessary permissions required for intended features</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-shield-alt"></i> Secure Backups</h4>
+                    <p>Encrypted snapshots with access control rotation</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-credit-card"></i> Payment Security</h4>
+                    <p>No raw payment data stored; minimal billing metadata only</p>
+                </div>
+            </div>
+
+            <h3>5.3 Incident Response</h3>
+            <p>We maintain procedures to respond to security incidents and will notify affected administrators per applicable law and contractual obligations.</p>
+        </div>
+
+        <div id="data-retention" class="section">
+            <h2>6. Data Retention</h2>
+            <ul>
+                <li><strong>Active retention:</strong> Data retained while Service is active in a Server</li>
+                <li><strong>Configurable cleanup:</strong> Administrators may configure log retention and cleanup routines</li>
+                <li><strong>Backup retention:</strong> Depends on premium tier and server settings</li>
+                <li><strong>Deletion upon removal:</strong> Server data retained briefly after bot removal for recovery, then deleted upon request</li>
+            </ul>
+            <div class="highlight-box info">
+                <strong><i class="fas fa-clock"></i> Grace Period:</strong>
+                <p>When the bot is removed, server-specific data is retained for a brief grace period to support recovery. Contact us to request immediate deletion.</p>
+            </div>
+        </div>
+
+        <div id="third-party" class="section">
+            <h2>7. Third-Party Services</h2>
+            <p>We may interact with the following third-party services:</p>
+            
+            <div class="data-grid">
+                <div class="data-card">
+                    <h4><i class="fab fa-discord"></i> Discord</h4>
+                    <p>Platform provider and identity source with its own privacy policy</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-virus"></i> VirusTotal</h4>
+                    <p>URL scanning service for detecting malicious links</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fab fa-paypal"></i> PayPal</h4>
+                    <p>Handles subscription payments and billing records</p>
+                </div>
+            </div>
+
+            <div class="highlight-box warning">
+                <strong><i class="fas fa-exclamation-triangle"></i> Important:</strong>
+                <p>We do not sell user data to third parties. We only share information with service providers strictly to deliver features and where legally required.</p>
+            </div>
+        </div>
+
+        <div id="data-sharing" class="section">
+            <h2>8. Data Sharing and Disclosure</h2>
+            <ul>
+                <li><strong>Server administrators:</strong> May access logs and exports for their Server</li>
+                <li><strong>Legal and compliance:</strong> May disclose data in response to lawful requests or to prevent imminent harm</li>
+                <li><strong>Aggregated/anonymized data:</strong> May publish metrics that cannot be traced to individuals</li>
+            </ul>
+        </div>
+
+        <div id="user-rights" class="section">
+            <h2>9. User Rights and Choices</h2>
+            <p>Where applicable (e.g., GDPR), users and server administrators have the following rights:</p>
+            
+            <div class="data-grid">
+                <div class="data-card">
+                    <h4><i class="fas fa-eye"></i> Access</h4>
+                    <p>Request a copy of personal data we process</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-download"></i> Portability</h4>
+                    <p>Request export of server logs or associated data</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-trash"></i> Deletion</h4>
+                    <p>Request deletion of personal data</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-edit"></i> Rectification</h4>
+                    <p>Request correction of inaccurate data</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-ban"></i> Objection</h4>
+                    <p>Object to certain processing activities</p>
+                </div>
+                <div class="data-card">
+                    <h4><i class="fas fa-pause"></i> Restriction</h4>
+                    <p>Request restriction of processing</p>
+                </div>
+            </div>
+
+            <p>To exercise these rights, contact us using the information below. Requests will be processed after verification.</p>
+        </div>
+
+        <div id="children" class="section">
+            <h2>10. Children's Privacy</h2>
+            <p>Discord requires users to be at least 13 years old. We do not knowingly collect or process personal data from children under applicable minimum age requirements.</p>
+            <div class="highlight-box warning">
+                <strong><i class="fas fa-child"></i> Notice:</strong>
+                <p>If you believe that data from a child under the minimum age has been collected, please contact us immediately to request deletion.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Contact Information</h2>
+            <div class="highlight-box info">
+                <p><strong><i class="fas fa-envelope"></i> For privacy inquiries or data requests:</strong></p>
+                <p>Discord Support Server: <a href="https://discord.gg/8PvYKnNdXS" style="color: var(--purple-primary);">https://discord.gg/8PvYKnNdXS</a></p>
+                <p>Email: null.studio.000@outlook.com</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="commands.html">Commands</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="donate.html">Donate</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NullStudio Security Team. All rights reserved.</p>
+                <p>Made with <i class="fas fa-heart" style="color: #ef4444;"></i> for Discord communities worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        const sections = document.querySelectorAll('.section');
+        const tocLinks = document.querySelectorAll('.toc a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--purple-primary)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
