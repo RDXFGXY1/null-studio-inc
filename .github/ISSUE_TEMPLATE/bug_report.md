@@ -2,37 +2,37 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
-assignees: ''
+labels: bug
+assignees: RDXFGXY1
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+---
+name: 🐞 Bug Report
+about: Report an issue or unexpected behavior with the NullTracker Discord Bot
+title: "[Bug] "
+labels: bug
+assignees: ''
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## 🐛 Describe the Bug
+Clearly explain what the bot is doing wrong or not doing.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+---
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## 🔁 Steps to Reproduce
+Steps to reproduce the issue:
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+1. Use command `/example`
+2. Choose option `xyz`
+3. Bot replies with error or wrong behavior
+4. ...
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+---
 
-**Additional context**
-Add any other context about the problem here.
+## ✅ Expected Behavior
+What did you expect the bot to do instead?
+
+---
+
+## 📸 Screenshots / Logs
+If available, paste the error message, traceback, or screenshot here:
