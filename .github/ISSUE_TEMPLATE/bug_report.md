@@ -7,12 +7,7 @@ assignees: RDXFGXY1
 
 ---
 
----
-name: 🐞 Bug Report
-about: Report an issue or unexpected behavior with the NullTracker Discord Bot
-title: "[Bug] "
-labels: bug
-assignees: ''
+#Bug report
 
 ## 🐛 Describe the Bug
 Clearly explain what the bot is doing wrong or not doing.
