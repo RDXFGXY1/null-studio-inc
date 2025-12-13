@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blacklist Policy - Hinata Discord Bot</title>
+    <meta name="description" content="Blacklist Policy for Hinata Discord bot. Learn about reasons for blacklisting and our enforcement procedures.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #121212;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --purple-primary: #8b5cf6;
+            --purple-secondary: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-tertiary: #808080;
+            --border-color: rgba(139, 92, 246, 0.2);
+            --red-primary: #ef4444;
+            --orange-primary: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-logo i {
+            color: var(--purple-primary);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-primary);
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--red-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--red-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .check-status {
+            margin: 2rem auto;
+            max-width: 500px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .check-status h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .check-status p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .check-status code {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--purple-primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .content-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc h2 i {
+            color: var(--purple-primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .toc a:hover {
+            color: var(--purple-primary);
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateX(4px);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            scroll-margin-top: 100px;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--purple-primary);
+            margin: 2rem 0 1rem;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .section ul {
+            margin: 1rem 0 1rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .violation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .violation-card {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-left: 4px solid var(--red-primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .violation-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+        }
+
+        .violation-card.severe {
+            background: rgba(220, 38, 38, 0.1);
+            border-left-color: #dc2626;
+        }
+
+        .violation-card.moderate {
+            background: rgba(245, 158, 11, 0.05);
+            border-left-color: var(--orange-primary);
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        .violation-card h4 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .violation-card h4 i {
+            color: var(--red-primary);
+        }
+
+        .violation-card.severe h4 i {
+            color: #dc2626;
+        }
+
+        .violation-card.moderate h4 i {
+            color: var(--orange-primary);
+        }
+
+        .violation-card p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .severity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .severity-badge.severe {
+            background: rgba(220, 38, 38, 0.2);
+            color: #dc2626;
+        }
+
+        .severity-badge.high {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--red-primary);
+        }
+
+        .severity-badge.moderate {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--orange-primary);
+        }
+
+        .highlight-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--purple-primary);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.warning {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: var(--red-primary);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .highlight-box.info {
+            background: rgba(59, 130, 246, 0.1);
+            border-left-color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .highlight-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .highlight-box strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .step {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--purple-primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .violation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Hinata</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../commands.html">Commands</a></li>
+                <li><a href="../privacy-terms/terms.html">Terms</a></li>
+                <li><a href="../privacy-terms/privacy.html">Privacy</a></li>
+                <li><a href="../blacklist-policy/index.html">Blacklist Policy</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-ban"></i>
+                Enforcement & Safety
+            </div>
+            <h1 class="hero-title">Blacklist Policy</h1>
+            <p class="hero-subtitle">
+                Understanding our blacklist system and the reasons why users or servers may be restricted from using Hinata.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Effective: November 1, 2025
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-code-branch"></i>
+                    Version 1.0
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-shield-check"></i>
+                    Zero Tolerance
+                </div>
+            </div>
+            
+            <div class="check-status">
+                <h3><i class="fas fa-search"></i> Check Your Status</h3>
+                <p>Want to check if your server is blacklisted? Use the command:</p>
+                <p><code>blacklist guild check</code></p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">This command can be used by anyone in their server</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-section">
+        <div class="toc">
+            <h2><i class="fas fa-list"></i> Table of Contents</h2>
+            <ul>
+                <li><a href="#introduction"><i class="fas fa-chevron-right"></i> 1. Introduction</a></li>
+                <li><a href="#user-violations"><i class="fas fa-chevron-right"></i> 2. User Blacklist Reasons</a></li>
+                <li><a href="#guild-violations"><i class="fas fa-chevron-right"></i> 3. Guild Blacklist Reasons</a></li>
+                <li><a href="#enforcement"><i class="fas fa-chevron-right"></i> 4. Enforcement Process</a></li>
+                <li><a href="#appeals"><i class="fas fa-chevron-right"></i> 5. Appeals & Removal</a></li>
+            </ul>
+        </div>
+
+        <div id="introduction" class="section">
+            <h2><i class="fas fa-info-circle"></i> 1. Introduction</h2>
+            <p>The blacklist system is designed to protect the integrity of Hinata and maintain a safe environment for all users. When a user or server is blacklisted, they are prevented from using the bot's services.</p>
+            
+            <div class="highlight-box info">
+                <strong><i class="fas fa-lightbulb"></i> Our Mission:</strong>
+                <p>We are committed to ensuring Hinata is used responsibly and ethically. Our blacklist policy helps prevent abuse, protect communities, and maintain compliance with Discord's Terms of Service.</p>
+            </div>
+
+            <p>Blacklisting is not taken lightly and only occurs after careful review of reported violations or automated detection of severe abuse.</p>
+        </div>
+
+        <div id="user-violations" class="section">
+            <h2><i class="fas fa-user-slash"></i> 2. User Blacklist Reasons</h2>
+            <p>Users may be blacklisted for the following violations:</p>
+
+            <div class="violation-grid">
+                <div class="violation-card severe">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Bot Abuse</h4>
+                    <p>Intentionally exploiting bugs, flooding commands, or attempting to crash the bot through malicious requests.</p>
+                    <span class="severity-badge severe">SEVERE</span>
+                </div>
+
+                <div class="violation-card severe">
+                    <h4><i class="fas fa-user-secret"></i> API Manipulation</h4>
+                    <p>Attempting to reverse engineer, modify, or manipulate the bot's code or API endpoints without authorization.</p>
+                    <span class="severity-badge severe">SEVERE</span>
+                </div>
+
+                <div class="violation-card severe">
+                    <h4><i class="fas fa-gavel"></i> Terms Violation</h4>
+                    <p>Repeatedly violating Discord's Terms of Service or Community Guidelines while using Hinata.</p>
+                    <span class="severity-badge severe">SEVERE</span>
+                </div>
+
+                <div class="violation-card">
+                    <h4><i class="fas fa-dollar-sign"></i> Payment Fraud</h4>
+                    <p>Chargebacks, stolen payment methods, or fraudulent subscription attempts for premium features.</p>
+                    <span class="severity-badge high">HIGH</span>
+                </div>
+
+                <div class="violation-card">
+                    <h4><i class="fas fa-mask"></i> Identity Fraud</h4>
+                    <p>Impersonating bot developers, staff members, or attempting to deceive users about bot functionality.</p>
+                    <span class="severity-badge high">HIGH</span>
+                </div>
+
+                <div class="violation-card moderate">
+                    <h4><i class="fas fa-spam"></i> Spam & Harassment</h4>
+                    <p>Using the bot to spam, harass other users, or send unsolicited messages through bot features.</p>
+                    <span class="severity-badge moderate">MODERATE</span>
+                </div>
+
+                <div class="violation-card moderate">
+                    <h4><i class="fas fa-ban"></i> Circumventing Bans</h4>
+                    <p>Creating alternate accounts to bypass existing blacklists or server bans facilitated by the bot.</p>
+                    <span class="severity-badge moderate">MODERATE</span>
+                </div>
+
+                <div class="violation-card">
+                    <h4><i class="fas fa-shield-virus"></i> Malicious Activity</h4>
+                    <p>Using the bot to distribute malware, phishing links, or other harmful content to Discord communities.</p>
+                    <span class="severity-badge severe">SEVERE</span>
+                </div>
+            </div>
+
+            <div class="highlight-box warning">
+                <strong><i class="fas fa-exclamation-circle"></i> Important:</strong>
+                <p>Severe violations typically result in permanent blacklisting with no possibility of appeal. We take security and safety very seriously.</p>
+            </div>
+        </div>
+
+        <div id="guild-violations" class="section">
+            <h2><i class="fas fa-server"></i> 3. Guild Blacklist Reasons</h2>
+            <p>Servers (guilds) may be blacklisted for the following reasons:</p>
+
+            <div class="violation-grid">
+                <div class="violation-card severe">
+                    <h4><i class="fas fa-skull-crossbones"></i> Illegal Activities</h4>
+                    <p>Servers promoting, facilitating, or engaging in illegal activities including but not limited to: drug trafficking, human trafficking, terrorism, or child exploitation.</p>
+                    <span class="severity-badge severe">SEVERE - PERMANENT</span>
+                </div>
+
+                <div class="violation-card severe">
+                    <h4><i class="fas fa-radiation"></i> Raiding & Nuking</h4>
+                    <p>Servers organized for raiding, nuking, or attacking other Discord communities. This includes raid coordination servers.</p>
+                    <span class="severity-badge severe">SEVERE</span>
+                </div>
+
+                <div class="violation-card severe">
+                    <h4><i class="fas fa-angry"></i> Hate Speech</h4>
+                    <p>Servers primarily dedicated to hate speech, discrimination, harassment, or targeted attacks against individuals or groups.</p>
+                    <span class="severity-badge severe">SEVERE</span>
+                </div>
+
+                <div class="violation-card">
+                    <h4><i class="fas fa-robot"></i> Bot Abuse Servers</h4>
+                    <p>Servers created solely to abuse, test exploits, or harm the bot's functionality without legitimate purpose.</p>
+                    <span class="severity-badge high">HIGH</span>
+                </div>
+
+                <div class="violation-card">
+                    <h4><i class="fas fa-file-invoice-dollar"></i> Premium Abuse</h4>
+                    <p>Servers exploiting premium features through fraudulent payments, shared accounts, or unauthorized access.</p>
+                    <span class="severity-badge high">HIGH</span>
+                </div>
+
+                <div class="violation-card moderate">
+                    <h4><i class="fas fa-copyright"></i> ToS Violations</h4>
+                    <p>Repeated violations of Discord's Terms of Service, Community Guidelines, or Hinata's Terms of Service.</p>
+                    <span class="severity-badge moderate">MODERATE</span>
+                </div>
+
+                <div class="violation-card moderate">
+                    <h4><i class="fas fa-list-ol"></i> Mass Invite Bots</h4>
+                    <p>Servers using the bot in conjunction with mass-invite schemes or server growth manipulation.</p>
+                    <span class="severity-badge moderate">MODERATE</span>
+                </div>
+
+                <div class="violation-card">
+                    <h4><i class="fas fa-bug"></i> Exploit Testing</h4>
+                    <p>Servers actively testing or sharing exploits, vulnerabilities, or methods to bypass bot security without responsible disclosure.</p>
+                    <span class="severity-badge high">HIGH</span>
+                </div>
+
+                <div class="violation-card severe">
+                    <h4><i class="fas fa-user-shield"></i> NSFW Content (Minors)</h4>
+                    <p>Servers allowing minors access to NSFW content or failing to properly age-gate adult content.</p>
+                    <span class="severity-badge severe">SEVERE</span>
+                </div>
+            </div>
+
+            <div class="highlight-box warning">
+                <strong><i class="fas fa-gavel"></i> Legal Compliance:</strong>
+                <p>Servers involved in illegal activities will be reported to Discord Trust & Safety and potentially law enforcement agencies. We have zero tolerance for illegal content.</p>
+            </div>
+        </div>
+
+        <div id="enforcement" class="section">
+            <h2><i class="fas fa-balance-scale"></i> 4. Enforcement Process</h2>
+            <p>Our enforcement process follows these steps to ensure fair and consistent application:</p>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Detection & Reporting</h4>
+                        <p>Violations are detected through automated systems, user reports, or manual review. All reports are taken seriously and investigated thoroughly.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Investigation</h4>
+                        <p>Our moderation team reviews evidence, including logs, reports, and context. We verify the severity and validity of the alleged violation.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Decision</h4>
+                        <p>Based on the investigation, we determine if blacklisting is warranted. Severity levels (moderate, high, severe) determine the type of action taken.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Notification</h4>
+                        <p>Users or server owners are notified through Discord when possible, with information about the violation and appeal process (if applicable).</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Enforcement</h4>
+                        <p>The blacklist is applied, preventing access to bot services. All data related to the violation is securely logged for future reference.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box info">
+                <strong><i class="fas fa-clock"></i> Response Time:</strong>
+                <p>We aim to review and respond to reports within 48-72 hours. Severe violations (illegal activity, CSAM) are prioritized and handled immediately.</p>
+            </div>
+        </div>
+
+        <div id="appeals" class="section">
+            <h2><i class="fas fa-question-circle"></i> 5. Appeals & Removal</h2>
+            
+            <h3>5.1 Eligibility for Appeals</h3>
+            <p>Not all blacklists are appealable. The following violations are typically permanent:</p>
+            <ul>
+                <li>Illegal activities</li>
+                <li>Hate speech or servers dedicated to harassment</li>
+                <li>API manipulation or reverse engineering</li>
+                <li>Severe bot abuse designed to cause harm</li>
+                <li>Any violations involving child safety</li>
+            </ul>
+
+            <p>For other violations, you may submit an appeal if you believe the blacklist was made in error or if you have taken corrective actions.</p>
+
+            <h3>5.2 How to Submit an Appeal</h3>
+            <p>To appeal a blacklist, you must join our official <strong><a href="https://discord.gg/your-support-server" target="_blank" style="color: var(--purple-primary);">Support Server</a></strong> and follow the instructions in the <code>#appeals</code> channel. Do not DM staff members directly.</p>
+
+            <div class="highlight-box">
+                <strong><i class="fas fa-file-alt"></i> Required Information:</strong>
+                <p>When submitting your appeal, please include the following:</p>
+                <ul>
+                    <li>Your Discord User ID or the Server ID that was blacklisted.</li>
+                    <li>The reason provided for the blacklist (if available).</li>
+                    <li>A detailed explanation of why you believe the blacklist should be lifted.</li>
+                    <li>Evidence of corrective actions taken (if applicable).</li>
+                </ul>
+            </div>
+
+            <h3>5.3 Appeal Review</h3>
+            <p>Our team will review your appeal within 5-7 business days. We will assess the evidence provided and make a final decision. Abusing the appeal system or providing false information will result in a permanent denial.</p>
+            
+            <div class="highlight-box warning">
+                <strong><i class="fas fa-gavel"></i> Final Decision:</strong>
+                <p>The decision made by our appeals team is final. Repeatedly submitting appeals for the same case after a final decision has been made may result in you being banned from our support server.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="../../index.html">Home</a>
+                <a href="../commands.html">Commands</a>
+                <a href="../privacy-terms/terms.html">Terms</a>
+                <a href="../privacy-terms/privacy.html">Privacy</a>
+                <a href="https://discord.gg/your-support-server" target="_blank">Support</a>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Hinata Bot. All rights reserved. Not affiliated with Discord.
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" title="Scroll to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        const scrollTopBtn = document.querySelector('.scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

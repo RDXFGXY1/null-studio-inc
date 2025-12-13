@@ -5,17 +5,14 @@
 
 // ===== GLOBAL VARIABLES =====
 let selectedServices = {};
-let isYearlyBilling = false;
-let paypalButtonRendered = false;
 
 // ===== DOM ELEMENTS =====
 const tierSelects = document.querySelectorAll('.tier-select');
 const selectedServicesContainer = document.getElementById('selected-services');
 const monthlyTotalElement = document.getElementById('monthly-total');
-const yearlyTotalElement = document.getElementById('yearly-total');
-const yearlyBillingToggle = document.getElementById('yearly-billing');
-const yearlyDiscountRow = document.querySelector('.yearly-discount');
 const paypalContainer = document.getElementById('paypal-button-container');
+const userIdInput = document.getElementById('user-id');
+const guildIdInput = document.getElementById('guild-id');
 
 // Service configuration
 const serviceConfig = {
@@ -64,8 +61,6 @@ const serviceConfig = {
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
     initializeServiceSelectors();
-    initializeBillingToggle();
-    initializeAnimations();
     renderPayPalButton();
     updateSummary();
 });
@@ -73,30 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== SERVICE SELECTION =====
 function initializeServiceSelectors() {
     tierSelects.forEach(select => {
-        // Enhanced select styling
         select.addEventListener('change', function() {
             handleServiceSelection(this);
             updateSelectStyling(this);
-        });
-
-        // Add focus and blur effects
-        select.addEventListener('focus', function() {
-            this.parentElement.parentElement.classList.add('service-focused');
-        });
-
-        select.addEventListener('blur', function() {
-            this.parentElement.parentElement.classList.remove('service-focused');
-        });
-
-        // Add hover effects for options
-        select.addEventListener('mouseenter', function() {
-            if (this.value) {
-                this.classList.add('selected-hover');
-            }
-        });
-
-        select.addEventListener('mouseleave', function() {
-            this.classList.remove('selected-hover');
         });
     });
 }
@@ -118,52 +92,14 @@ function handleServiceSelection(selectElement) {
 
     updateSummary();
     updatePayPalButton();
-    animateServiceCard(selectElement.closest('.service-row'));
 }
 
 function updateSelectStyling(selectElement) {
     if (selectElement.value && selectElement.value !== '') {
         selectElement.classList.add('selected');
-        selectElement.closest('.service-row').classList.add('service-selected');
     } else {
         selectElement.classList.remove('selected');
-        selectElement.closest('.service-row').classList.remove('service-selected');
     }
-}
-
-// ===== BILLING TOGGLE =====
-function initializeBillingToggle() {
-    if (yearlyBillingToggle) {
-        yearlyBillingToggle.addEventListener('change', function() {
-            isYearlyBilling = this.checked;
-            updateSummary();
-            updatePayPalButton();
-            
-            // Animate the toggle
-            animateBillingToggle();
-            
-            // Show/hide yearly discount info
-            if (isYearlyBilling) {
-                yearlyDiscountRow.style.display = 'flex';
-                yearlyDiscountRow.style.animation = 'fadeInUp 0.3s ease-out';
-            } else {
-                yearlyDiscountRow.style.animation = 'fadeOut 0.3s ease-out';
-                setTimeout(() => {
-                    yearlyDiscountRow.style.display = 'none';
-                }, 300);
-            }
-        });
-    }
-}
-
-function animateBillingToggle() {
-    const toggle = document.querySelector('.billing-toggle');
-    toggle.style.transform = 'scale(1.02)';
-    toggle.style.transition = 'transform 0.2s ease-out';
-    
-    setTimeout(() => {
-        toggle.style.transform = 'scale(1)';
-    }, 200);
 }
 
 // ===== SUMMARY UPDATES =====
@@ -173,11 +109,9 @@ function updateSummary() {
     if (servicesKeys.length === 0) {
         selectedServicesContainer.innerHTML = '<p class="no-selection">Select services to see your total</p>';
         monthlyTotalElement.textContent = '$0.00';
-        yearlyTotalElement.textContent = '$0.00';
         return;
     }
 
-    // Render selected services
     let servicesHTML = '';
     let monthlyTotal = 0;
 
@@ -191,44 +125,13 @@ function updateSummary() {
                     <span class="service-name">${service.service}</span>
                     <span class="service-tier">${service.tier}</span>
                 </div>
-                <span class="service-price">$${service.price.toFixed(2)}</span>
+                <span class="service-price">${service.price.toFixed(2)}</span>
             </div>
         `;
     });
 
     selectedServicesContainer.innerHTML = servicesHTML;
-
-    // Update totals
-    monthlyTotalElement.textContent = `$${monthlyTotal.toFixed(2)}`;
-    
-    if (isYearlyBilling && monthlyTotal > 0) {
-        const yearlyTotal = monthlyTotal * 12 * 0.8; // 20% discount
-        yearlyTotalElement.textContent = `$${yearlyTotal.toFixed(2)}/year`;
-    }
-
-    // Add hover effects to selected services
-    document.querySelectorAll('.selected-service').forEach(serviceElement => {
-        serviceElement.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(4px)';
-        });
-        
-        serviceElement.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(0)';
-        });
-    });
-
-    // Animate the summary update
-    animateSummaryUpdate();
-}
-
-function animateSummaryUpdate() {
-    const summaryCard = document.querySelector('.summary-card');
-    summaryCard.style.transform = 'scale(1.02)';
-    summaryCard.style.transition = 'transform 0.2s ease-out';
-    
-    setTimeout(() => {
-        summaryCard.style.transform = 'scale(1)';
-    }, 200);
+    monthlyTotalElement.textContent = `${monthlyTotal.toFixed(2)}`;
 }
 
 // ===== PAYPAL INTEGRATION =====
@@ -247,6 +150,11 @@ function renderPayPalButton() {
                 return false;
             }
 
+            if (!userIdInput.value || !guildIdInput.value) {
+                alert('Please enter your User ID and Guild ID.');
+                return false;
+            }
+
             return actions.order.create({
                 purchase_units: [{
                     amount: {
@@ -259,6 +167,7 @@ function renderPayPalButton() {
         
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
+                savePayment(details);
                 showPaymentSuccess(details);
             });
         },
@@ -281,7 +190,7 @@ function renderPayPalButton() {
         }
     }).render('#paypal-button-container');
 
-    paypalButtonRendered = true;
+    updatePayPalButton();
 }
 
 function updatePayPalButton() {
@@ -299,11 +208,6 @@ function calculateTotal() {
     Object.keys(selectedServices).forEach(serviceId => {
         total += selectedServices[serviceId].price;
     });
-
-    if (isYearlyBilling && total > 0) {
-        total = total * 12 * 0.8; // 20% discount for yearly
-    }
-
     return total;
 }
 
@@ -312,10 +216,30 @@ function generateOrderDescription() {
         const service = selectedServices[serviceId];
         return `${service.service} (${service.tier})`;
     });
-
-    const billing = isYearlyBilling ? 'Yearly' : 'Monthly';
-    return `NullTracker Premium Services - ${billing}: ${services.join(', ')}`;
+    return `Hinata Premium Services - Monthly: ${services.join(', ')}`;
 }
+
+// ===== BACKEND COMMUNICATION =====
+function savePayment(details) {
+    const paymentData = {
+        userId: userIdInput.value,
+        guildId: guildIdInput.value,
+        services: selectedServices,
+        orderId: details.id
+    };
+
+    fetch('http://localhost:3000/api/save-payment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paymentData)
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error saving payment:', error));
+}
+
 
 // ===== PAYMENT FEEDBACK =====
 function showPaymentSuccess(details) {
@@ -371,7 +295,6 @@ function createModal(type, title, message) {
         </div>
     `;
 
-    // Add modal styles
     const style = document.createElement('style');
     style.textContent = `
         .payment-modal {
@@ -467,7 +390,6 @@ function createModal(type, title, message) {
     
     document.head.appendChild(style);
 
-    // Add close functionality
     modal.querySelector('.modal-close-btn').addEventListener('click', () => hideModal(modal));
     modal.querySelector('.modal-backdrop').addEventListener('click', () => hideModal(modal));
 
@@ -485,83 +407,4 @@ function hideModal(modal) {
             modal.parentNode.removeChild(modal);
         }
     }, 300);
-}
-
-// ===== ANIMATIONS =====
-function initializeAnimations() {
-    // Observe service rows for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.service-row').forEach(row => {
-        observer.observe(row);
-    });
-}
-
-function animateServiceCard(serviceRow) {
-    // Pulse animation for selected service
-    serviceRow.style.transform = 'scale(1.02)';
-    serviceRow.style.transition = 'transform 0.2s ease-out';
-    
-    setTimeout(() => {
-        serviceRow.style.transform = 'scale(1)';
-    }, 200);
-
-    // Add a subtle glow effect
-    serviceRow.style.boxShadow = '0 0 30px rgba(139, 92, 246, 0.3)';
-    setTimeout(() => {
-        serviceRow.style.boxShadow = '';
-    }, 1000);
-}
-
-// ===== UTILITY FUNCTIONS =====
-function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(amount);
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// ===== ERROR HANDLING =====
-window.addEventListener('error', function(e) {
-    console.error('Payment page error:', e.error);
-});
-
-// ===== KEYBOARD ACCESSIBILITY =====
-document.addEventListener('keydown', function(e) {
-    // ESC key to close modals
-    if (e.key === 'Escape') {
-        const modal = document.querySelector('.payment-modal.show');
-        if (modal) {
-            hideModal(modal);
-        }
-    }
-});
-
-// ===== EXPORT FOR TESTING =====
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        selectedServices,
-        calculateTotal,
-        generateOrderDescription,
-        formatCurrency
-    };
 }

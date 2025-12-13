@@ -3,340 +3,868 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hinata Premium - Secure Your Discord Server | Advanced Protection Plans</title>
-    <meta name="description" content="Upgrade to Hinata Premium for advanced Discord security features, enhanced protection, and priority support. Choose from flexible service plans tailored to your server's needs.">
-    <meta name="keywords" content="discord premium, server security, anti-nuke premium, url scanner, spam protection, advanced logging">
-    <meta name="author" content="Hinata">
-    <meta name="google-adsense-account" content="ca-pub-1164071407475022">
-    
-    <!-- Preconnect for better loading performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://www.paypal.com">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
+    <title>Hinata Premium - Enterprise Discord Security</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAmk-HLqjJMs4pYZSXh9OrXGjj5PTvm4DpNNXwU1nHiFhXBtJpL4XvVYUigdWMUKx5zVjys8qPPQkRVpY&currency=USD"></script>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../styles/payment_dark.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #121212;
+            --bg-card: #161616;
+            --bg-card-hover: #1f1f1f;
+            --purple-primary: #8b5cf6;
+            --purple-secondary: #7c3aed;
+            --purple-light: #a78bfa;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-tertiary: #b3b3b3;
+            --text-muted: #808080;
+            --success: #10b981;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --gradient-purple: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #121212 50%, #0f0f0f 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-logo i {
+            color: var(--purple-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--purple-light);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            background: rgba(139, 92, 246, 0.05);
+            border-color: var(--purple-primary);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--purple-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple-primary);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--purple-primary);
+            background: var(--bg-card-hover);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-purple);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .pricing-tier {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 2rem;
+        }
+
+        .currency {
+            font-size: 2rem;
+            color: var(--purple-primary);
+            font-weight: 700;
+        }
+
+        .amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--purple-primary);
+            margin: 0 0.5rem;
+        }
+
+        .period {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features i {
+            color: var(--success);
+            font-size: 1.25rem;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-purple);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--purple-primary);
+            border: 2px solid var(--purple-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--purple-primary);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--purple-primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            color: var(--text-tertiary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--purple-primary);
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            overflow-x: auto;
+            margin-bottom: 4rem;
+        }
+
+        .comparison-table h3 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            color: var(--purple-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        .check {
+            color: var(--success);
+            font-size: 1.5rem;
+        }
+
+        .cross {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
+        .faq-section {
+            margin-bottom: 4rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--purple-primary);
+        }
+
+        .faq-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--purple-light);
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: 24px;
+            margin-bottom: 4rem;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--purple-primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--purple-light);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="#" class="nav-logo">
                 <i class="fas fa-shield-alt"></i>
                 <span>Hinata</span>
-            </div>
+            </a>
             <ul class="nav-menu">
-                <li><a href="../index.html" class="nav-link">Home</a></li>
-                <li><a href="commands.html" class="nav-link">Commands</a></li>
-                <li><a href="premium-commands.html" class="nav-link">Premium</a></li>
-                <li><a href="payment.html" class="nav-link active">Payment</a></li>
-                <li><a href="donate.html" class="nav-link">Donate</a></li>
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Features</a></li>
+                <li><a href="#" class="nav-link">Pricing</a></li>
+                <li><a href="#" class="nav-link">Docs</a></li>
             </ul>
         </div>
     </nav>
 
-    <main class="payment-main">
-        <!-- Hero Section -->
-        <section class="payment-hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Upgrade to <span class="gradient-text">Premium</span></h1>
-                    <p>Unlock advanced security features and protect your Discord server with enterprise-grade protection</p>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">99.9%</span>
-                            <span class="stat-label">Uptime</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50K+</span>
-                            <span class="stat-label">Protected Servers</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Support</span>
-                        </div>
-                    </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Enterprise <span class="gradient-text">Discord Security</span></h1>
+            <h2>Premium <span class="gradient-text">not available yet</span></h2>
+            <p class="hero-subtitle">Protect your community with military-grade security, AI-powered threat detection, and 24/7 monitoring</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">Uptime</span>
                 </div>
-            </div>
-        </section>
-
-        <!-- Service Selection & Payment -->
-        <section class="service-payment-section">
-            <div class="container">
-                <h2>Choose Your Premium Services</h2>
-                <p class="section-subtitle">Mix and match services based on your server's needs</p>
-                
-                <div class="service-payment-grid">
-                    <!-- Service Menu -->
-                    <div class="services-menu">
-                        <!-- Anti-Nuke Premium -->
-                        <div class="service-row">
-                            <div class="service-info">
-                                <div class="service-icon">
-                                    <i class="fas fa-shield-virus"></i>
-                                </div>
-                                <div class="service-details">
-                                    <h3>Anti-Nuke Premium</h3>
-                                    <p>Advanced server protection and recovery</p>
-                                    <div class="service-features-compact">
-                                        <span>Real-time detection</span> • 
-                                        <span>Auto recovery</span> • 
-                                        <span>Complete backups</span> • 
-                                        <span>Threat response</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="service-selector">
-                                <select class="tier-select" data-service="anti-nuke">
-                                    <option value="" data-price="0">Select Plan</option>
-                                    <option value="basic" data-price="4.99">Basic - $4.99/mo</option>
-                                    <option value="pro" data-price="8.99">Pro - $8.99/mo</option>
-                                    <option value="enterprise" data-price="15.99">Enterprise - $15.99/mo</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- URL Scanner Premium -->
-                        <div class="service-row">
-                            <div class="service-info">
-                                <div class="service-icon">
-                                    <i class="fas fa-search"></i>
-                                </div>
-                                <div class="service-details">
-                                    <h3>URL Scanner Premium</h3>
-                                    <p>Advanced phishing detection and URL analysis</p>
-                                    <div class="service-features-compact">
-                                        <span>Phishing detection</span> • 
-                                        <span>IDN protection</span> • 
-                                        <span>VirusTotal scanning</span> • 
-                                        <span>Detailed reports</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="service-selector">
-                                <select class="tier-select" data-service="url-scanner">
-                                    <option value="" data-price="0">Select Plan</option>
-                                    <option value="basic" data-price="2.99">Basic - $2.99/mo</option>
-                                    <option value="pro" data-price="4.99">Pro - $4.99/mo</option>
-                                    <option value="enterprise" data-price="9.99">Enterprise - $9.99/mo</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- API Limits Premium -->
-                        <div class="service-row">
-                            <div class="service-info">
-                                <div class="service-icon">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <div class="service-details">
-                                    <h3>API Limits Premium</h3>
-                                    <p>Enhanced API call limits and billing management</p>
-                                    <div class="service-features-compact">
-                                        <span>Increased limits</span> • 
-                                        <span>Billing management</span> • 
-                                        <span>Personal API keys</span> • 
-                                        <span>Usage analytics</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="service-selector">
-                                <select class="tier-select" data-service="api-limits">
-                                    <option value="" data-price="0">Select Plan</option>
-                                    <option value="basic" data-price="3.99">Basic - $3.99/mo</option>
-                                    <option value="pro" data-price="7.99">Pro - $7.99/mo</option>
-                                    <option value="enterprise" data-price="14.99">Enterprise - $14.99/mo</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Advanced Logging -->
-                        <div class="service-row">
-                            <div class="service-info">
-                                <div class="service-icon">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                                <div class="service-details">
-                                    <h3>Advanced Logging</h3>
-                                    <p>Enhanced logging and audit capabilities</p>
-                                    <div class="service-features-compact">
-                                        <span>Extended retention</span> • 
-                                        <span>Advanced search</span> • 
-                                        <span>Custom analytics</span> • 
-                                        <span>Log export</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="service-selector">
-                                <select class="tier-select" data-service="advanced-logging">
-                                    <option value="" data-price="0">Select Plan</option>
-                                    <option value="basic" data-price="1.99">Basic - $1.99/mo</option>
-                                    <option value="pro" data-price="3.99">Pro - $3.99/mo</option>
-                                    <option value="enterprise" data-price="6.99">Enterprise - $6.99/mo</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Spam Protection Premium -->
-                        <div class="service-row">
-                            <div class="service-info">
-                                <div class="service-icon">
-                                    <i class="fas fa-ban"></i>
-                                </div>
-                                <div class="service-details">
-                                    <h3>Spam Protection Premium</h3>
-                                    <p>Advanced anti-spam and content filtering</p>
-                                    <div class="service-features-compact">
-                                        <span>Spam detection</span> • 
-                                        <span>AI filtering</span> • 
-                                        <span>Real-time protection</span> • 
-                                        <span>Analytics dashboard</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="service-selector">
-                                <select class="tier-select" data-service="spam-protection">
-                                    <option value="" data-price="0">Select Plan</option>
-                                    <option value="basic" data-price="2.49">Basic - $2.49/mo</option>
-                                    <option value="pro" data-price="4.49">Pro - $4.49/mo</option>
-                                    <option value="enterprise" data-price="7.99">Enterprise - $7.99/mo</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Payment Summary -->
-                    <div class="payment-summary-sticky">
-                        <div class="summary-card">
-                            <h3>Payment Summary</h3>
-                            <div id="selected-services">
-                                <p class="no-selection">Select services to see your total</p>
-                            </div>
-                            <div class="total-section">
-                                <div class="total-row">
-                                    <span>Monthly Total:</span>
-                                    <span id="monthly-total">$0.00</span>
-                                </div>
-                                <div class="total-row yearly-discount" style="display: none;">
-                                    <span>Yearly Total (20% off):</span>
-                                    <span id="yearly-total">$0.00</span>
-                                </div>
-                            </div>
-                            <div class="billing-toggle">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="yearly-billing">
-                                    <span class="slider"></span>
-                                </label>
-                                <span>Pay yearly and save 20%</span>
-                            </div>
-                            <div id="paypal-button-container"></div>
-                        </div>
-                    </div>
+                <div class="stat">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Servers Protected</span>
                 </div>
-            </div>
-        </section>
-
-        <!-- Donation Section -->
-        <section class="donation-section">
-            <div class="container">
-                <div class="donation-content">
-                    <div class="donation-text">
-                        <h2>💝 Support Our Mission</h2>
-                        <p class="emotional-text">
-                            Every donation helps us keep Hinata running 24/7, protecting Discord communities worldwide. 
-                            Your support means we can continue developing new features, maintaining our servers, and providing 
-                            free protection to thousands of servers that can't afford premium plans.
-                        </p>
-                        <p class="impact-text">
-                            <strong>Your contribution makes a real difference:</strong><br>
-                            • Keeps our free tier available for small communities<br>
-                            • Funds new security research and threat detection<br>
-                            • Supports our dedicated development team<br>
-                            • Helps us respond faster to emerging threats
-                        </p>
-                    </div>
-                    <div class="donation-methods">
-                        <h3>Choose Your Way to Help</h3>
-                        <div class="donation-buttons">
-                            <a href="https://paypal.me/ayoubzel" class="donation-btn paypal" target="_blank">
-                                <i class="fab fa-paypal"></i>
-                                <span>PayPal</span>
-                            </a>
-                            <a href="https://github.com/sponsors/RDXFGXY1" class="donation-btn github" target="_blank">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub Sponsors</span>
-                            </a>
-                            <a href="https://patreon.com/NullStudio001" class="donation-btn patreon" target="_blank">
-                                <i class="fab fa-patreon"></i>
-                                <span>Patreon</span>
-                            </a>
-                            <a href="https://opencollective.com/rdxfgxy1" class="donation-btn opencollective" target="_blank">
-                                <i class="fas fa-heart"></i>
-                                <span>Open Collective</span>
-                            </a>
-                            <a href="https://ko-fi.com/kyrosdev" class="donation-btn kofi" target="_blank">
-                                <i class="fas fa-coffee"></i>
-                                <span>Ko-fi</span>
-                            </a>
-                            <a href="https://liberapay.com/kyros" class="donation-btn liberapay" target="_blank">
-                                <i class="fas fa-donate"></i>
-                                <span>Liberapay</span>
-                            </a>
-                        </div>
-                        <p class="donation-footer">
-                            <i class="fas fa-shield-heart"></i>
-                            Thank you for helping us protect the Discord community!
-                        </p>
-                    </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support</span>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Hinata</h4>
-                    <p>Advanced Discord security and protection</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="commands.html">Commands</a></li>
-                        <li><a href="premium-commands.html">Premium</a></li>
-                        <li><a href="payment.html">Payment</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Discord Server</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Hinata. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- JavaScript -->
-    <script src="../scripts/payment_modern.js"></script>
-</body>
-</html>
+    <div class="container">
+        <h2 class="section-title">Choose Your <span class="gradient-text">Premium Plan</span></h2>
+        <p class="section-subtitle">Scale protection based on your server's needs</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-tier">Starter</h3>
+                <div class="pricing-price">
+                    <span class="currency">$</span>
+                    <span class="amount">9</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> Anti-Nuke Protection</li>
+                    <li><i class="fas fa-check-circle"></i> URL Scanner</li>
+                    <li><i class="fas fa-check-circle"></i> Auto-Moderation</li>
+                    <li><i class="fas fa-check-circle"></i> 30-day Logs</li>
+                    <li><i class="fas fa-check-circle"></i> Email Support</li>
+                    <li><i class="fas fa-check-circle"></i> Up to 5K members</li>
+                </ul>
+                <button class="btn btn-secondary">Get Started</button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Most Popular</div>
+                <h3 class="pricing-tier">Professional</h3>
+                <div class="pricing-price">
+                    <span class="currency">$</span>
+                    <span class="amount">29</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> Everything in Starter</li>
+                    <li><i class="fas fa-check-circle"></i> Advanced AI Detection</li>
+                    <li><i class="fas fa-check-circle"></i> VirusTotal Integration</li>
+                    <li><i class="fas fa-check-circle"></i> 90-day Logs</li>
+                    <li><i class="fas fa-check-circle"></i> Priority Support</li>
+                    <li><i class="fas fa-check-circle"></i> Up to 50K members</li>
+                    <li><i class="fas fa-check-circle"></i> Custom Rules</li>
+                    <li><i class="fas fa-check-circle"></i> API Access</li>
+                </ul>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+
+            <div class="pricing-card">
+                <h3 class="pricing-tier">Enterprise</h3>
+                <div class="pricing-price">
+                    <span class="currency">$</span>
+                    <span class="amount">99</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> Everything in Professional</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated Security Team</li>
+                    <li><i class="fas fa-check-circle"></i> Real-time Threat Intelligence</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited Logs</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 Phone Support</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited members</li>
+                    <li><i class="fas fa-check-circle"></i> SLA Guarantee</li>
+                    <li><i class="fas fa-check-circle"></i> White-label Options</li>
+                </ul>
+                <button class="btn btn-secondary">Contact Sales</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Premium <span class="gradient-text">Features</span></h2>
+        <p class="section-subtitle">Everything you need to secure your Discord community</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-virus"></i>
+                </div>
+                <h3>Advanced Anti-Nuke</h3>
+                <p>Military-grade protection against server raids, mass bans, and channel deletions with instant recovery</p>
+                <ul class="feature-list">
+                    <li>Real-time threat detection</li>
+                    <li>Automatic rollback system</li>
+                    <li>Whitelist management</li>
+                    <li>Action rate limiting</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>AI-Powered URL Scanner</h3>
+                <p>Protect against phishing, malware, and malicious links with machine learning detection</p>
+                <ul class="feature-list">
+                    <li>VirusTotal integration</li>
+                    <li>IDN homograph detection</li>
+                    <li>Zero-day threat protection</li>
+                    <li>Custom blacklists</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>Smart Auto-Moderation</h3>
+                <p>AI-powered content filtering that learns from your server's culture and rules</p>
+                <ul class="feature-list">
+                    <li>Spam detection</li>
+                    <li>Toxicity analysis</li>
+                    <li>Image content scanning</li>
+                    <li>Adaptive learning</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Advanced Analytics</h3>
+                <p>Deep insights into server activity, threats, and member behavior patterns</p>
+                <ul class="feature-list">
+                    <li>Real-time dashboards</li>
+                    <li>Threat intelligence reports</li>
+                    <li>Member activity tracking</li>
+                    <li>Custom metrics</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Comprehensive Logging</h3>
+                <p>Every action tracked, searchable, and exportable for complete audit trails</p>
+                <ul class="feature-list">
+                    <li>Extended retention</li>
+                    <li>Advanced search</li>
+                    <li>Export to CSV/JSON</li>
+                    <li>Compliance ready</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Developer API</h3>
+                <p>Full API access to integrate Hinata's security into your custom tools</p>
+                <ul class="feature-list">
+                    <li>REST & WebSocket APIs</li>
+                    <li>Webhook integrations</li>
+                    <li>Custom dashboards</li>
+                    <li>Rate limit management</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h3>Feature Comparison</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Starter</th>
+                        <th>Professional</th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Anti-Nuke Protection</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>URL Scanner</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>AI Auto-Moderation</td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>VirusTotal Integration</td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>API Access</td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>24/7 Support</td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>SLA Guarantee</td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>White-label</td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="cross">–</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            <div class="faq-item">
+                <h4>Can I upgrade or downgrade my plan?</h4>
+                <p>Yes! You can change your plan at any time. Upgrades take effect immediately, and downgrades apply at the start of your next billing cycle.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What payment methods do you accept?</h4>
+                <p>We accept all major credit cards, PayPal, and cryptocurrency payments through our secure payment processor.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Is there a setup fee?</h4>
+                <p>No setup fees! All plans include free setup and onboarding assistance from our team.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What happens if I cancel?</h4>
+                <p>You can cancel anytime. Your service continues until the end of your billing period, and all your data remains accessible for 30 days after cancellation.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to <span class="gradient-text">Secure Your Server</span>?</h2>
+            <p>Join {js<flask.connect>discord.api("https://discord.com/api/v10/{totalGuild}")}+ servers already protected by Hinata Premium</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" style="width: auto; padding: 1rem 3rem;">Start Free Trial</button>
+                <button class="btn btn-secondary" style="width: auto; padding: 1rem 3rem;">Contact Sales</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Hinata</h4>
+                <p>Enterprise Discord security and protection</p>
+            </div>
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">API Docs</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Discord Server</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Hinata Discord Bot</title>
+    <meta name="description" content="Get in touch with the Hinata Discord Bot team.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/contact.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Hinata</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="commands.html">Commands</a></li>
+                <li><a href="privacy-terms/terms.html">Terms</a></li>
+                <li><a href="privacy-terms/privacy.html">Privacy</a></li>
+                <li><a href="blacklist-policy/index.html">Blacklist Policy</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-envelope"></i>
+                Get in Touch
+            </div>
+            <h1 class="hero-title">Contact Us</h1>
+            <p class="hero-subtitle">
+                Have a question, a suggestion, or need support? We'd love to hear from you.
+            </p>
+        </div>
+    </section>
+
+    <div class="content-section">
+        <div class="contact-form-container">
+            <h2>Send us a Message</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <h2>Other Ways to Reach Us</h2>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h3>Email</h3>
+                    <p>For general inquiries, you can email us at <a href="mailto:support@hinatabot.com">support@hinatabot.com</a>.</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fab fa-discord"></i>
+                <div>
+                    <h3>Discord</h3>
+                    <p>Join our <a href="https://discord.gg/your-support-server" target="_blank">Support Server</a> for live help and community interaction.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="commands.html">Commands</a>
+                <a href="privacy-terms/terms.html">Terms</a>
+                <a href="privacy-terms/privacy.html">Privacy</a>
+                <a href="https://discord.gg/your-support-server" target="_blank">Support</a>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Hinata Bot. All rights reserved. Not affiliated with Discord.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
