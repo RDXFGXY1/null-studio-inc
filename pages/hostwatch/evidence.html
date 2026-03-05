@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOSTWATCH — Evidence Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080808;--bg2:#0f0f0f;--bg3:#141414;--bg4:#1c1c1c;
+  --text:#ececec;--muted:#555;--muted2:#888;--border:#1e1e1e;--border2:#2a2a2a;
+  --red:#ff2020;--red-dim:rgba(255,32,32,0.08);--red-b:rgba(255,32,32,0.22);
+  --grn:#00e676;--grn-dim:rgba(0,230,118,0.07);--grn-b:rgba(0,230,118,0.18);
+  --yellow:#ffd600;--yellow-dim:rgba(255,214,0,0.07);--yellow-b:rgba(255,214,0,0.2);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);pointer-events:none;z-index:9990;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(8,8,8,0.97);border-bottom:1px solid var(--border2);backdrop-filter:blur(14px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;display:flex;align-items:center;gap:10px;}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:blink 1.4s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.nav-logo span{color:var(--red);}
+.nav-links{display:flex;gap:2rem;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;}
+.nav-links a{color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
+.nav-links a:hover{color:var(--text);}
+@media(max-width:700px){.nav-links{display:none;}}
+
+/* ══════════════════════════════
+   LIGHTBOX MODAL
+══════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0);
+  display:none;
+  transition:background .3s;
+}
+.modal-overlay.open{
+  display:flex;
+  background:rgba(0,0,0,0.96);
+  backdrop-filter:blur(16px);
+}
+
+.modal{
+  position:relative;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  animation:modalIn .25s ease both;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.97);}to{opacity:1;transform:scale(1);}}
+
+/* modal header */
+.modal-header{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 2rem;
+  border-bottom:1px solid var(--border2);
+  background:rgba(8,8,8,0.9);
+  flex-shrink:0;
+}
+.modal-service-icon{
+  width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.modal-service-name{
+  font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;line-height:1;
+}
+.modal-service-sub{
+  font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:1px;margin-top:2px;
+}
+.modal-verdict{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;
+  padding:4px 12px;display:flex;align-items:center;gap:6px;
+}
+.modal-close{
+  margin-left:auto;width:38px;height:38px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--border2);
+  color:var(--muted2);font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .15s;flex-shrink:0;
+}
+.modal-close:hover{background:rgba(255,32,32,0.12);border-color:var(--red-b);color:var(--red);}
+
+/* category tabs */
+.modal-tabs{
+  display:flex;gap:0;
+  border-bottom:1px solid var(--border2);
+  background:var(--bg2);
+  flex-shrink:0;
+  overflow-x:auto;
+}
+.tab-btn{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  padding:12px 20px;cursor:pointer;
+  border:none;background:transparent;color:var(--muted2);
+  border-bottom:2px solid transparent;
+  transition:all .15s;white-space:nowrap;
+  display:flex;align-items:center;gap:7px;
+}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--text);}
+.tab-btn.active.tab-bad{color:var(--red);border-bottom-color:var(--red);}
+.tab-btn.active.tab-good{color:var(--grn);border-bottom-color:var(--grn);}
+.tab-btn.active.tab-neutral{color:var(--yellow);border-bottom-color:var(--yellow);}
+.tab-count{
+  font-family:'Bebas Neue',sans-serif;font-size:14px;
+  background:var(--bg3);padding:0 6px;line-height:18px;
+}
+
+/* modal body */
+.modal-body{
+  flex:1;overflow-y:auto;
+  display:flex;gap:0;
+}
+
+/* image grid panel */
+.img-panel{
+  flex:1;
+  padding:2rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:1px;
+  background:var(--border2);
+  align-content:start;
+  overflow-y:auto;
+}
+.img-panel.hidden{display:none;}
+
+/* image tile */
+.img-tile{
+  background:var(--bg2);
+  display:flex;flex-direction:column;
+  cursor:zoom-in;
+  transition:background .15s;
+  position:relative;
+}
+.img-tile:hover{background:var(--bg3);}
+.tile-stripe{height:2px;}
+.tile-stripe.bad{background:var(--red);}
+.tile-stripe.good{background:var(--grn);}
+.tile-stripe.neutral{background:var(--yellow);}
+
+.tile-img-wrap{
+  position:relative;aspect-ratio:16/10;overflow:hidden;
+  background:var(--bg3);
+}
+.tile-img-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:top;
+  transition:transform .3s;
+  display:block;
+}
+.img-tile:hover .tile-img-wrap img{transform:scale(1.04);}
+.tile-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0);
+  transition:background .2s;
+  display:flex;align-items:center;justify-content:center;
+}
+.img-tile:hover .tile-overlay{background:rgba(0,0,0,0.4);}
+.tile-zoom{opacity:0;font-size:26px;color:#fff;transition:opacity .2s;}
+.img-tile:hover .tile-zoom{opacity:1;}
+
+/* placeholder */
+.tile-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.6rem;padding:1.5rem;
+}
+.tile-placeholder i{font-size:28px;color:var(--border2);}
+.tile-placeholder span{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;text-align:center;line-height:1.5;}
+
+.tile-body{padding:.9rem 1rem;}
+.tile-tag{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;
+  margin-bottom:.35rem;display:flex;align-items:center;gap:5px;
+}
+.tile-tag.bad{color:var(--red);}
+.tile-tag.good{color:var(--grn);}
+.tile-tag.neutral{color:var(--yellow);}
+.tile-title{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:var(--text);margin-bottom:.25rem;}
+.tile-desc{font-size:12px;color:var(--muted2);line-height:1.5;}
+
+/* fullscreen viewer (inside lightbox) */
+.viewer-overlay{
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(0,0,0,0.97);
+  display:none;align-items:center;justify-content:center;
+  padding:2rem;cursor:zoom-out;
+}
+.viewer-overlay.open{display:flex;}
+.viewer-wrap{position:relative;max-width:92vw;max-height:88vh;}
+.viewer-wrap img{max-width:92vw;max-height:88vh;display:block;border:1px solid var(--border2);}
+.viewer-close{
+  position:absolute;top:-42px;right:0;
+  width:34px;height:34px;
+  background:rgba(255,32,32,0.1);border:1px solid var(--red-b);
+  color:var(--red);font-size:15px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .15s;
+}
+.viewer-close:hover{background:rgba(255,32,32,0.25);}
+.viewer-caption{
+  position:absolute;bottom:-36px;left:0;right:0;
+  font-family:'Space Mono',monospace;font-size:10px;
+  color:var(--muted2);text-align:center;letter-spacing:1px;
+}
+.viewer-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:38px;height:38px;
+  background:rgba(0,0,0,0.5);border:1px solid var(--border2);
+  color:var(--muted2);font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .15s;
+}
+.viewer-nav:hover{background:rgba(255,255,255,0.08);color:var(--text);}
+.viewer-prev{left:-52px;}
+.viewer-next{right:-52px;}
+.viewer-counter{
+  position:absolute;top:-42px;left:0;
+  font-family:'Space Mono',monospace;font-size:10px;
+  color:var(--muted);letter-spacing:2px;
+}
+
+/* ══════════════════════════════
+   MAIN PAGE — SERVICE CARDS
+══════════════════════════════ */
+.hero{padding:100px 2.5rem 40px;max-width:1100px;margin:0 auto;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted2);border:1px solid var(--border2);padding:6px 14px;margin-bottom:1.5rem;animation:fadeUp .5s ease both;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,110px);line-height:.88;letter-spacing:-1px;margin-bottom:1rem;animation:fadeUp .6s .1s ease both;}
+.hero-title .r{color:var(--red);}
+.hero-desc{font-size:16px;color:var(--muted2);max-width:500px;line-height:1.7;animation:fadeUp .6s .2s ease both;}
+
+/* category section */
+.cat-section{max-width:1100px;margin:0 auto;padding:0 2.5rem 80px;}
+.cat-label{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;
+  text-transform:uppercase;margin:50px 0 20px;
+  display:flex;align-items:center;gap:14px;
+}
+.cat-label::after{content:'';flex:1;height:1px;background:var(--border2);}
+.cat-label.bad{color:var(--red);}
+.cat-label.good{color:var(--grn);}
+.cat-label.watch{color:var(--yellow);}
+
+/* service card grid */
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:1px;
+  background:var(--border2);
+  border:1px solid var(--border2);
+}
+
+.svc-card{
+  background:var(--bg2);
+  display:flex;flex-direction:column;
+  cursor:pointer;
+  transition:background .2s;
+  position:relative;
+  overflow:hidden;
+}
+.svc-card:hover{background:var(--bg3);}
+.svc-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.svc-card.bad::before{background:var(--red);}
+.svc-card.good::before{background:var(--grn);}
+.svc-card.watch::before{background:var(--yellow);}
+.svc-card:hover::before{transform:scaleX(1);}
+
+.sc-inner{padding:1.6rem;}
+.sc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;}
+.sc-icon{
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.sc-icon.bad{background:var(--red-dim);border:1px solid var(--red-b);color:var(--red);}
+.sc-icon.good{background:var(--grn-dim);border:1px solid var(--grn-b);color:var(--grn);}
+.sc-icon.watch{background:var(--yellow-dim);border:1px solid var(--yellow-b);color:var(--yellow);}
+.sc-grade{
+  font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;
+}
+.sc-grade.bad{color:var(--red);}
+.sc-grade.good{color:var(--grn);}
+.sc-grade.watch{color:var(--yellow);}
+.sc-grade-lbl{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1px;text-align:right;}
+.sc-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;margin-bottom:.4rem;}
+.sc-count{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);display:flex;align-items:center;gap:6px;margin-bottom:1rem;}
+.sc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.2rem;}
+.sc-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 8px;display:flex;align-items:center;gap:4px;}
+.sc-tag.bad{background:var(--red-dim);border:1px solid var(--red-b);color:var(--red);}
+.sc-tag.good{background:var(--grn-dim);border:1px solid var(--grn-b);color:var(--grn);}
+.sc-tag.neutral{background:var(--bg4);border:1px solid var(--border2);color:var(--muted2);}
+.sc-footer{
+  padding:10px 16px;border-top:1px solid var(--border2);
+  font-family:'Space Mono',monospace;font-size:10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.sc-open{display:flex;align-items:center;gap:6px;transition:gap .15s;}
+.svc-card:hover .sc-open{gap:10px;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- FULLSCREEN VIEWER (inside modal) -->
+<div class="viewer-overlay" id="viewer" onclick="closeViewer()">
+  <div class="viewer-wrap" onclick="event.stopPropagation()">
+    <div class="viewer-close" onclick="closeViewer()"><i class="fa-solid fa-xmark"></i></div>
+    <div class="viewer-counter" id="v-counter"></div>
+    <div class="viewer-nav viewer-prev" onclick="viewerNav(-1)"><i class="fa-solid fa-chevron-left"></i></div>
+    <img id="v-img" src="" alt="">
+    <div class="viewer-nav viewer-next" onclick="viewerNav(1)"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="viewer-caption" id="v-cap"></div>
+  </div>
+</div>
+
+<!-- MODAL LIGHTBOX -->
+<div class="modal-overlay" id="modal" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="modal-service-icon" id="m-icon"></div>
+      <div>
+        <div class="modal-service-name" id="m-name"></div>
+        <div class="modal-service-sub" id="m-sub"></div>
+      </div>
+      <div class="modal-verdict" id="m-verdict"></div>
+      <div class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="modal-tabs" id="m-tabs"></div>
+
+    <!-- Image panels (one per category) -->
+    <div class="modal-body" id="m-body"></div>
+
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><div class="nav-dot"></div>HOST<span>WATCH</span></div>
+  <div class="nav-links">
+    <a href="hostwatch-main.html"><i class="fa-solid fa-house"></i> MAIN HUB</a>
+    <a href="fps-ms-exposed.html"><i class="fa-solid fa-skull"></i> FPS.MS</a>
+    <a href="hosting-ratings.html"><i class="fa-solid fa-star"></i> RATINGS</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag"><i class="fa-solid fa-images"></i>&nbsp; EVIDENCE GALLERY</div>
+  <h1 class="hero-title">CLICK A SERVICE<br>TO SEE <span class="r">PROOF</span></h1>
+  <p class="hero-desc">Every hosting service we track has its own gallery. Select one below to browse all screenshots and evidence — organized by category.</p>
+</div>
+
+<!-- SERVICE CARDS -->
+<div class="cat-section">
+
+  <!-- DANGEROUS -->
+  <div class="cat-label bad reveal"><i class="fa-solid fa-skull"></i> CONFIRMED DANGEROUS</div>
+  <div class="svc-grid reveal">
+
+    <div class="svc-card bad" onclick="openModal('fps')">
+      <div class="sc-inner">
+        <div class="sc-top">
+          <div class="sc-icon bad"><i class="fa-solid fa-skull"></i></div>
+          <div style="text-align:right;">
+            <div class="sc-grade bad">F</div>
+            <div class="sc-grade-lbl">PRIVACY</div>
+          </div>
+        </div>
+        <div class="sc-name">fps.ms</div>
+        <div class="sc-count"><i class="fa-solid fa-images"></i> 3 screenshots &nbsp;·&nbsp; <i class="fa-solid fa-layer-group"></i> 3 categories</div>
+        <div class="sc-tags">
+          <span class="sc-tag bad"><i class="fa-solid fa-lock-open"></i> CODE LEAK</span>
+          <span class="sc-tag bad"><i class="fa-solid fa-key"></i> TOKEN RISK</span>
+          <span class="sc-tag bad"><i class="fa-solid fa-ban"></i> NO NOTICE</span>
+        </div>
+      </div>
+      <div class="sc-footer">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--red);display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-circle" style="font-size:6px;animation:blink 1s infinite;"></i> CONFIRMED</span>
+        <span class="sc-open" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);">VIEW GALLERY <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- UNDER WATCH -->
+  <div class="cat-label watch reveal" style="margin-top:40px;"><i class="fa-solid fa-eye"></i> UNDER INVESTIGATION</div>
+  <div class="svc-grid reveal">
+
+    <div class="svc-card watch" onclick="openModal('unknown')">
+      <div class="sc-inner">
+        <div class="sc-top">
+          <div class="sc-icon watch"><i class="fa-solid fa-eye"></i></div>
+          <div style="text-align:right;">
+            <div class="sc-grade watch">?</div>
+            <div class="sc-grade-lbl">UNRATED</div>
+          </div>
+        </div>
+        <div class="sc-name">Unknown Host</div>
+        <div class="sc-count"><i class="fa-solid fa-images"></i> 0 screenshots &nbsp;·&nbsp; <i class="fa-solid fa-magnifying-glass"></i> investigating</div>
+        <div class="sc-tags">
+          <span class="sc-tag neutral"><i class="fa-solid fa-magnifying-glass"></i> INVESTIGATING</span>
+          <span class="sc-tag neutral"><i class="fa-solid fa-circle-question"></i> UNCONFIRMED</span>
+        </div>
+      </div>
+      <div class="sc-footer">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--yellow);display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-clock"></i> PENDING</span>
+        <span class="sc-open" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);">VIEW GALLERY <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TRUSTED -->
+  <div class="cat-label good reveal" style="margin-top:40px;"><i class="fa-solid fa-shield-halved"></i> VERIFIED SAFE</div>
+  <div class="svc-grid reveal">
+
+    <div class="svc-card good" onclick="openModal('railway')">
+      <div class="sc-inner">
+        <div class="sc-top">
+          <div class="sc-icon good"><i class="fa-solid fa-train"></i></div>
+          <div style="text-align:right;"><div class="sc-grade good">A+</div><div class="sc-grade-lbl">PRIVACY</div></div>
+        </div>
+        <div class="sc-name">Railway</div>
+        <div class="sc-count"><i class="fa-solid fa-images"></i> Add proof &nbsp;·&nbsp; <i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> verified</div>
+        <div class="sc-tags">
+          <span class="sc-tag good"><i class="fa-solid fa-lock"></i> ISOLATED</span>
+          <span class="sc-tag good"><i class="fa-solid fa-key"></i> ENCRYPTED</span>
+        </div>
+      </div>
+      <div class="sc-footer">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--grn);display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-circle-check"></i> SAFE</span>
+        <span class="sc-open" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);">VIEW GALLERY <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+
+    <div class="svc-card good" onclick="openModal('flyio')">
+      <div class="sc-inner">
+        <div class="sc-top">
+          <div class="sc-icon good"><i class="fa-solid fa-plane"></i></div>
+          <div style="text-align:right;"><div class="sc-grade good">A</div><div class="sc-grade-lbl">PRIVACY</div></div>
+        </div>
+        <div class="sc-name">Fly.io</div>
+        <div class="sc-count"><i class="fa-solid fa-images"></i> Add proof &nbsp;·&nbsp; <i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> verified</div>
+        <div class="sc-tags">
+          <span class="sc-tag good"><i class="fa-solid fa-microchip"></i> VM ISOLATED</span>
+          <span class="sc-tag good"><i class="fa-solid fa-shield-halved"></i> SECURE</span>
+        </div>
+      </div>
+      <div class="sc-footer">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--grn);display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-circle-check"></i> SAFE</span>
+        <span class="sc-open" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);">VIEW GALLERY <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+
+    <div class="svc-card good" onclick="openModal('render')">
+      <div class="sc-inner">
+        <div class="sc-top">
+          <div class="sc-icon good"><i class="fa-solid fa-cloud"></i></div>
+          <div style="text-align:right;"><div class="sc-grade good">A</div><div class="sc-grade-lbl">PRIVACY</div></div>
+        </div>
+        <div class="sc-name">Render</div>
+        <div class="sc-count"><i class="fa-solid fa-images"></i> Add proof &nbsp;·&nbsp; <i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> verified</div>
+        <div class="sc-tags">
+          <span class="sc-tag good"><i class="fa-solid fa-file-contract"></i> GDPR</span>
+          <span class="sc-tag good"><i class="fa-solid fa-lock"></i> ENCRYPTED</span>
+        </div>
+      </div>
+      <div class="sc-footer">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--grn);display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-circle-check"></i> SAFE</span>
+        <span class="sc-open" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);">VIEW GALLERY <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+
+    <div class="svc-card good" onclick="openModal('digitalocean')">
+      <div class="sc-inner">
+        <div class="sc-top">
+          <div class="sc-icon good"><i class="fa-solid fa-droplet"></i></div>
+          <div style="text-align:right;"><div class="sc-grade good">A+</div><div class="sc-grade-lbl">PRIVACY</div></div>
+        </div>
+        <div class="sc-name">DigitalOcean</div>
+        <div class="sc-count"><i class="fa-solid fa-images"></i> Add proof &nbsp;·&nbsp; <i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> verified</div>
+        <div class="sc-tags">
+          <span class="sc-tag good"><i class="fa-solid fa-server"></i> FULL VPS</span>
+          <span class="sc-tag good"><i class="fa-solid fa-user-lock"></i> ROOT ONLY YOU</span>
+        </div>
+      </div>
+      <div class="sc-footer">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--grn);display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-circle-check"></i> SAFE</span>
+        <span class="sc-open" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);">VIEW GALLERY <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+
+    <div class="svc-card good" onclick="openModal('vultr')">
+      <div class="sc-inner">
+        <div class="sc-top">
+          <div class="sc-icon good"><i class="fa-solid fa-fire"></i></div>
+          <div style="text-align:right;"><div class="sc-grade good">A</div><div class="sc-grade-lbl">PRIVACY</div></div>
+        </div>
+        <div class="sc-name">Vultr</div>
+        <div class="sc-count"><i class="fa-solid fa-images"></i> Add proof &nbsp;·&nbsp; <i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> verified</div>
+        <div class="sc-tags">
+          <span class="sc-tag good"><i class="fa-solid fa-server"></i> ISOLATED VPS</span>
+          <span class="sc-tag good"><i class="fa-solid fa-globe"></i> GLOBAL</span>
+        </div>
+      </div>
+      <div class="sc-footer">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--grn);display:flex;align-items:center;gap:5px;"><i class="fa-solid fa-circle-check"></i> SAFE</span>
+        <span class="sc-open" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted2);">VIEW GALLERY <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px;display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-images" style="color:var(--red);"></i> HOST<span style="color:var(--red);">WATCH</span></div>
+  <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-camera"></i> EVIDENCE GALLERY</div>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="hostwatch-main.html" style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-house"></i> MAIN</a>
+    <a href="fps-ms-exposed.html" style="font-family:'Space Mono',monospace;font-size:11px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-skull"></i> FPS.MS</a>
+    <a href="hosting-ratings.html" style="font-family:'Space Mono',monospace;font-size:11px;color:var(--grn);text-decoration:none;display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-star"></i> RATINGS</a>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════
+// SERVICE DATA
+// ══════════════════════════
+const BASE = 'https://rdxfgxy1.github.io/null-studio-inc/pages/hostwatch/proof/';
+
+const services = {
+  fps: {
+    name: 'fps.ms',
+    sub: 'Confirmed — Staff read and publicly shared private user code',
+    type: 'bad',
+    icon: '<i class="fa-solid fa-skull"></i>',
+    verdict: { label: 'PRIVACY GRADE: F', cls: 'bad' },
+    categories: [
+      {
+        key: 'suspension', label: 'Suspension', icon: 'fa-ban', cls: 'tab-bad',
+        images: [
+          { src: BASE+'fps.ms/fps-1.png', title: 'Account Suspended — No Warning', desc: 'User woke up to their account suspended overnight for "Commercial Usage" with zero prior notice.', tag: 'EXHIBIT A', tagCls: 'bad' }
+        ]
+      },
+      {
+        key: 'leak', label: 'Code Leaked', icon: 'fa-code', cls: 'tab-bad',
+        images: [
+          { src: BASE+'fps.ms/fps-2.png', title: 'Private Code Pasted Publicly', desc: 'Staff accessed the user\'s hosted bot files and pasted private source code in the public support channel without any consent.', tag: 'EXHIBIT B — KEY EVIDENCE', tagCls: 'bad' }
+        ]
+      },
+      {
+        key: 'staff', label: 'Staff Response', icon: 'fa-comment-slash', cls: 'tab-bad',
+        images: [
+          { src: BASE+'fps.ms/fps-3.png', title: 'Zero Accountability', desc: 'Staff mocked the user and dismissed all concerns. Told to pay for a Pro plan or leave. No apology, no accountability.', tag: 'EXHIBIT C', tagCls: 'bad' }
+        ]
+      }
+    ]
+  },
+  unknown: {
+    name: 'Unknown Host',
+    sub: 'Under investigation — Evidence being collected',
+    type: 'watch',
+    icon: '<i class="fa-solid fa-eye"></i>',
+    verdict: { label: 'STATUS: INVESTIGATING', cls: 'watch' },
+    categories: [
+      {
+        key: 'pending', label: 'Pending Evidence', icon: 'fa-magnifying-glass', cls: 'tab-neutral',
+        images: []
+      }
+    ]
+  },
+  railway: {
+    name: 'Railway',
+    sub: 'Verified Safe — Isolated container deployments',
+    type: 'good',
+    icon: '<i class="fa-solid fa-train"></i>',
+    verdict: { label: 'PRIVACY GRADE: A+', cls: 'good' },
+    categories: [
+      {
+        key: 'policy', label: 'Privacy Policy', icon: 'fa-file-contract', cls: 'tab-good',
+        images: []
+      },
+      {
+        key: 'isolation', label: 'Isolation Proof', icon: 'fa-lock', cls: 'tab-good',
+        images: []
+      }
+    ]
+  },
+  flyio: {
+    name: 'Fly.io',
+    sub: 'Verified Safe — Firecracker micro-VM isolation',
+    type: 'good',
+    icon: '<i class="fa-solid fa-plane"></i>',
+    verdict: { label: 'PRIVACY GRADE: A', cls: 'good' },
+    categories: [
+      {
+        key: 'docs', label: 'Documentation', icon: 'fa-book', cls: 'tab-good',
+        images: []
+      },
+      {
+        key: 'isolation', label: 'VM Isolation', icon: 'fa-microchip', cls: 'tab-good',
+        images: []
+      }
+    ]
+  },
+  render: {
+    name: 'Render',
+    sub: 'Verified Safe — GDPR compliant, encrypted secrets',
+    type: 'good',
+    icon: '<i class="fa-solid fa-cloud"></i>',
+    verdict: { label: 'PRIVACY GRADE: A', cls: 'good' },
+    categories: [
+      {
+        key: 'policy', label: 'Privacy Policy', icon: 'fa-file-contract', cls: 'tab-good',
+        images: []
+      },
+      {
+        key: 'secrets', label: 'Encrypted Secrets', icon: 'fa-key', cls: 'tab-good',
+        images: []
+      }
+    ]
+  },
+  digitalocean: {
+    name: 'DigitalOcean',
+    sub: 'Verified Safe — Full VPS control, you own the server',
+    type: 'good',
+    icon: '<i class="fa-solid fa-droplet"></i>',
+    verdict: { label: 'PRIVACY GRADE: A+', cls: 'good' },
+    categories: [
+      {
+        key: 'vps', label: 'VPS Isolation', icon: 'fa-server', cls: 'tab-good',
+        images: []
+      },
+      {
+        key: 'policy', label: 'Privacy Policy', icon: 'fa-file-contract', cls: 'tab-good',
+        images: []
+      }
+    ]
+  },
+  vultr: {
+    name: 'Vultr',
+    sub: 'Verified Safe — Affordable isolated VPS',
+    type: 'good',
+    icon: '<i class="fa-solid fa-fire"></i>',
+    verdict: { label: 'PRIVACY GRADE: A', cls: 'good' },
+    categories: [
+      {
+        key: 'vps', label: 'VPS Isolation', icon: 'fa-server', cls: 'tab-good',
+        images: []
+      },
+      {
+        key: 'policy', label: 'Privacy Policy', icon: 'fa-file-contract', cls: 'tab-good',
+        images: []
+      }
+    ]
+  }
+};
+
+// ══════════════════════════
+// MODAL LOGIC
+// ══════════════════════════
+let activeCat = 0;
+let currentSvc = null;
+let viewerImages = [];
+let viewerIdx = 0;
+
+function openModal(key) {
+  const svc = services[key];
+  if (!svc) return;
+  currentSvc = svc;
+  activeCat = 0;
+
+  // header
+  document.getElementById('m-icon').innerHTML = svc.icon;
+  document.getElementById('m-icon').className = 'modal-service-icon sc-icon ' + svc.type;
+  document.getElementById('m-name').textContent = svc.name;
+  document.getElementById('m-name').style.color = svc.type === 'bad' ? 'var(--red)' : svc.type === 'good' ? 'var(--grn)' : 'var(--yellow)';
+  document.getElementById('m-sub').textContent = svc.sub;
+
+  const verd = document.getElementById('m-verdict');
+  verd.textContent = svc.verdict.label;
+  verd.className = 'modal-verdict';
+  if(svc.type==='bad') verd.style.cssText='background:var(--red-dim);border:1px solid var(--red-b);color:var(--red);font-family:Space Mono,monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;display:flex;align-items:center;gap:6px;';
+  else if(svc.type==='good') verd.style.cssText='background:var(--grn-dim);border:1px solid var(--grn-b);color:var(--grn);font-family:Space Mono,monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;display:flex;align-items:center;gap:6px;';
+  else verd.style.cssText='background:var(--yellow-dim);border:1px solid var(--yellow-b);color:var(--yellow);font-family:Space Mono,monospace;font-size:9px;letter-spacing:2px;padding:4px 12px;display:flex;align-items:center;gap:6px;';
+
+  // build tabs + panels
+  const tabs = document.getElementById('m-tabs');
+  const body = document.getElementById('m-body');
+  tabs.innerHTML = '';
+  body.innerHTML = '';
+
+  svc.categories.forEach((cat, i) => {
+    // tab
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn ' + cat.cls + (i === 0 ? ' active' : '');
+    btn.innerHTML = `<i class="fa-solid ${cat.icon}"></i> ${cat.label.toUpperCase()} <span class="tab-count">${cat.images.length}</span>`;
+    btn.onclick = () => switchTab(i);
+    tabs.appendChild(btn);
+
+    // panel
+    const panel = document.createElement('div');
+    panel.className = 'img-panel' + (i === 0 ? '' : ' hidden');
+    panel.id = 'panel-' + i;
+
+    if (cat.images.length === 0) {
+      // empty state
+      panel.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:3rem;background:var(--bg2);border:none;';
+      panel.innerHTML = `
+        <i class="fa-solid fa-images" style="font-size:40px;color:var(--border2);"></i>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:2px;text-align:center;line-height:1.8;">
+          NO IMAGES YET FOR THIS CATEGORY<br>
+          <span style="font-size:10px;color:var(--muted);">Be the first to submit proof</span>
+        </div>
+        <a href="hostwatch-main.html#report" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--red);text-decoration:none;border:1px solid var(--red-b);padding:6px 16px;background:var(--red-dim);display:flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-plus"></i> SUBMIT PROOF
+        </a>`;
+    } else {
+      cat.images.forEach((img, imgIdx) => {
+        const tile = document.createElement('div');
+        tile.className = 'img-tile';
+        tile.onclick = () => openViewer(cat.images, imgIdx);
+        tile.innerHTML = `
+          <div class="tile-stripe ${svc.type}"></div>
+          <div class="tile-img-wrap">
+            <img src="${img.src}" alt="${img.title}"
+              onerror="this.style.display='none';this.parentElement.querySelector('.tile-placeholder').style.display='flex';">
+            <div class="tile-placeholder" style="display:none;">
+              <i class="fa-solid fa-image"></i>
+              <span>IMAGE NOT FOUND<br>Upload to GitHub repo</span>
+            </div>
+            <div class="tile-overlay"><i class="fa-solid fa-magnifying-glass-plus tile-zoom"></i></div>
+          </div>
+          <div class="tile-body">
+            <div class="tile-tag ${img.tagCls}"><i class="fa-solid fa-tag"></i> ${img.tag}</div>
+            <div class="tile-title">${img.title}</div>
+            <div class="tile-desc">${img.desc}</div>
+          </div>`;
+        panel.appendChild(tile);
+      });
+    }
+
+    body.appendChild(panel);
+  });
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function switchTab(idx) {
+  activeCat = idx;
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.img-panel').forEach((p, i) => {
+    if (i === idx) { p.classList.remove('hidden'); p.style.display = ''; }
+    else { p.classList.add('hidden'); p.style.display = 'none'; }
+  });
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ══════════════════════════
+// FULLSCREEN VIEWER
+// ══════════════════════════
+function openViewer(images, idx) {
+  viewerImages = images;
+  viewerIdx = idx;
+  updateViewer();
+  document.getElementById('viewer').classList.add('open');
+}
+
+function updateViewer() {
+  const img = viewerImages[viewerIdx];
+  document.getElementById('v-img').src = img.src;
+  document.getElementById('v-cap').textContent = img.title;
+  document.getElementById('v-counter').textContent = `${viewerIdx + 1} / ${viewerImages.length}`;
+  document.querySelector('.viewer-prev').style.opacity = viewerIdx > 0 ? '1' : '0.2';
+  document.querySelector('.viewer-next').style.opacity = viewerIdx < viewerImages.length - 1 ? '1' : '0.2';
+}
+
+function viewerNav(dir) {
+  const n = viewerIdx + dir;
+  if (n >= 0 && n < viewerImages.length) { viewerIdx = n; updateViewer(); }
+}
+
+function closeViewer() { document.getElementById('viewer').classList.remove('open'); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeViewer(); closeModal(); }
+  if (e.key === 'ArrowLeft') viewerNav(-1);
+  if (e.key === 'ArrowRight') viewerNav(1);
+});
+
+// scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*60); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
