@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOSTWATCH — Hosting Services Rated</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080808; --bg2:#0f0f0f; --bg3:#141414; --bg4:#1a1a1a;
+  --text:#ececec; --muted:#555; --muted2:#888; --border:#1e1e1e; --border2:#272727;
+  --red:#ff2020; --red-dim:rgba(255,32,32,0.12); --red-border:rgba(255,32,32,0.25);
+  --grn:#00e676; --grn-dim:rgba(0,230,118,0.08); --grn-border:rgba(0,230,118,0.2);
+  --yellow:#ffd600;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;}
+
+/* grain overlay */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9997;opacity:.5;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);pointer-events:none;z-index:9996;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(8,8,8,0.95);border-bottom:1px solid var(--border2);backdrop-filter:blur(14px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;display:flex;align-items:center;gap:10px;}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--grn);animation:pulse 1.4s infinite;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,230,118,0.4);}50%{opacity:.6;box-shadow:0 0 0 6px rgba(0,230,118,0);}}
+.nav-logo span.g{color:var(--grn);}
+.nav-logo span.r{color:var(--red);}
+.nav-links{display:flex;gap:2rem;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;}
+.nav-links a{color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
+.nav-links a:hover{color:var(--text);}
+.nav-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:5px 14px;border:1px solid var(--border2);color:var(--muted2);}
+
+/* ── TICKER ── */
+.ticker{position:fixed;top:56px;left:0;right:0;z-index:899;overflow:hidden;white-space:nowrap;padding:5px 0;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;background:var(--bg2);border-bottom:1px solid var(--border2);}
+.ticker-track{display:inline-block;animation:tick 28s linear infinite;}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker .good{color:var(--grn);}
+.ticker .bad{color:var(--red);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 2rem 80px;position:relative;overflow:hidden;}
+.hero-glow-left{position:absolute;left:-200px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,32,32,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-glow-right{position:absolute;right:-200px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,230,118,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-label{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted2);border:1px solid var(--border2);padding:7px 16px;margin-bottom:2rem;animation:fadeUp .5s ease both;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,12vw,160px);line-height:.88;letter-spacing:-1px;animation:fadeUp .6s .1s ease both;}
+.hero-title .w1{display:block;color:var(--text);}
+.hero-title .w2{display:block;}
+.hero-title .w2 .safe{color:var(--grn);text-shadow:0 0 60px rgba(0,230,118,0.3);}
+.hero-title .w2 .sep{color:var(--muted);}
+.hero-title .w2 .danger{color:var(--red);text-shadow:0 0 60px rgba(255,32,32,0.3);}
+.hero-title .w3{display:block;color:var(--text);font-size:45%;}
+.hero-desc{font-size:17px;color:var(--muted2);max-width:520px;line-height:1.7;margin-top:2rem;animation:fadeUp .6s .2s ease both;}
+
+/* score pills */
+.hero-scores{display:flex;gap:2rem;margin-top:3rem;animation:fadeUp .6s .3s ease both;flex-wrap:wrap;justify-content:center;}
+.score-pill{display:flex;align-items:center;gap:10px;padding:10px 20px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;}
+.score-pill.good-pill{background:var(--grn-dim);border:1px solid var(--grn-border);color:var(--grn);}
+.score-pill.bad-pill{background:var(--red-dim);border:1px solid var(--red-border);color:var(--red);}
+.score-pill.watch-pill{background:rgba(255,214,0,0.06);border:1px solid rgba(255,214,0,0.2);color:var(--yellow);}
+
+.scroll-hint{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);animation:fadeUp 1s .5s ease both;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--muted2),transparent);animation:drop 1.4s ease-in-out infinite;}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* ── FILTER BAR ── */
+.filter-bar{position:sticky;top:56px;z-index:800;background:rgba(8,8,8,0.96);border-bottom:1px solid var(--border2);padding:0 2.5rem;display:flex;align-items:center;gap:1rem;height:52px;backdrop-filter:blur(12px);}
+.filter-btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:6px 16px;border:1px solid var(--border2);color:var(--muted2);background:transparent;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:7px;}
+.filter-btn:hover,.filter-btn.active{color:var(--text);border-color:var(--text);background:rgba(255,255,255,0.04);}
+.filter-btn.active-good{color:var(--grn);border-color:var(--grn-border);background:var(--grn-dim);}
+.filter-btn.active-bad{color:var(--red);border-color:var(--red-border);background:var(--red-dim);}
+.filter-btn.active-all{color:var(--text);border-color:var(--border2);}
+.filter-count{font-family:'Bebas Neue',sans-serif;font-size:16px;padding:0 4px;}
+.filter-sep{width:1px;height:20px;background:var(--border2);margin:0 .5rem;}
+.filter-bar-right{margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;}
+
+/* ── MAIN GRID ── */
+.page-wrap{max-width:1200px;margin:0 auto;padding:0 2.5rem;}
+
+/* section headers */
+.list-section{padding:60px 0 20px;}
+.list-section-header{display:flex;align-items:center;gap:16px;margin-bottom:2rem;}
+.lsh-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.lsh-icon.good{background:var(--grn-dim);border:1px solid var(--grn-border);color:var(--grn);}
+.lsh-icon.bad{background:var(--red-dim);border:1px solid var(--red-border);color:var(--red);}
+.lsh-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,56px);line-height:1;}
+.lsh-title.good{color:var(--grn);}
+.lsh-title.bad{color:var(--red);}
+.lsh-sub{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted2);letter-spacing:1px;margin-top:4px;}
+.lsh-line{flex:1;height:1px;}
+.lsh-line.good{background:linear-gradient(to right,var(--grn-border),transparent);}
+.lsh-line.bad{background:linear-gradient(to right,var(--red-border),transparent);}
+
+/* ── SERVICE CARDS ── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1px;background:var(--border2);border:1px solid var(--border2);}
+
+.service-card{background:var(--bg2);padding:0;position:relative;transition:background .2s;display:flex;flex-direction:column;}
+.service-card:hover{background:var(--bg3);}
+
+/* colored top stripe */
+.card-stripe{height:3px;width:100%;}
+.card-stripe.good{background:var(--grn);}
+.card-stripe.bad{background:var(--red);}
+.card-stripe.watch{background:var(--yellow);}
+
+.card-inner{padding:1.8rem;flex:1;display:flex;flex-direction:column;gap:1.2rem;}
+
+/* card top row */
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.card-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;line-height:1;}
+.card-name a{color:inherit;text-decoration:none;}
+.card-name a:hover{text-decoration:underline;text-underline-offset:4px;}
+
+/* privacy rating badge */
+.rating-badge{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.rating-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;font-weight:700;border:2px solid;}
+.rating-circle.A{background:rgba(0,230,118,0.1);border-color:var(--grn);color:var(--grn);}
+.rating-circle.B{background:rgba(0,230,118,0.06);border-color:rgba(0,200,80,0.4);color:#00c853;}
+.rating-circle.C{background:rgba(255,214,0,0.07);border-color:rgba(255,214,0,0.3);color:var(--yellow);}
+.rating-circle.D{background:rgba(255,100,0,0.08);border-color:rgba(255,100,0,0.3);color:#ff6400;}
+.rating-circle.F{background:rgba(255,32,32,0.1);border-color:var(--red-border);color:var(--red);}
+.rating-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);margin-top:4px;}
+
+/* verdict */
+.card-verdict{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;padding:5px 12px;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;}
+.verdict-safe{background:var(--grn-dim);border:1px solid var(--grn-border);color:var(--grn);}
+.verdict-danger{background:var(--red-dim);border:1px solid var(--red-border);color:var(--red);}
+.verdict-watch{background:rgba(255,214,0,0.06);border:1px solid rgba(255,214,0,0.2);color:var(--yellow);}
+
+/* description */
+.card-desc{font-size:14px;color:var(--muted2);line-height:1.65;}
+
+/* why block */
+.card-why{background:var(--bg4);border:1px solid var(--border2);padding:1rem 1.2rem;}
+.why-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:.5rem;display:flex;align-items:center;gap:6px;}
+.why-text{font-size:13px;line-height:1.6;}
+.why-text.good{color:#a5f3c9;}
+.why-text.bad{color:#fca5a5;}
+
+/* tags */
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;padding:4px 9px;display:flex;align-items:center;gap:5px;}
+.tag-good{background:var(--grn-dim);border:1px solid var(--grn-border);color:var(--grn);}
+.tag-bad{background:var(--red-dim);border:1px solid var(--red-border);color:var(--red);}
+.tag-neutral{background:var(--bg4);border:1px solid var(--border2);color:var(--muted2);}
+
+/* card footer */
+.card-footer{padding:1rem 1.8rem;border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.2);}
+.card-footer-left{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.card-footer-link{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap .15s;}
+.card-footer-link.report-link{color:var(--red);}
+.card-footer-link.report-link:hover{gap:10px;}
+.card-footer-link.site-link{color:var(--grn);}
+.card-footer-link.site-link:hover{gap:10px;}
+
+/* ── COMPARISON TABLE ── */
+.compare-section{padding:80px 0;}
+.sec-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--muted2);text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:14px;}
+.sec-label i{font-size:12px;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border2);}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,6vw,72px);line-height:.95;margin-bottom:2.5rem;}
+.sec-title em{font-style:normal;}
+.sec-title .g{color:var(--grn);}
+.sec-title .r{color:var(--red);}
+
+.compare-table{width:100%;border-collapse:collapse;border:1px solid var(--border2);}
+.compare-table th{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:14px 18px;text-align:left;border-bottom:1px solid var(--border2);background:var(--bg2);}
+.compare-table th.col-good{color:var(--grn);border-bottom:2px solid var(--grn-border);}
+.compare-table th.col-bad{color:var(--red);border-bottom:2px solid var(--red-border);}
+.compare-table th.col-feature{color:var(--muted2);}
+.compare-table td{padding:13px 18px;font-size:14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table tr:hover td{background:rgba(255,255,255,0.02);}
+.compare-table td.feature{font-family:'Space Mono',monospace;font-size:11px;color:var(--text);letter-spacing:1px;}
+.compare-table td.good-val{color:#a5f3c9;font-size:13px;}
+.compare-table td.bad-val{color:#fca5a5;font-size:13px;}
+.check{color:var(--grn);font-size:16px;}
+.cross{color:var(--red);font-size:16px;}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border2);padding:2.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;display:flex;align-items:center;gap:8px;}
+.footer-text{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;display:flex;align-items:center;gap:6px;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.04s;}.d2{transition-delay:.08s;}.d3{transition-delay:.12s;}.d4{transition-delay:.16s;}.d5{transition-delay:.2s;}.d6{transition-delay:.24s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:700px){
+  .nav-links{display:none;}
+  .services-grid{grid-template-columns:1fr;}
+  .filter-bar{padding:0 1rem;gap:.5rem;overflow-x:auto;}
+  .compare-table{font-size:12px;}
+  .compare-table td,.compare-table th{padding:10px 12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="dot"></div>
+    HOST<span class="g">SAFE</span><span style="color:var(--muted);">/</span><span class="r">UNSAFE</span>
+  </div>
+  <div class="nav-links">
+    <a href="#safe"><i class="fa-solid fa-shield-halved"></i> SAFE HOSTS</a>
+    <a href="#bad"><i class="fa-solid fa-skull"></i> AVOID</a>
+    <a href="#compare"><i class="fa-solid fa-table"></i> COMPARE</a>
+    <a href="hostwatch-main.html"><i class="fa-solid fa-arrow-left"></i> BACK TO HOSTWATCH</a>
+  </div>
+  <div class="nav-tag"><i class="fa-solid fa-database" style="margin-right:6px;font-size:9px;"></i> COMMUNITY DATABASE</div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-track">
+    &nbsp;<i class="fa-solid fa-circle-check good"></i>&nbsp; <span class="good">RAILWAY</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">FLY.IO</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">RENDER</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">DIGITALOCEAN</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">VULTR</span> — SAFE &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-skull bad"></i>&nbsp; <span class="bad">FPS.MS</span> — DANGEROUS: STAFF READ YOUR CODE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="bad">YOUR TOKEN IS AT RISK ON UNVERIFIED HOSTS</span> &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-circle-check good"></i>&nbsp; <span class="good">RAILWAY</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">FLY.IO</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">RENDER</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">DIGITALOCEAN</span> — SAFE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="good">VULTR</span> — SAFE &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-skull bad"></i>&nbsp; <span class="bad">FPS.MS</span> — DANGEROUS: STAFF READ YOUR CODE &nbsp;<i class="fa-solid fa-circle" style="font-size:4px;color:var(--muted);vertical-align:middle;"></i>&nbsp; <span class="bad">YOUR TOKEN IS AT RISK ON UNVERIFIED HOSTS</span> &nbsp;
+  </span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow-left"></div>
+  <div class="hero-glow-right"></div>
+  <div class="hero-label"><i class="fa-solid fa-database"></i>&nbsp; HOSTING PRIVACY DATABASE</div>
+  <h1 class="hero-title">
+    <span class="w1">KNOW YOUR</span>
+    <span class="w2"><span class="safe">SAFE</span><span class="sep"> / </span><span class="danger">UNSAFE</span></span>
+    <span class="w3">Discord Bot Hosting Services</span>
+  </h1>
+  <p class="hero-desc">Not all hosting providers respect your privacy. Some read your code without permission and expose your bot token. This page tells you exactly who to trust — and who to avoid.</p>
+  <div class="hero-scores">
+    <div class="score-pill good-pill"><i class="fa-solid fa-circle-check"></i> 5 SAFE SERVICES</div>
+    <div class="score-pill bad-pill"><i class="fa-solid fa-skull"></i> 1 CONFIRMED DANGEROUS</div>
+    <div class="score-pill watch-pill"><i class="fa-solid fa-eye"></i> 1 UNDER WATCH</div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>SCROLL TO SEE ALL</div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active-all active" onclick="filterCards('all',this)"><i class="fa-solid fa-border-all"></i> ALL <span class="filter-count">7</span></button>
+  <div class="filter-sep"></div>
+  <button class="filter-btn" onclick="filterCards('good',this)"><i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> SAFE <span class="filter-count" style="color:var(--grn);">5</span></button>
+  <button class="filter-btn" onclick="filterCards('bad',this)"><i class="fa-solid fa-skull" style="color:var(--red);"></i> DANGEROUS <span class="filter-count" style="color:var(--red);">1</span></button>
+  <button class="filter-btn" onclick="filterCards('watch',this)"><i class="fa-solid fa-eye" style="color:var(--yellow);"></i> WATCH <span class="filter-count" style="color:var(--yellow);">1</span></button>
+  <div class="filter-bar-right"><i class="fa-solid fa-circle" style="color:var(--grn);font-size:7px;animation:pulse 1.4s infinite;"></i>&nbsp; LAST UPDATED: MARCH 2026</div>
+</div>
+
+<!-- ═══════════ SAFE SERVICES ═══════════ -->
+<div class="page-wrap">
+  <div class="list-section" id="safe">
+    <div class="list-section-header reveal">
+      <div class="lsh-icon good"><i class="fa-solid fa-shield-halved"></i></div>
+      <div>
+        <div class="lsh-title good">SAFE HOSTS</div>
+        <div class="lsh-sub">Verified — These providers respect your privacy</div>
+      </div>
+      <div class="lsh-line good"></div>
+    </div>
+
+    <div class="services-grid" id="cards-grid">
+
+      <!-- RAILWAY -->
+      <div class="service-card" data-type="good">
+        <div class="card-stripe good"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name"><a href="https://railway.app" target="_blank">Railway</a></div>
+              <div class="card-verdict verdict-safe"><i class="fa-solid fa-circle-check"></i> SAFE TO USE</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle A">A+</div>
+              <div class="rating-label">PRIVACY</div>
+            </div>
+          </div>
+          <p class="card-desc">One of the cleanest hosting platforms available. Isolated project environments, strong privacy stance, and no history of staff accessing user files. Excellent free tier for small bots.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> WHY IT'S SAFE</div>
+            <div class="why-text good">Containerised deployments mean staff cannot access your filesystem. Environment variables are encrypted at rest. Transparent terms of service with no hidden data access clauses.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-good"><i class="fa-solid fa-lock"></i> ISOLATED ENV</span>
+            <span class="tag tag-good"><i class="fa-solid fa-key"></i> ENCRYPTED VARS</span>
+            <span class="tag tag-good"><i class="fa-solid fa-file-contract"></i> CLEAR ToS</span>
+            <span class="tag tag-neutral"><i class="fa-solid fa-dollar-sign"></i> FREE TIER</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-calendar-check"></i> Verified March 2026</div>
+          <a href="https://railway.app" target="_blank" class="card-footer-link site-link">VISIT SITE <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- FLY.IO -->
+      <div class="service-card" data-type="good">
+        <div class="card-stripe good"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name"><a href="https://fly.io" target="_blank">Fly.io</a></div>
+              <div class="card-verdict verdict-safe"><i class="fa-solid fa-circle-check"></i> SAFE TO USE</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle A">A</div>
+              <div class="rating-label">PRIVACY</div>
+            </div>
+          </div>
+          <p class="card-desc">Deploys your bot in fully isolated Firecracker micro-VMs. No shared filesystems, no staff access to your code. Strong community trust and developer-first philosophy.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> WHY IT'S SAFE</div>
+            <div class="why-text good">Each app runs in its own micro-VM with hardware-level isolation. Your code and secrets are physically inaccessible to other tenants and staff. Secrets management built in.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-good"><i class="fa-solid fa-microchip"></i> VM ISOLATION</span>
+            <span class="tag tag-good"><i class="fa-solid fa-user-shield"></i> NO STAFF ACCESS</span>
+            <span class="tag tag-good"><i class="fa-solid fa-key"></i> SECRETS MANAGER</span>
+            <span class="tag tag-neutral"><i class="fa-solid fa-dollar-sign"></i> FREE TIER</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-calendar-check"></i> Verified March 2026</div>
+          <a href="https://fly.io" target="_blank" class="card-footer-link site-link">VISIT SITE <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- RENDER -->
+      <div class="service-card" data-type="good">
+        <div class="card-stripe good"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name"><a href="https://render.com" target="_blank">Render</a></div>
+              <div class="card-verdict verdict-safe"><i class="fa-solid fa-circle-check"></i> SAFE TO USE</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle A">A</div>
+              <div class="rating-label">PRIVACY</div>
+            </div>
+          </div>
+          <p class="card-desc">A modern cloud platform with a developer-first approach. Environment variables are encrypted, deployments are isolated, and their privacy policy is clear and enforceable.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> WHY IT'S SAFE</div>
+            <div class="why-text good">Env vars stored encrypted. No documented cases of staff accessing user code. Strong SLA and GDPR-compliant infrastructure. Free tier available for small bots.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-good"><i class="fa-solid fa-lock"></i> ENCRYPTED SECRETS</span>
+            <span class="tag tag-good"><i class="fa-solid fa-file-contract"></i> GDPR COMPLIANT</span>
+            <span class="tag tag-good"><i class="fa-solid fa-circle-check"></i> CLEAR POLICY</span>
+            <span class="tag tag-neutral"><i class="fa-solid fa-dollar-sign"></i> FREE TIER</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-calendar-check"></i> Verified March 2026</div>
+          <a href="https://render.com" target="_blank" class="card-footer-link site-link">VISIT SITE <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- DIGITALOCEAN -->
+      <div class="service-card" data-type="good">
+        <div class="card-stripe good"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name"><a href="https://digitalocean.com" target="_blank">DigitalOcean</a></div>
+              <div class="card-verdict verdict-safe"><i class="fa-solid fa-circle-check"></i> SAFE TO USE</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle A">A+</div>
+              <div class="rating-label">PRIVACY</div>
+            </div>
+          </div>
+          <p class="card-desc">A VPS (Virtual Private Server) gives you a full virtual machine that only you control. You own the filesystem — no hosting provider can ever read your files unless you give them SSH access.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> WHY IT'S SAFE</div>
+            <div class="why-text good">You get a fully isolated virtual server. Root access is yours alone. DigitalOcean staff have no access to your data without a formal legal request. Best privacy guarantee possible on managed infrastructure.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-good"><i class="fa-solid fa-server"></i> FULL VPS CONTROL</span>
+            <span class="tag tag-good"><i class="fa-solid fa-user-lock"></i> ROOT ONLY YOU</span>
+            <span class="tag tag-good"><i class="fa-solid fa-building-columns"></i> LEGAL PROTECTIONS</span>
+            <span class="tag tag-neutral"><i class="fa-solid fa-dollar-sign"></i> PAID FROM $4/mo</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-calendar-check"></i> Verified March 2026</div>
+          <a href="https://digitalocean.com" target="_blank" class="card-footer-link site-link">VISIT SITE <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- VULTR -->
+      <div class="service-card" data-type="good">
+        <div class="card-stripe good"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name"><a href="https://vultr.com" target="_blank">Vultr</a></div>
+              <div class="card-verdict verdict-safe"><i class="fa-solid fa-circle-check"></i> SAFE TO USE</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle A">A</div>
+              <div class="rating-label">PRIVACY</div>
+            </div>
+          </div>
+          <p class="card-desc">Affordable VPS hosting with strong isolation. Like DigitalOcean, you get a fully isolated server that only you control. Popular with bot developers for its low pricing and global data centers.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> WHY IT'S SAFE</div>
+            <div class="why-text good">Isolated virtual machines, no shared filesystems. Staff have no access to customer data without legal process. Transparent privacy policy and competitive pricing starting at $2.50/mo.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-good"><i class="fa-solid fa-server"></i> ISOLATED VPS</span>
+            <span class="tag tag-good"><i class="fa-solid fa-globe"></i> GLOBAL DCs</span>
+            <span class="tag tag-good"><i class="fa-solid fa-shield-halved"></i> NO DATA ACCESS</span>
+            <span class="tag tag-neutral"><i class="fa-solid fa-dollar-sign"></i> FROM $2.50/mo</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-calendar-check"></i> Verified March 2026</div>
+          <a href="https://vultr.com" target="_blank" class="card-footer-link site-link">VISIT SITE <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- SELF HOSTED -->
+      <div class="service-card" data-type="good">
+        <div class="card-stripe" style="background:linear-gradient(to right,var(--grn),#00bcd4);"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name">Self-Hosted</div>
+              <div class="card-verdict verdict-safe"><i class="fa-solid fa-shield-halved"></i> MAXIMUM SAFETY</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle A" style="background:rgba(0,230,118,0.15);border-color:var(--grn);font-size:16px;">S</div>
+              <div class="rating-label">SAFEST</div>
+            </div>
+          </div>
+          <p class="card-desc">Running your bot on your own hardware (a Raspberry Pi, home server, or spare PC) gives you absolute privacy. Zero third-party access — ever. The most control you can have.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-circle-check" style="color:var(--grn);"></i> WHY IT'S THE SAFEST</div>
+            <div class="why-text good">No third party can ever access your files. Your secrets never leave your machine. No subscription fees. Full control over uptime, updates, and security. The gold standard for privacy.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-good"><i class="fa-solid fa-house-laptop"></i> YOUR HARDWARE</span>
+            <span class="tag tag-good"><i class="fa-solid fa-infinity"></i> ZERO THIRD PARTIES</span>
+            <span class="tag tag-good"><i class="fa-solid fa-dollar-sign"></i> FREE (electricity)</span>
+            <span class="tag tag-neutral"><i class="fa-solid fa-wrench"></i> REQUIRES SETUP</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-star" style="color:var(--grn);"></i> Community Recommended</div>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--grn);letter-spacing:1px;"><i class="fa-solid fa-shield-halved"></i> GOLD STANDARD</span>
+        </div>
+      </div>
+
+    </div><!-- end safe grid -->
+  </div>
+
+  <!-- ═══════════ BAD SERVICES ═══════════ -->
+  <div class="list-section" id="bad">
+    <div class="list-section-header reveal">
+      <div class="lsh-icon bad"><i class="fa-solid fa-skull"></i></div>
+      <div>
+        <div class="lsh-title bad">AVOID THESE</div>
+        <div class="lsh-sub">Confirmed or suspected privacy violations</div>
+      </div>
+      <div class="lsh-line bad"></div>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- FPS.MS -->
+      <div class="service-card" data-type="bad">
+        <div class="card-stripe bad"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name">fps.ms</div>
+              <div class="card-verdict verdict-danger"><i class="fa-solid fa-skull"></i> CONFIRMED DANGEROUS</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle F">F</div>
+              <div class="rating-label">PRIVACY</div>
+            </div>
+          </div>
+          <p class="card-desc">Staff have demonstrated they will access your hosted bot's source code and post it publicly without your permission. Your token, your logic, and your secrets are all readable at any time.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-triangle-exclamation" style="color:var(--red);"></i> WHY IT'S DANGEROUS</div>
+            <div class="why-text bad">A staff member publicly pasted a user's private bot code in a support channel without consent. No privacy policy is enforced. Accounts are suspended without warning and reinstatement is gated behind paid plans. Full conversation documented with proof.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-bad"><i class="fa-solid fa-lock-open"></i> CODE SNOOPING</span>
+            <span class="tag tag-bad"><i class="fa-solid fa-key"></i> TOKEN AT RISK</span>
+            <span class="tag tag-bad"><i class="fa-solid fa-share-nodes"></i> PUBLIC CODE LEAK</span>
+            <span class="tag tag-bad"><i class="fa-solid fa-money-bill-wave"></i> EXTORTION BANS</span>
+            <span class="tag tag-bad"><i class="fa-solid fa-file-contract"></i> NO PRIVACY POLICY</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-flag" style="color:var(--red);"></i> 3 reports confirmed</div>
+          <a href="fps-ms-exposed.html" class="card-footer-link report-link">FULL REPORT <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER WATCH -->
+      <div class="service-card" data-type="watch">
+        <div class="card-stripe watch"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <div>
+              <div class="card-name">Unknown Host</div>
+              <div class="card-verdict verdict-watch"><i class="fa-solid fa-eye"></i> UNDER INVESTIGATION</div>
+            </div>
+            <div class="rating-badge">
+              <div class="rating-circle C">?</div>
+              <div class="rating-label">UNRATED</div>
+            </div>
+          </div>
+          <p class="card-desc">Community reports suggest possible staff access to hosted project files. Investigation ongoing. We are collecting evidence before making a confirmed ruling.</p>
+          <div class="card-why">
+            <div class="why-label"><i class="fa-solid fa-eye" style="color:var(--yellow);"></i> WHY WE'RE WATCHING</div>
+            <div class="why-text" style="color:#fde68a;">Multiple independent users report that support staff were able to reference specific lines of private bot code during disputes — without being told what was in the files. Circumstantial but concerning.</div>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-neutral"><i class="fa-solid fa-magnifying-glass"></i> INVESTIGATING</span>
+            <span class="tag tag-neutral"><i class="fa-solid fa-circle-question"></i> UNCONFIRMED</span>
+            <span class="tag tag-bad"><i class="fa-solid fa-triangle-exclamation"></i> REPORTED x2</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-footer-left"><i class="fa-solid fa-clock" style="color:var(--yellow);"></i> Under review</div>
+          <a href="hostwatch-main.html#report" class="card-footer-link" style="color:var(--yellow);">SUBMIT EVIDENCE <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ COMPARISON TABLE ═══════════ -->
+  <div class="compare-section" id="compare">
+    <div class="sec-label reveal"><i class="fa-solid fa-table"></i> Side by Side</div>
+    <h2 class="sec-title reveal">
+      <span class="g">Safe</span> vs <span class="r">Unsafe</span><br>At a Glance
+    </h2>
+
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="col-feature"><i class="fa-solid fa-list"></i>&nbsp; FEATURE</th>
+            <th class="col-good"><i class="fa-solid fa-circle-check"></i>&nbsp; SAFE HOSTS</th>
+            <th class="col-bad"><i class="fa-solid fa-skull"></i>&nbsp; FPS.MS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-eye" style="color:var(--muted);margin-right:8px;"></i>Staff can read your code</td>
+            <td class="good-val"><i class="fa-solid fa-xmark check" style="color:var(--grn);"></i>&nbsp; No — isolated environments</td>
+            <td class="bad-val"><i class="fa-solid fa-check cross" style="color:var(--red);"></i>&nbsp; Yes — confirmed with proof</td>
+          </tr>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-key" style="color:var(--muted);margin-right:8px;"></i>Bot token is safe</td>
+            <td class="good-val"><i class="fa-solid fa-check check" style="color:var(--grn);"></i>&nbsp; Yes — encrypted / isolated</td>
+            <td class="bad-val"><i class="fa-solid fa-xmark cross" style="color:var(--red);"></i>&nbsp; No — readable in project files</td>
+          </tr>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-file-contract" style="color:var(--muted);margin-right:8px;"></i>Privacy policy enforced</td>
+            <td class="good-val"><i class="fa-solid fa-check check" style="color:var(--grn);"></i>&nbsp; Yes — documented &amp; legal</td>
+            <td class="bad-val"><i class="fa-solid fa-xmark cross" style="color:var(--red);"></i>&nbsp; No — none enforced</td>
+          </tr>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-bell" style="color:var(--muted);margin-right:8px;"></i>Warning before suspension</td>
+            <td class="good-val"><i class="fa-solid fa-check check" style="color:var(--grn);"></i>&nbsp; Yes — proper communication</td>
+            <td class="bad-val"><i class="fa-solid fa-xmark cross" style="color:var(--red);"></i>&nbsp; No — suspended overnight</td>
+          </tr>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-headset" style="color:var(--muted);margin-right:8px;"></i>Respectful support</td>
+            <td class="good-val"><i class="fa-solid fa-check check" style="color:var(--grn);"></i>&nbsp; Yes</td>
+            <td class="bad-val"><i class="fa-solid fa-xmark cross" style="color:var(--red);"></i>&nbsp; No — hostile &amp; dismissive</td>
+          </tr>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-dollar-sign" style="color:var(--muted);margin-right:8px;"></i>Free tier without hostage</td>
+            <td class="good-val"><i class="fa-solid fa-check check" style="color:var(--grn);"></i>&nbsp; Yes — no forced upgrades</td>
+            <td class="bad-val"><i class="fa-solid fa-xmark cross" style="color:var(--red);"></i>&nbsp; No — pay to restore access</td>
+          </tr>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-gavel" style="color:var(--muted);margin-right:8px;"></i>Legal accountability</td>
+            <td class="good-val"><i class="fa-solid fa-check check" style="color:var(--grn);"></i>&nbsp; Yes — GDPR / formal process</td>
+            <td class="bad-val"><i class="fa-solid fa-xmark cross" style="color:var(--red);"></i>&nbsp; No — zero accountability</td>
+          </tr>
+          <tr>
+            <td class="feature"><i class="fa-solid fa-users" style="color:var(--muted);margin-right:8px;"></i>Community trust</td>
+            <td class="good-val"><i class="fa-solid fa-check check" style="color:var(--grn);"></i>&nbsp; High — widely recommended</td>
+            <td class="bad-val"><i class="fa-solid fa-xmark cross" style="color:var(--red);"></i>&nbsp; Broken — multiple incidents</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div><!-- end page-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <i class="fa-solid fa-shield-halved" style="color:var(--grn);font-size:18px;"></i>
+    HOST<span style="color:var(--grn);">SAFE</span><span style="color:var(--muted);">/</span><span style="color:var(--red);">UNSAFE</span>
+  </div>
+  <div class="footer-text"><i class="fa-solid fa-database"></i> COMMUNITY-MAINTAINED PRIVACY DATABASE</div>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="hostwatch-main.html" style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted2);text-decoration:none;display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-arrow-left"></i> HOSTWATCH MAIN</a>
+    <a href="fps-ms-exposed.html" style="font-family:'Space Mono',monospace;font-size:11px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-skull"></i> FPS.MS REPORT</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'), i*60); });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Animate all cards on load
+  document.querySelectorAll('.service-card').forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = `opacity .5s ease ${i * 0.06}s, transform .5s ease ${i * 0.06}s`;
+    setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 100 + i * 60);
+  });
+
+  // Filter
+  function filterCards(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active','active-good','active-bad','active-all');
+    });
+    if(type === 'good') btn.classList.add('active','active-good');
+    else if(type === 'bad') btn.classList.add('active','active-bad');
+    else btn.classList.add('active','active-all');
+
+    document.querySelectorAll('.service-card').forEach(card => {
+      const show = type === 'all' || card.dataset.type === type || (type === 'bad' && card.dataset.type === 'watch');
+      card.style.display = show ? '' : 'none';
+    });
+
+    // hide empty section headers
+    document.querySelectorAll('.list-section').forEach(sec => {
+      const visible = [...sec.querySelectorAll('.service-card')].some(c => c.style.display !== 'none');
+      sec.style.display = visible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
