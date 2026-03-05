@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Database of hosting services that violate developer privacy, access private bot source code, and expose Discord bot tokens.">
+<meta name="keywords" content="hostwatch, hosting threats, fps.ms, bot token leak, discord bot hosting, privacy violation, developer security, code snooping, hosting database, unsafe hosts, bot security, hostwatch, hosting threats, fps.ms, bot token leak, discord bot hosting, privacy violation, developer security, code snooping, hosting database, unsafe hosts, bot security">
+<title>HOSTWATCH — Privacy Threat Database</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><div class="nav-dot"></div>HOST<span>WATCH</span></div>
+  <div class="nav-links">
+    <a href="#offenders"><i class="fa-solid fa-skull"></i> OFFENDERS</a>
+    <a href="#warnings"><i class="fa-solid fa-triangle-exclamation"></i> THREATS</a>
+    <a href="#safe"><i class="fa-solid fa-shield-halved"></i> STAY SAFE</a>
+    <a href="#report"><i class="fa-solid fa-flag"></i> REPORT</a>
+  </div>
+  <div class="nav-alert"><i class="fa-solid fa-circle" style="font-size:7px;animation:blink 1s infinite;"></i> LIVE TRACKING</div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-track">
+    &nbsp;<i class="fa-solid fa-triangle-exclamation"></i>&nbsp; FPS.MS — STAFF READ YOUR PRIVATE CODE &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; YOUR BOT TOKEN IS NOT SAFE ON UNVERIFIED HOSTS &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; ALWAYS REGENERATE TOKENS AFTER MIGRATING &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; NEVER HARDCODE SECRETS IN PROJECT FILES &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; KNOW WHICH HOSTS RESPECT YOUR PRIVACY &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-triangle-exclamation"></i>&nbsp; FPS.MS — STAFF READ YOUR PRIVATE CODE &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; YOUR BOT TOKEN IS NOT SAFE ON UNVERIFIED HOSTS &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; ALWAYS REGENERATE TOKENS AFTER MIGRATING &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; NEVER HARDCODE SECRETS IN PROJECT FILES &nbsp;<i class="fa-solid fa-pipe"></i>&nbsp; KNOW WHICH HOSTS RESPECT YOUR PRIVACY &nbsp;
+  </span>
+</div>
+
+<!-- HERO -->
+<div class="hero-bg"></div>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><i class="fa-solid fa-shield-halved"></i> PRIVACY THREAT INTELLIGENCE</div>
+    <h1 class="hero-title">
+      <span class="line1">WHO IS</span>
+      <span class="line2">WATCHING</span>
+      <span class="line3">YOUR BOT?</span>
+    </h1>
+    <p class="hero-sub">Some hosting providers have full access to your code, your secrets, and your bot tokens — and they use it. We track and expose services that violate developer privacy.</p>
+    <div class="hero-btns">
+      <a href="#offenders" class="btn-primary"><i class="fa-solid fa-skull"></i> SEE OFFENDERS</a>
+      <a href="#report" class="btn-ghost"><i class="fa-solid fa-flag"></i> REPORT A SERVICE</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="threat-panel">
+      <div class="tp-header">
+        <span><i class="fa-solid fa-list" style="margin-right:6px;"></i>ACTIVE THREAT LOG</span>
+        <span class="live"><i class="fa-solid fa-circle" style="font-size:7px;animation:blink 1s infinite;"></i> LIVE</span>
+      </div>
+      <div class="tp-item">
+        <div class="threat-icon"><i class="fa-solid fa-lock-open"></i></div>
+        <div><div class="tp-name">CODE EXPOSURE</div><div class="tp-desc">Staff accessing hosted bot source files</div></div>
+        <span class="threat-badge badge-critical">CRITICAL</span>
+      </div>
+      <div class="tp-item">
+        <div class="threat-icon"><i class="fa-solid fa-key"></i></div>
+        <div><div class="tp-name">TOKEN THEFT RISK</div><div class="tp-desc">Bot tokens stored in readable project files</div></div>
+        <span class="threat-badge badge-critical">CRITICAL</span>
+      </div>
+      <div class="tp-item">
+        <div class="threat-icon"><i class="fa-solid fa-code"></i></div>
+        <div><div class="tp-name">DATA LEAK</div><div class="tp-desc">Private code pasted publicly in support chats</div></div>
+        <span class="threat-badge badge-critical">CRITICAL</span>
+      </div>
+      <div class="tp-item">
+        <div class="threat-icon"><i class="fa-solid fa-file-contract"></i></div>
+        <div><div class="tp-name">NO PRIVACY POLICY</div><div class="tp-desc">Zero enforcement on staff data access</div></div>
+        <span class="threat-badge badge-high">HIGH</span>
+      </div>
+      <div class="tp-item">
+        <div class="threat-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+        <div><div class="tp-name">FORCED UPGRADES</div><div class="tp-desc">Suspension used to push paid plans</div></div>
+        <span class="threat-badge badge-medium">MEDIUM</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-icon-top"><i class="fa-solid fa-database"></i></div>
+    <span class="stat-n">12+</span>
+    <div class="stat-l">Services Tracked</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-top"><i class="fa-solid fa-skull-crossbones"></i></div>
+    <span class="stat-n">3</span>
+    <div class="stat-l">Confirmed Offenders</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-top"><i class="fa-solid fa-eye"></i></div>
+    <span class="stat-n">100%</span>
+    <div class="stat-l">Code Visible on Unsafe Hosts</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-top"><i class="fa-solid fa-ban"></i></div>
+    <span class="stat-n">0</span>
+    <div class="stat-l">Excuses Accepted</div>
+  </div>
+</div>
+
+<!-- KNOWN OFFENDERS -->
+<section class="section" id="offenders">
+  <div class="sec-label reveal"><i class="fa-solid fa-skull"></i> Known Offenders</div>
+  <h2 class="sec-title reveal">Services That <em>Violated</em><br>Developer Privacy</h2>
+
+  <div class="offenders-grid">
+    <div class="offender-card reveal d1">
+      <div class="oc-top">
+        <div class="oc-name">FPS.MS</div>
+        <span class="oc-status status-confirmed"><i class="fa-solid fa-circle" style="font-size:7px;"></i> CONFIRMED</span>
+      </div>
+      <p class="oc-desc">Staff accessed a user's private bot source code and pasted it publicly in a support channel without consent. Account suspended without warning. Token exposure risk confirmed.</p>
+      <div class="oc-tags">
+        <span class="oc-tag red"><i class="fa-solid fa-eye"></i> CODE SNOOPING</span>
+        <span class="oc-tag red"><i class="fa-solid fa-key"></i> TOKEN EXPOSED</span>
+        <span class="oc-tag red"><i class="fa-solid fa-share-nodes"></i> PUBLIC LEAK</span>
+        <span class="oc-tag">No Privacy Policy</span>
+        <span class="oc-tag">Forced Paid Plans</span>
+      </div>
+      <div class="oc-footer">
+        <span class="oc-reports"><i class="fa-solid fa-flag"></i> 3 reports filed</span>
+        <a href="fps.ms.html" class="oc-link">FULL REPORT <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- THREAT TYPES -->
+<section class="section" id="warnings">
+  <div class="sec-label reveal"><i class="fa-solid fa-triangle-exclamation"></i> Threat Types</div>
+  <h2 class="sec-title reveal">What Bad Hosts<br><em>Do to You</em></h2>
+
+  <div class="warn-grid">
+    <div class="warn-card reveal d1" data-num="01">
+      <div class="warn-icon"><i class="fa-solid fa-lock-open"></i></div>
+      <div class="warn-title">CODE SNOOPING</div>
+      <p class="warn-text">Staff with server access can open and read every file in your hosted project — your logic, your API calls, your entire codebase — without your knowledge or permission.</p>
+    </div>
+    <div class="warn-card reveal d2" data-num="02">
+      <div class="warn-icon"><i class="fa-solid fa-key"></i></div>
+      <div class="warn-title">TOKEN THEFT</div>
+      <p class="warn-text">Your Discord bot token is the master key to your bot. If it lives in your project files and the host can read them, your token is compromised. Full bot takeover is possible.</p>
+    </div>
+    <div class="warn-card reveal d3" data-num="03">
+      <div class="warn-icon"><i class="fa-solid fa-share-nodes"></i></div>
+      <div class="warn-title">PUBLIC EXPOSURE</div>
+      <p class="warn-text">Private code posted publicly in support channels or Discord servers — used as "evidence" in disputes. Your IP and logic become public without consent.</p>
+    </div>
+    <div class="warn-card reveal d4" data-num="04">
+      <div class="warn-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+      <div class="warn-title">EXTORTION BANS</div>
+      <p class="warn-text">Accounts suspended without warning, with reinstatement gated behind paid plan upgrades. Access to your own bot held hostage to force purchases.</p>
+    </div>
+    <div class="warn-card reveal d1" data-num="05">
+      <div class="warn-icon"><i class="fa-solid fa-user-secret"></i></div>
+      <div class="warn-title">SILENT MONITORING</div>
+      <p class="warn-text">No disclosure that staff can access files. No terms explaining what data is read or stored. You host your bot thinking it's private — it isn't.</p>
+    </div>
+    <div class="warn-card reveal d2" data-num="06">
+      <div class="warn-icon"><i class="fa-solid fa-gavel"></i></div>
+      <div class="warn-title">NO LEGAL PROTECTION</div>
+      <p class="warn-text">Free-tier hosts often have no privacy policy, no GDPR compliance, and no accountability. You have zero legal recourse if your code or secrets are misused.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STAY SAFE -->
+<section class="section" id="safe">
+  <div class="sec-label reveal"><i class="fa-solid fa-shield-halved"></i> Defense Guide</div>
+  <h2 class="sec-title reveal">How to Stay<br><em>Actually Safe</em></h2>
+
+  <div class="safe-layout">
+    <div class="safe-steps reveal">
+      <div class="safe-step">
+        <div class="ss-icon"><i class="fa-solid fa-rotate"></i></div>
+        <div>
+          <div class="ss-title">REGENERATE YOUR TOKEN NOW</div>
+          <p class="ss-text">Go to the <a href="https://discord.com/developers/applications" target="_blank" style="color:var(--r);">Discord Developer Portal</a> and regenerate your bot token immediately. Treat the old one as stolen.</p>
+        </div>
+      </div>
+      <div class="safe-step">
+        <div class="ss-icon"><i class="fa-solid fa-file-shield"></i></div>
+        <div>
+          <div class="ss-title">NEVER HARDCODE SECRETS</div>
+          <p class="ss-text">Store your token in a <code>.env</code> file, load it with <code>python-dotenv</code>, and always add <code>.env</code> to <code>.gitignore</code>.</p>
+        </div>
+      </div>
+      <div class="safe-step">
+        <div class="ss-icon"><i class="fa-solid fa-file-contract"></i></div>
+        <div>
+          <div class="ss-title">READ THE TERMS OF SERVICE</div>
+          <p class="ss-text">Before hosting anywhere, check their ToS for staff access clauses. If it's vague or missing, assume they can read everything.</p>
+        </div>
+      </div>
+      <div class="safe-step">
+        <div class="ss-icon"><i class="fa-solid fa-server"></i></div>
+        <div>
+          <div class="ss-title">CHOOSE VERIFIED SAFE HOSTS</div>
+          <p class="ss-text">Use providers with clear privacy policies, isolated environments, and a reputation the community trusts. See our safe hosts list.</p>
+        </div>
+      </div>
+      <div class="safe-step">
+        <div class="ss-icon"><i class="fa-solid fa-flag"></i></div>
+        <div>
+          <div class="ss-title">REPORT BAD ACTORS</div>
+          <p class="ss-text">If a host violated your privacy, document it with screenshots and submit a report below. Protecting the community means speaking up.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="safe-hosts reveal d2">
+      <div class="sh-header"><i class="fa-solid fa-circle-check"></i> TRUSTED ALTERNATIVES</div>
+      <div class="sh-item">
+        <div class="sh-left">
+          <div class="sh-icon"><i class="fa-solid fa-train"></i></div>
+          <div><div class="sh-name">Railway</div><div class="sh-note">Clean UI, transparent policies, env vars built-in</div></div>
+        </div>
+        <span class="sh-check"><i class="fa-solid fa-check"></i> SAFE</span>
+      </div>
+      <div class="sh-item">
+        <div class="sh-left">
+          <div class="sh-icon"><i class="fa-solid fa-plane"></i></div>
+          <div><div class="sh-name">Fly.io</div><div class="sh-note">Isolated containers, no staff file access</div></div>
+        </div>
+        <span class="sh-check"><i class="fa-solid fa-check"></i> SAFE</span>
+      </div>
+      <div class="sh-item">
+        <div class="sh-left">
+          <div class="sh-icon"><i class="fa-solid fa-cloud"></i></div>
+          <div><div class="sh-name">Render</div><div class="sh-note">Encrypted env vars, solid privacy posture</div></div>
+        </div>
+        <span class="sh-check"><i class="fa-solid fa-check"></i> SAFE</span>
+      </div>
+      <div class="sh-item">
+        <div class="sh-left">
+          <div class="sh-icon"><i class="fa-solid fa-droplet"></i></div>
+          <div><div class="sh-name">DigitalOcean VPS</div><div class="sh-note">Full control — you own the server entirely</div></div>
+        </div>
+        <span class="sh-check"><i class="fa-solid fa-check"></i> SAFE</span>
+      </div>
+      <div class="sh-item">
+        <div class="sh-left">
+          <div class="sh-icon"><i class="fa-solid fa-fire"></i></div>
+          <div><div class="sh-name">Vultr</div><div class="sh-note">Affordable VPS, fully isolated environments</div></div>
+        </div>
+        <span class="sh-check"><i class="fa-solid fa-check"></i> SAFE</span>
+      </div>
+      <div class="sh-item">
+        <div class="sh-left">
+          <div class="sh-icon"><i class="fa-solid fa-house-laptop"></i></div>
+          <div><div class="sh-name">Self-Hosted</div><div class="sh-note">Zero third-party access. You control everything.</div></div>
+        </div>
+        <span class="sh-check"><i class="fa-solid fa-shield-halved"></i> SAFEST</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- REPORT -->
+<section class="section" id="report">
+  <div class="report-section reveal">
+    <div>
+      <div class="rs-title">REPORT A <span>BAD</span><br>SERVICE</div>
+      <p class="rs-text">Know a host that's snooping in your code, leaking tokens, or violating developer privacy? Submit a report and help protect the community.</p>
+    </div>
+    <div class="report-form">
+      <div class="rf-row">
+        <div class="rf-field">
+          <label><i class="fa-solid fa-server"></i> SERVICE NAME</label>
+          <input type="text" placeholder="e.g. fps.ms">
+        </div>
+        <div class="rf-field">
+          <label><i class="fa-solid fa-triangle-exclamation"></i> THREAT TYPE</label>
+          <select>
+            <option>Code Snooping</option>
+            <option>Token Exposure</option>
+            <option>Public Code Leak</option>
+            <option>Extortion / Forced Upgrade</option>
+            <option>Silent Monitoring</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="rf-field">
+        <label><i class="fa-solid fa-pen-to-square"></i> WHAT HAPPENED</label>
+        <textarea rows="4" placeholder="Describe exactly what the service did. Include timestamps, what was accessed, and how you found out."></textarea>
+      </div>
+      <div class="rf-field">
+        <label><i class="fa-solid fa-link"></i> EVIDENCE LINK (OPTIONAL)</label>
+        <input type="text" placeholder="Screenshot link, Discord message URL, etc.">
+      </div>
+      <button class="rf-submit"><i class="fa-solid fa-paper-plane"></i> SUBMIT REPORT</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><i class="fa-solid fa-shield-halved" style="color:var(--r);font-size:18px;"></i> HOST<span>WATCH</span></div>
+  <div class="footer-text"><i class="fa-solid fa-eye"></i> PROTECTING DEVELOPERS FROM PRIVACY-VIOLATING HOSTING SERVICES</div>
+  <div class="footer-text" style="color:var(--r);"><i class="fa-solid fa-triangle-exclamation"></i> STAY INFORMED. STAY SAFE.</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
